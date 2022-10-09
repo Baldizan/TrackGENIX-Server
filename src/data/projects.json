@@ -2,7 +2,7 @@
     {
         "id": 1,
         "project_name": "Anica",
-        "start_date": "16/09/2022",
+        "start_date": "16-09-2022",
         "employees": [
             {
                 "id": 1,
@@ -61,7 +61,7 @@
     {
         "id": 2,
         "project_name": "Rosalinda",
-        "start_date": "18/01/2022",
+        "start_date": "18-01-2022",
         "employees": [
             {
                 "id": 1,
@@ -121,7 +121,7 @@
     {
         "id": 3,
         "project_name": "Si",
-        "start_date": "16/04/2022",
+        "start_date": "16-04-2022",
         "employees": [
             {
                 "id": 1,
@@ -190,7 +190,7 @@
     {
         "id": 4,
         "project_name": "Myra",
-        "start_date": "11/03/2022",
+        "start_date": "11-03-2022",
         "employees": [
             {
                 "id": 1,
@@ -253,7 +253,7 @@
     {
         "id": 5,
         "project_name": "Babette",
-        "start_date": "12/10/2022",
+        "start_date": "12-10-2022",
         "employees": [
             {
                 "id": 1,
@@ -307,7 +307,7 @@
     {
         "id": 6,
         "project_name": "Vin",
-        "start_date": "02/11/2022",
+        "start_date": "02-11-2022",
         "employees": [
             {
                 "id": 1,
@@ -362,7 +362,7 @@
     {
         "id": 7,
         "project_name": "Gregor",
-        "start_date": "09/01/2022",
+        "start_date": "09-01-2022",
         "employees": [
             {
                 "id": 1,
@@ -437,7 +437,7 @@
     {
         "id": 8,
         "project_name": "Sanford",
-        "start_date": "28/04/2022",
+        "start_date": "28-04-2022",
         "employees": [
             {
                 "id": 1,
@@ -495,7 +495,7 @@
     {
         "id": 9,
         "project_name": "Lilia",
-        "start_date": "29/10/2022",
+        "start_date": "29-10-2022",
         "employees": [
             {
                 "id": 1,
@@ -532,7 +532,7 @@
     {
         "id": 10,
         "project_name": "Obidiah",
-        "start_date": "10/01/2023",
+        "start_date": "10-01-2023",
         "employees": [
             {
                 "id": 1,
@@ -596,7 +596,7 @@
     {
         "id": 11,
         "project_name": "Lynsey",
-        "start_date": "04/02/2022",
+        "start_date": "04-02-2022",
         "employees": [
             {
                 "id": 1,
@@ -660,7 +660,7 @@
     {
         "id": 12,
         "project_name": "Inesita",
-        "start_date": "06/03/2022",
+        "start_date": "06-03-2022",
         "employees": [
             {
                 "id": 1,

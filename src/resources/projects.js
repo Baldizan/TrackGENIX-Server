@@ -22,6 +22,33 @@ router.get('/getById/:id', (req, res) => {
   }
 });
 
+//  Get projects by name
+router.get('/getByName/:name', (req, res) => {
+  const projectName = req.params.name;
+  const foundProject = projects.find((project) => project.project_name === projectName);
+  if (foundProject) {
+    res.send(foundProject);
+  } else {
+    res
+      .status(400)
+      .json({ msg: `There is no project with the name of: ${req.params.name}` });
+  }
+});
+
+//  Get projects by start date
+router.get('/getByDate/:date', (req, res) => {
+  const projectStartDate = req.params.date;
+  console.log(projectStartDate);
+  const foundProject = projects.find((project) => project.start_date === projectStartDate);
+  if (foundProject) {
+    res.send(foundProject);
+  } else {
+    res
+      .status(400)
+      .json({ msg: `There is no project iniciated on ${req.params.date}. The date format must be (dd-mm-yyyy)` });
+  }
+});
+
 //  Create new project
 router.post('/add', (req, res) => {
   const newProject = req.body;
