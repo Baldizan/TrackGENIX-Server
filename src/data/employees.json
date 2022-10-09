@@ -1,111 +1,162 @@
-[{
-  "id": "1",
-  "first_name": "Celka",
-  "last_name": "Blackaller",
-  "email": "cblackaller0@buzzfeed.com",
-  "password": "RQOyuOWvQwa",
-  "task": "unleash dot-com experiences",
-  "project_rates_list": [{
-    "project_id": "1",
-    "rate": "15"
-  }]
-}, {
-  "id": "2",
-  "first_name": "Deanne",
-  "last_name": "Henke",
-  "email": "dhenke1@squidoo.com",
-  "password": "Hq6mz2",
-  "task": "enhance cross-platform ROI",
-  "project_rates_list": [{
-    "project_id": "2",
-    "rate": "12"
-  }]
-}, {
-  "id": "3",
-  "first_name": "Yurik",
-  "last_name": "Hurdidge",
-  "email": "yhurdidge2@wsj.com",
-  "password": "DyUrncs",
-  "task": "innovate mission-critical metrics",
-  "project_rates_list": [{
-    "project_id": "3",
-    "rate": "14"
-  }]
-}, {
-  "id": "4",
-  "first_name": "Agatha",
-  "last_name": "Breedy",
-  "email": "abreedy3@desdev.cn",
-  "password": "QJ3rDhEJgzE",
-  "task": "strategize end-to-end partnerships",
-  "project_rates_list": [{
-    "project_id": "8",
-    "rate": "17"
-  }]
-}, {
-  "id": "5",
-  "first_name": "Effie",
-  "last_name": "Brownsea",
-  "email": "ebrownsea4@miitbeian.gov.cn",
-  "password": "YiymXRoN",
-  "task": "deliver 24/7 experiences",
-  "project_rates_list": [{
-    "project_id": "9",
-    "rate": "10"
-  }]
-}, {
-  "id": "6",
-  "first_name": "Adlai",
-  "last_name": "Dowty",
-  "email": "adowty5@ft.com",
-  "password": "ubNJl36PmkwI",
-  "task": "grow out-of-the-box metrics",
-  "project_rates_list": [{
-      "project_id": "6",
-      "rate": "15"
-  }]
-}, {
-  "id": "7",
-  "first_name": "Ellery",
-  "last_name": "Moryson",
-  "email": "emoryson6@sphinn.com",
-  "password": "geRTc5zF",
-  "task": "implement leading-edge eyeballs",
-  "project_rates_list": [{
-    "project_id": "4",
-    "rate": "13"
-  }]
-}, {
-  "id": "8",
-  "first_name": "Brantley",
-  "last_name": "Thome",
-  "email": "bthome7@weibo.com",
-  "password": "JfekrLTvhU",
-  "task": "scale holistic architectures",
-  "project_rates_list":[ {
-    "project_id": "7",
-    "rate": "9"
-  }]
-}, {
-  "id": "9",
-  "first_name": "Iorgo",
-  "last_name": "Edmeads",
-  "email": "iedmeads8@ifeng.com",
-  "password": "W4f2bpzaBPB",
-  "task": "revolutionize killer metrics",
-  "project_rates_list": [{
-    "project_id": "11",
-    "rate": "19"
-  }]
-}, {
-  "id": "10",
-  "first_name": "Helli",
-  "last_name": "Von Welden",
-  "email": "hvonwelden9@spiegel.de",
-  "password": "oxu8L3OeN",
-  "task": "deliver dot-com mindshare",
-  "project_rates_list": [{
-    "project_id": "10",
-    "rate": "13"
-  }]
-}]
+[
+  {
+    "id": "1",
+    "first_name": "Alfi",
+    "last_name": "Franzman",
+    "email": "afranzman0@storify.com",
+    "password": "3IwDj3zymZ",
+    "task": "Tin",
+    "projects": [
+      {
+        "project_id": "13",
+        "role": "Human Resources Assistant III",
+        "rates": "10",
+        "hours": "30"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "first_name": "Joaquin",
+    "last_name": "Roberds",
+    "email": "jroberds1@csmonitor.com",
+    "password": "QMKjbNrO",
+    "task": "Alphazap",
+    "projects": [
+      {
+        "project_id": "11",
+        "role": "Programmer IV",
+        "rates": "25",
+        "hours": "29"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "first_name": "Garik",
+    "last_name": "Casaroli",
+    "email": "gcasaroli2@addtoany.com",
+    "task": "Viva",
+    "password": "oRPecCFM3nE6",
+    "projects": [
+      {
+        "project_id": "10",
+        "role": "Technical Writer",
+        "rates": "16",
+        "hours": "28"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "first_name": "Edita",
+    "last_name": "Muff",
+    "email": "emuff3@baidu.com",
+    "password": "DQAiP5jV",
+    "task": "Rank",
+    "projects": [
+      {
+        "project_id": "9",
+        "role": "Quality Engineer",
+        "rates": "15",
+        "hours": "31"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "first_name": "Ariana",
+    "last_name": "Fandrich",
+    "email": "afandrich4@si.edu",
+    "task": "Asoka",
+    "password": "7YR5fYg",
+    "projects": [
+      {
+        "project_id": "8",
+        "role": "Chief Design Engineer",
+        "rates": "13",
+        "hours": "37"
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "first_name": "Nada",
+    "last_name": "Butts",
+    "email": "nbutts5@lycos.com",
+    "password": "rGPQRRhdTqJd",
+    "task": "Opela",
+    "projects": [
+      {
+        "project_id": "7",
+        "role": "Food Chemist",
+        "rates": "11",
+        "hours": "14"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "first_name": "Katinka",
+    "last_name": "Ghione",
+    "email": "kghione6@chicagotribune.com",
+    "password": "kdeyzWW1",
+    "task": "Stringtough",
+    "projects": [
+      {
+        "project_id": "1",
+        "role": "Software Engineer III",
+        "rates": "36",
+        "hours": "45"
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "first_name": "Rolland",
+    "last_name": "Tickner",
+    "email": "rtickner7@gov.uk",
+    "password": "sinljJdZtnAX",
+    "task": "Tempsoft",
+    "projects": [
+      {
+        "project_id": "4",
+        "role": "Safety Technician III",
+        "rates": "17",
+        "hours": "34"
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "first_name": "Arvie",
+    "last_name": "Scyone",
+    "email": "ascyone8@weather.com",
+    "password": "gkspWH6yDL",
+    "task": "Aerified",
+    "projects": [
+      {
+        "project_id": "5",
+        "role": "Accounting Assistant IV",
+        "rates": "17",
+        "hours": "36"
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "first_name": "Sheelagh",
+    "last_name": "Golde",
+    "email": "sgolde9@patch.com",
+    "password": "3asXvZy",
+    "task": "Ronstring",
+    "projects": [
+      {
+        "project_id": "6",
+        "role": "Human Resources Assistant IV",
+        "rates": "18",
+        "hours": "20"
+      }
+    ]
+  }
+]
