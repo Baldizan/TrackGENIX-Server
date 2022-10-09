@@ -1,9 +1,9 @@
 [
     {
         "id": 1,
-        "proyect_name": "Anica",
+        "project_name": "Anica",
         "start_date": "16/09/2022",
-        "employee": [
+        "employees": [
             {
                 "id": 1,
                 "name": "Charmane",
@@ -35,7 +35,7 @@
                 "rate": 503
             }
         ],
-        "task": [
+        "tasks": [
             {
                 "id": 1,
                 "name": "throughput",
@@ -60,9 +60,9 @@
     },
     {
         "id": 2,
-        "proyect_name": "Rosalinda",
+        "project_name": "Rosalinda",
         "start_date": "18/01/2022",
-        "employee": [
+        "employees": [
             {
                 "id": 1,
                 "name": "Fielding",
@@ -100,7 +100,7 @@
                 "rate": 665
             }
         ],
-        "task": [
+        "tasks": [
             {
                 "id": 1,
                 "name": "Focused",
@@ -120,9 +120,9 @@
     },
     {
         "id": 3,
-        "proyect_name": "Si",
+        "project_name": "Si",
         "start_date": "16/04/2022",
-        "employee": [
+        "employees": [
             {
                 "id": 1,
                 "name": "Madison",
@@ -154,7 +154,7 @@
                 "rate": 549
             }
         ],
-        "task": [
+        "tasks": [
             {
                 "id": 1,
                 "name": "neural-net",
@@ -189,9 +189,9 @@
     },
     {
         "id": 4,
-        "proyect_name": "Myra",
+        "project_name": "Myra",
         "start_date": "11/03/2022",
-        "employee": [
+        "employees": [
             {
                 "id": 1,
                 "name": "Dru",
@@ -217,7 +217,7 @@
                 "rate": 982
             }
         ],
-        "task": [
+        "tasks": [
             {
                 "id": 1,
                 "name": "homogeneous",
@@ -252,9 +252,9 @@
     },
     {
         "id": 5,
-        "proyect_name": "Babette",
+        "project_name": "Babette",
         "start_date": "12/10/2022",
-        "employee": [
+        "employees": [
             {
                 "id": 1,
                 "name": "Mirabelle",
@@ -286,7 +286,7 @@
                 "rate": 912
             }
         ],
-        "task": [
+        "tasks": [
             {
                 "id": 1,
                 "name": "radical",
@@ -306,9 +306,9 @@
     },
     {
         "id": 6,
-        "proyect_name": "Vin",
+        "project_name": "Vin",
         "start_date": "02/11/2022",
-        "employee": [
+        "employees": [
             {
                 "id": 1,
                 "name": "Berrie",
@@ -346,7 +346,7 @@
                 "rate": 748
             }
         ],
-        "task": [
+        "tasks": [
             {
                 "id": 1,
                 "name": "Object-based",
@@ -361,9 +361,9 @@
     },
     {
         "id": 7,
-        "proyect_name": "Gregor",
+        "project_name": "Gregor",
         "start_date": "09/01/2022",
-        "employee": [
+        "employees": [
             {
                 "id": 1,
                 "name": "Blythe",
@@ -401,7 +401,7 @@
                 "rate": 996
             }
         ],
-        "task": [
+        "tasks": [
             {
                 "id": 1,
                 "name": "concept",
@@ -436,9 +436,9 @@
     },
     {
         "id": 8,
-        "proyect_name": "Sanford",
+        "project_name": "Sanford",
         "start_date": "28/04/2022",
-        "employee": [
+        "employees": [
             {
                 "id": 1,
                 "name": "Etan",
@@ -464,7 +464,7 @@
                 "rate": 666
             }
         ],
-        "task": [
+        "tasks": [
             {
                 "id": 1,
                 "name": "migration",
@@ -494,9 +494,9 @@
     },
     {
         "id": 9,
-        "proyect_name": "Lilia",
+        "project_name": "Lilia",
         "start_date": "29/10/2022",
-        "employee": [
+        "employees": [
             {
                 "id": 1,
                 "name": "Abbe",
@@ -516,7 +516,7 @@
                 "rate": 277
             }
         ],
-        "task": [
+        "tasks": [
             {
                 "id": 1,
                 "name": "local",
@@ -531,9 +531,9 @@
     },
     {
         "id": 10,
-        "proyect_name": "Obidiah",
+        "project_name": "Obidiah",
         "start_date": "10/01/2023",
-        "employee": [
+        "employees": [
             {
                 "id": 1,
                 "name": "Sergeant",
@@ -565,7 +565,7 @@
                 "rate": 239
             }
         ],
-        "task": [
+        "tasks": [
             {
                 "id": 1,
                 "name": "secured line",
@@ -595,9 +595,9 @@
     },
     {
         "id": 11,
-        "proyect_name": "Lynsey",
+        "project_name": "Lynsey",
         "start_date": "04/02/2022",
-        "employee": [
+        "employees": [
             {
                 "id": 1,
                 "name": "Winifred",
@@ -629,7 +629,7 @@
                 "rate": 713
             }
         ],
-        "task": [
+        "tasks": [
             {
                 "id": 1,
                 "name": "hybrid",
@@ -659,9 +659,9 @@
     },
     {
         "id": 12,
-        "proyect_name": "Inesita",
+        "project_name": "Inesita",
         "start_date": "06/03/2022",
-        "employee": [
+        "employees": [
             {
                 "id": 1,
                 "name": "Donn",
@@ -675,7 +675,7 @@
                 "rate": 267
             }
         ],
-        "task": [
+        "tasks": [
             {
                 "id": 1,
                 "name": "empowering",
@@ -703,51 +703,5 @@
             }
         ]
     },
-    {},
-    {
-        "id": 34,
-        "proyect_name": "Tonnie",
-        "start_date": "05/12/2022",
-        "employee": [
-            {
-                "id": 1,
-                "name": "Danya",
-                "rol": "PM",
-                "rate": 264
-            },
-            {
-                "id": 2,
-                "name": "Charlton",
-                "rol": "TL",
-                "rate": 386
-            }
-        ],
-        "task": [
-            {
-                "id": 1,
-                "name": "complexity",
-                "description": "vel augue vestibulum ante"
-            },
-            {
-                "id": 2,
-                "name": "Organic",
-                "description": "in lacus curabitur at ipsum ac tellus semper interdum mauris"
-            },
-            {
-                "id": 3,
-                "name": "dedicated",
-                "description": "libero rutrum ac lobortis vel dapibus at diam nam"
-            },
-            {
-                "id": 4,
-                "name": "fault-tolerant",
-                "description": "tortor id nulla ultrices aliquet maecenas leo"
-            },
-            {
-                "id": 5,
-                "name": "next generation",
-                "description": "ante nulla justo aliquam quis turpis eget elit"
-            }
-        ]
-    }
+    {}
 ]

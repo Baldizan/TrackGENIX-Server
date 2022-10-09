@@ -1,8 +1,8 @@
 const express = require('express');
 
 const router = express.Router();
+const fs = require('fs');
 const projects = require('../data/projects.json');
-const fs = require('fs')
 
 //  Get All projects list
 router.get('/getAll', (req, res) => {
@@ -23,7 +23,7 @@ router.get('/getById/:id', (req, res) => {
 });
 
 //  Create new project
-router.post('/add', (req, res) =>{
+router.post('/add', (req, res) => {
   const newProject = req.body;
   projects.push(newProject);
   fs.writeFile('src/data/projects.json', JSON.stringify(projects), (err) => {
@@ -32,7 +32,20 @@ router.post('/add', (req, res) =>{
     } else {
       res.send('Project created correctly');
     }
-  })
+  });
+});
+
+//  Delete a project
+router.delete('/delete/:id', (req, res) => {
+  const projectId = parseInt(req.params.id, 10);
+  const filteredProject = projects.filter((project) => project.id !== projectId);
+  fs.writeFile('src/data/projects.json', JSON.stringify(filteredProject), (err) => {
+    if (err) {
+      res.send('Cannot delete that project');
+    } else {
+      res.send('Project deleted');
+    }
+  });
 });
 
 module.exports = router;
