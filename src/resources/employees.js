@@ -19,7 +19,7 @@ router.post('/createEmployee', (req, res) => {
 });
 
 router.put('/editEmployee', (req, res) => {
-  const employeeId = req.params.id;
+  const employeeId = req.body.id;
   const employeeToBeEdited = req.body;
   let newEmployeesList = employees;
   newEmployeesList = newEmployeesList.map((employee) => {
@@ -28,7 +28,7 @@ router.put('/editEmployee', (req, res) => {
     }
     return employee;
   });
-  fs.writeFile('src/data/employee.json', JSON.stringify(newEmployeesList), (err) => {
+  fs.writeFile('src/data/employees.json', JSON.stringify(newEmployeesList), (err) => {
     if (err) {
       res.send('Cannot update employee');
     } else {
