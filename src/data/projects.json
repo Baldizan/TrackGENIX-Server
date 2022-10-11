@@ -1,0 +1,38 @@
+[
+    {
+        "id": "2",
+        "project_name": "track genix web",
+        "start_date": "07/12/2022",
+        "employees": [
+            {
+                "id": "2",
+                "name": "maxi schmidt",
+                "rol": [
+                    "DEV"
+                ],
+                "rate": 80000
+            },
+            {
+                "name": "maxiii",
+                "rol": [
+                    "DEV"
+                ]
+            },
+            {
+                "id": "7",
+                "name": "maxiii",
+                "rol": [
+                    "PM",
+                    "DEV"
+                ]
+            }
+        ],
+        "tasks": [
+            {
+                "id": "1",
+                "name": "Open-architected-maxi",
+                "description": "quisque porta volutpat erat quisque"
+            }
+        ]
+    }
+]
