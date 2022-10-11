@@ -1,8 +1,8 @@
 [
     {
         "id": "1998220",
-        "project_name": "Anica",
-        "start_date": "16-09-2022",
+        "projectName": "Anica",
+        "startDate": "16-09-2022",
         "employees": [
             {
                 "id": 1,
@@ -60,8 +60,8 @@
     },
     {
         "id": "1998810",
-        "project_name": "Lilia",
-        "start_date": "29-10-2022",
+        "projectName": "Lilia",
+        "startDate": "29-10-2022",
         "employees": [
             {
                 "id": 1,
@@ -97,8 +97,8 @@
     },
     {
         "id": "1998821",
-        "project_name": "Obidiah",
-        "start_date": "10-01-2023",
+        "projectName": "Obidiah",
+        "startDate": "10-01-2023",
         "employees": [
             {
                 "id": 1,
@@ -161,8 +161,8 @@
     },
     {
         "id": "1998822",
-        "project_name": "Lynsey",
-        "start_date": "04-02-2022",
+        "projectName": "Lynsey",
+        "startDate": "04-02-2022",
         "employees": [
             {
                 "id": 1,
@@ -225,8 +225,8 @@
     },
     {
         "id": "1998824",
-        "project_name": "Inesita",
-        "start_date": "06-03-2022",
+        "projectName": "Inesita",
+        "startDate": "06-03-2022",
         "employees": [
             {
                 "id": 1,
@@ -271,8 +271,8 @@
     },
     {
         "id": "1998820",
-        "project_name": "Ines",
-        "start_date": "05-03-2022",
+        "projectName": "Ines",
+        "startDate": "05-03-2022",
         "employees": [
             {
                 "id": 1,

@@ -4,13 +4,11 @@ import fs from 'fs';
 const router = express.Router();
 const projects = require('../data/projects.json');
 
-//  Get All projects list
-router.get('/getAll', (req, res) => {
+router.get('/get', (req, res) => {
   res.send(projects);
 });
 
-//  Get projects by id
-router.get('/getById/:id', (req, res) => {
+router.get('/get/:id', (req, res) => {
   const projectId = parseInt(req.params.id, 10);
   const foundProject = projects.find((project) => project.id === projectId);
   if (foundProject) {
@@ -22,10 +20,9 @@ router.get('/getById/:id', (req, res) => {
   }
 });
 
-//  Get projects by name
 router.get('/getByName/:name', (req, res) => {
   const projectName = req.params.name;
-  const foundProject = projects.find((project) => project.project_name === projectName);
+  const foundProject = projects.find((project) => project.projectName === projectName);
   if (foundProject) {
     res.send(foundProject);
   } else {
@@ -35,10 +32,9 @@ router.get('/getByName/:name', (req, res) => {
   }
 });
 
-//  Get projects by start date
 router.get('/getByDate/:date', (req, res) => {
   const projectStartDate = req.params.date;
-  const foundProject = projects.find((project) => project.start_date === projectStartDate);
+  const foundProject = projects.find((project) => project.startDate === projectStartDate);
   if (foundProject) {
     res.send(foundProject);
   } else {
@@ -48,37 +44,32 @@ router.get('/getByDate/:date', (req, res) => {
   }
 });
 
-//  Create new project
 router.post('/add', (req, res) => {
   const bodys = req.body;
   const idNewProject = new Date().getTime().toString().substring(6);
   const newEmployees = [];
   const newTasks = [];
   bodys.employees.forEach((employee) => {
-    let emp = employee;
-    emp = {
+    newEmployees.push({
       id: employee.id,
       name: employee.name,
       rol: employee.rol,
       rate: employee.rate,
-    };
-    newEmployees.push(emp);
+    });
   });
 
   bodys.tasks.forEach((task) => {
-    let ts = task;
-    ts = {
+    newTasks.push( {
       id: task.id,
       name: task.name,
       description: task.description,
-    };
-    newTasks.push(ts);
+    });
   });
 
   const newProject = {
     id: idNewProject,
-    project_name: bodys.project_name,
-    start_date: bodys.start_date,
+    projectName: bodys.projectName,
+    startDate: bodys.startDate,
     employees: newEmployees,
     tasks: newTasks,
   };
@@ -92,7 +83,6 @@ router.post('/add', (req, res) => {
   });
 });
 
-//  Delete a project
 router.delete('/delete/:id', (req, res) => {
   const projectId = req.params.id;
   const filteredProject = projects.filter((project) => project.id.toString() !== projectId);
@@ -105,11 +95,10 @@ router.delete('/delete/:id', (req, res) => {
   });
 });
 
-// Filter a list of projects before a date
 router.get('/getProjectsBefore/:date', (req, res) => {
   const projectStartDate = req.params.date;
   const filteredProjectsByDate = projects
-    .filter((project) => project.start_date <= projectStartDate);
+    .filter((project) => project.startDate <= projectStartDate);
   if (filteredProjectsByDate) {
     res.send(filteredProjectsByDate);
   } else {
@@ -119,11 +108,10 @@ router.get('/getProjectsBefore/:date', (req, res) => {
   }
 });
 
-// Filter a list of projects after a date
 router.get('/getProjectsAfter/:date', (req, res) => {
   const projectStartDate = req.params.date;
   const filteredProjectsByDate = projects
-    .filter((project) => project.start_date >= projectStartDate);
+    .filter((project) => project.startDate >= projectStartDate);
   if (filteredProjectsByDate) {
     res.send(filteredProjectsByDate);
   } else {
