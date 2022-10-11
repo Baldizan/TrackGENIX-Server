@@ -11,3 +11,14 @@ router.get('/getAll', (req, res) => {
     data: admins,
   });
 });
+
+// Filter admins by id
+router.get('/getById/:id', (req, res) => {
+  const adminId = Number(req.params.id);
+  const foundAdmin = admins.find((adminFilter) => adminFilter.id === adminId);
+  if (foundAdmin) {
+    res.send(foundAdmin);
+  } else {
+    res.send('Admin not found');
+  }
+});
