@@ -28,13 +28,33 @@ router.get('/getByTask/:task', (req, res) => {
   }
 });
 
-router.get('/getByProject/:projects/:project_id', (req, res) => {
-  const projectParam = req.params.projects[0].project_id;
-  const filteredProject = employee.filter((t) => t.projects.project_id === projectParam);
-  if (filteredProject.length > 0) {
+router.get('/getByProject/:project_id', (req, res) => {
+  const projectId = req.params.project_id;
+  const filteredProject = [];
+  employee.forEach((e) => {
+    if (e.projects.find((p) => p.project_id === projectId)) {
+      filteredProject.push(e);
+    }
+  });
+  if (filteredProject.length !== 0) {
     res.send(filteredProject);
   } else {
-    res.send('Project ID not found');
+    res.send('Project not found');
+  }
+});
+
+router.get('/getByRole/:role', (req, res) => {
+  const roleParam = req.params.role;
+  const filteredRole = [];
+  employee.forEach((e) => {
+    if (e.projects.find((r) => r.role === roleParam)) {
+      filteredRole.push(e);
+    }
+  });
+  if (filteredRole.length !== 0) {
+    res.send(filteredRole);
+  } else {
+    res.send('Role not found');
   }
 });
 
