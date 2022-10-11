@@ -1,6 +1,6 @@
 // use "import" to import libraries
 import express from 'express';
-
+import projectsRouter from './resources/projects';
 // use "require" to import JSON files
 const admins = require('./data/admins.json');
 
@@ -18,9 +18,6 @@ app.get('/admins', (req, res) => {
     data: admins,
   });
 });
-
-// Projects
-const projectsRouter = require('./resources/projects');
 
 app.use('/projects', projectsRouter);
 
