@@ -1,14 +1,14 @@
 [
   {
     "id": "1",
-    "first_name": "Alfi",
-    "last_name": "Franzman",
+    "firstName": "Alfi",
+    "lastName": "Franzman",
     "email": "afranzman0@storify.com",
     "password": "3IwDj3zymZ",
     "task": "Tin",
     "projects": [
       {
-        "project_id": "1",
+        "projectId": "1",
         "role": "Human Resources Assistant III",
         "rates": "10",
         "hours": "30"
@@ -17,14 +17,14 @@
   },
   {
     "id": "2",
-    "first_name": "Joaquin",
-    "last_name": "Roberds",
+    "firstName": "Joaquin",
+    "lastName": "Roberds",
     "email": "jroberds1@csmonitor.com",
     "password": "QMKjbNrO",
     "task": "Alphazap",
     "projects": [
       {
-        "project_id": "4",
+        "projectId": "4",
         "role": "Programmer IV",
         "rates": "25",
         "hours": "29"
@@ -33,14 +33,14 @@
   },
   {
     "id": "3",
-    "first_name": "Garik",
-    "last_name": "Casaroli",
+    "firstName": "Garik",
+    "lastName": "Casaroli",
     "email": "gcasaroli2@addtoany.com",
     "task": "Viva",
     "password": "oRPecCFM3nE6",
     "projects": [
       {
-        "project_id": "9",
+        "projectId": "9",
         "role": "Technical Writer",
         "rates": "16",
         "hours": "28"
@@ -49,14 +49,14 @@
   },
   {
     "id": "4",
-    "first_name": "Edita",
-    "last_name": "Muff",
+    "firstName": "Edita",
+    "lastName": "Muff",
     "email": "emuff3@baidu.com",
     "password": "DQAiP5jV",
     "task": "Rank",
     "projects": [
       {
-        "project_id": "9",
+        "projectId": "9",
         "role": "Quality Engineer",
         "rates": "15",
         "hours": "31"
@@ -65,14 +65,14 @@
   },
   {
     "id": "5",
-    "first_name": "Ariana",
-    "last_name": "Fandrich",
+    "firstName": "Ariana",
+    "lastName": "Fandrich",
     "email": "afandrich4@si.edu",
     "task": "Asoka",
     "password": "7YR5fYg",
     "projects": [
       {
-        "project_id": "8",
+        "projectId": "8",
         "role": "Chief Design Engineer",
         "rates": "13",
         "hours": "37"
@@ -81,14 +81,14 @@
   },
   {
     "id": "6",
-    "first_name": "Nada",
-    "last_name": "Butts",
+    "firstName": "Nada",
+    "lastName": "Butts",
     "email": "nbutts5@lycos.com",
     "password": "rGPQRRhdTqJd",
     "task": "Opela",
     "projects": [
       {
-        "project_id": "7",
+        "projectId": "7",
         "role": "Food Chemist",
         "rates": "11",
         "hours": "14"
@@ -97,14 +97,14 @@
   },
   {
     "id": "7",
-    "first_name": "Katinka",
-    "last_name": "Ghione",
+    "firstName": "Katinka",
+    "lastName": "Ghione",
     "email": "kghione6@chicagotribune.com",
     "password": "kdeyzWW1",
     "task": "Stringtough",
     "projects": [
       {
-        "project_id": "1",
+        "projectId": "1",
         "role": "Software Engineer III",
         "rates": "36",
         "hours": "45"
@@ -113,14 +113,14 @@
   },
   {
     "id": "8",
-    "first_name": "Rolland",
-    "last_name": "Tickner",
+    "firstName": "Rolland",
+    "lastName": "Tickner",
     "email": "rtickner7@gov.uk",
     "password": "sinljJdZtnAX",
     "task": "Tempsoft",
     "projects": [
       {
-        "project_id": "4",
+        "projectId": "4",
         "role": "Safety Technician III",
         "rates": "17",
         "hours": "34"
@@ -129,14 +129,14 @@
   },
   {
     "id": "9",
-    "first_name": "Arvie",
-    "last_name": "Scyone",
+    "firstName": "Arvie",
+    "lastName": "Scyone",
     "email": "ascyone8@weather.com",
     "password": "gkspWH6yDL",
     "task": "Aerified",
     "projects": [
       {
-        "project_id": "8",
+        "projectId": "8",
         "role": "Accounting Assistant IV",
         "rates": "17",
         "hours": "36"
@@ -145,14 +145,14 @@
   },
   {
     "id": "10",
-    "first_name": "Sheelagh",
-    "last_name": "Golde",
+    "firstName": "Sheelagh",
+    "lastName": "Golde",
     "email": "sgolde9@patch.com",
     "password": "3asXvZy",
     "task": "Ronstring",
     "projects": [
       {
-        "project_id": "7",
+        "projectId": "7",
         "role": "Human Resources Assistant IV",
         "rates": "18",
         "hours": "20"

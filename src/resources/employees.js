@@ -1,14 +1,14 @@
-const express = require('express');
+import express from 'express';
+import fs from 'fs';
 
 const router = express.Router();
-const fs = require('fs');
 const employee = require('../data/employees.json');
 
-router.get('/allEmployees', (req, res) => {
+router.get('/all', (req, res) => {
   res.send(employee);
 });
 
-router.get('/getEmployee/:id', (req, res) => {
+router.get('/get/:id', (req, res) => {
   const employeeId = req.params.id;
   const findEmployee = employee.find((emp) => emp.id === employeeId);
   if (findEmployee) {
@@ -18,7 +18,7 @@ router.get('/getEmployee/:id', (req, res) => {
   }
 });
 
-router.get('/getByTask/:task', (req, res) => {
+router.get('/getTask/:task', (req, res) => {
   const taskParam = req.params.task;
   const filteredTask = employee.filter((t) => t.task === taskParam);
   if (filteredTask.length > 0) {
@@ -28,11 +28,31 @@ router.get('/getByTask/:task', (req, res) => {
   }
 });
 
-router.get('/getByProject/:project_id', (req, res) => {
-  const projectId = req.params.project_id;
+router.get('/getName/:firstName', (req, res) => {
+  const nameParam = req.params.firstName;
+  const filteredName = employee.filter((fn) => fn.firstName === nameParam);
+  if (filteredName.length > 0) {
+    res.send(filteredName);
+  } else {
+    res.send('First Name not found');
+  }
+});
+
+router.get('/getLastName/:lastName', (req, res) => {
+  const lastNameParam = req.params.lastName;
+  const filteredLastName = employee.filter((ln) => ln.lastName === lastNameParam);
+  if (filteredLastName.length > 0) {
+    res.send(filteredLastName);
+  } else {
+    res.send('Last Name not found');
+  }
+});
+
+router.get('/getProject/:projectId', (req, res) => {
+  const EmployeeProjectId = req.params.projectId;
   const filteredProject = [];
   employee.forEach((e) => {
-    if (e.projects.find((p) => p.project_id === projectId)) {
+    if (e.projects.find((p) => p.projectId === EmployeeProjectId)) {
       filteredProject.push(e);
     }
   });
@@ -43,7 +63,7 @@ router.get('/getByProject/:project_id', (req, res) => {
   }
 });
 
-router.get('/getByRole/:role', (req, res) => {
+router.get('/getRole/:role', (req, res) => {
   const roleParam = req.params.role;
   const filteredRole = [];
   employee.forEach((e) => {
@@ -58,7 +78,7 @@ router.get('/getByRole/:role', (req, res) => {
   }
 });
 
-router.delete('/deleteEmployee/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   const employeeId = req.params.id;
   const findEmployee = employee.find((emp) => emp.id === employeeId);
   if (findEmployee) {
@@ -75,4 +95,4 @@ router.delete('/deleteEmployee/:id', (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
