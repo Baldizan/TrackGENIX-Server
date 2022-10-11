@@ -1,59 +1,59 @@
 [{
-    "id": 1,
+    "id": "1",
     "name": "Fix San",
     "description": "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
     "proyect_id": 1,
     "hours": 1
   }, {
-    "id": 2,
+    "id": "2",
     "name": "Bitchip",
     "description": "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
     "proyect_id": 2,
     "hours": 2
   }, {
-    "id": 3,
+    "id": "3",
     "name": "Overhold",
     "description": "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
     "proyect_id": 3,
     "hours": 3
   }, {
-    "id": 4,
+    "id": "4",
     "name": "Quo Lux",
     "description": "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
     "proyect_id": 4,
     "hours": 4
   }, {
-    "id": 5,
+    "id": "5",
     "name": "Duobam",
     "description": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
     "proyect_id": 5,
     "hours": 5
   }, {
-    "id": 6,
+    "id": "6",
     "name": "Overhold",
     "description": "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
     "proyect_id": 6,
     "hours": 6
   }, {
-    "id": 7,
+    "id": "7",
     "name": "Pannier",
     "description": "Phasellus in felis. Donec semper sapien a libero. Nam dui.",
     "proyect_id": 7,
     "hours": 7
   }, {
-    "id": 8,
+    "id": "8",
     "name": "Opela",
     "description": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
     "proyect_id": 8,
     "hours": 8
   }, {
-    "id": 9,
+    "id": "9",
     "name": "Konklux",
     "description": "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
     "proyect_id": 9,
     "hours": 9
   }, {
-    "id": 10,
+    "id": "10",
     "name": "Overhold",
     "description": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
     "proyect_id": 10,
