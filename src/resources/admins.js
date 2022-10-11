@@ -1,6 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
+const fs = require('fs');
 const admins = require('../data/admins.json');
 
 module.exports = router;
@@ -21,4 +22,17 @@ router.get('/getById/:id', (req, res) => {
   } else {
     res.send('Admin not found');
   }
+});
+
+// Delete admins
+router.delete('/delete/:id', (req, res) => {
+  const adminId = Number(req.params.id);
+  const filterAdmin = admins.filter((adminFilter) => adminFilter.id !== adminId);
+  fs.writeFile('src/data/admins.json', JSON.stringify(filterAdmin), (err) => {
+    if (err) {
+      res.send('Cannon delete Admin');
+    } else {
+      res.send('Admin delete successfully');
+    }
+  });
 });
