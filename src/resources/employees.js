@@ -7,9 +7,23 @@ const employees = require('../data/employees.json');
 module.exports = router;
 
 router.post('/createEmployee', (req, res) => {
-  const newEmployee = req.body;
+  const employeeName = req.body.first_name;
+  const employeeLastName = req.body.last_name;
+  const employeeEmail = req.body.email;
+  const employeePassword = req.body.password;
+  const employeeTask = req.body.task;
+  const employeeProject = req.body.projects;
+  const newEmployee = {
+    id: new Date().getTime().toString().substring(6),
+    first_name: employeeName,
+    last_name: employeeLastName,
+    email: employeeEmail,
+    task: employeeTask,
+    password: employeePassword,
+    projects: employeeProject,
+  };
   employees.push(newEmployee);
-  fs.writeFile('src/data/employees.json', JSON.stringify(employees), (err) => {
+  fs.writeFile('src/data/employees.json', JSON.stringify(employees, null, 2), (err) => {
     if (err) {
       res.send('Cannot create new employee');
     } else {
@@ -20,7 +34,21 @@ router.post('/createEmployee', (req, res) => {
 
 router.put('/editEmployee', (req, res) => {
   const employeeId = req.body.id;
-  const employeeToBeEdited = req.body;
+  const employeeName = req.body.first_name;
+  const employeeLastName = req.body.last_name;
+  const employeeEmail = req.body.email;
+  const employeePassword = req.body.password;
+  const employeeTask = req.body.task;
+  const employeeProject = req.body.projects;
+  const employeeToBeEdited = {
+    id: employeeId,
+    first_name: employeeName,
+    last_name: employeeLastName,
+    email: employeeEmail,
+    task: employeeTask,
+    password: employeePassword,
+    projects: employeeProject,
+  };
   let newEmployeesList = employees;
   newEmployeesList = newEmployeesList.map((employee) => {
     if (employee.id === employeeId) {
@@ -28,7 +56,7 @@ router.put('/editEmployee', (req, res) => {
     }
     return employee;
   });
-  fs.writeFile('src/data/employees.json', JSON.stringify(newEmployeesList), (err) => {
+  fs.writeFile('src/data/employees.json', JSON.stringify(newEmployeesList, null, 2), (err) => {
     if (err) {
       res.send('Cannot update employee');
     } else {

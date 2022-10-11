@@ -1,11 +1,11 @@
 [
   {
     "id": "1",
-    "first_name": "Eiush",
-    "last_name": "Yafeeee",
-    "email": "eialyafe@gmail.com",
-    "password": "3asXvZy",
+    "first_name": "cata",
+    "last_name": "mati",
+    "email": "eialyafedror@gmail.com",
     "task": "Ronstring",
+    "password": "3asXvZy",
     "projects": [
       {
         "project_id": "12",
@@ -153,6 +153,46 @@
     "projects": [
       {
         "project_id": "7",
+        "role": "Human Resources Assistant IV",
+        "rates": "18",
+        "hours": "20"
+      }
+    ]
+  },
+  {
+    "id": "9139561",
+    "first_name": "Eiush",
+    "last_name": "Yafeeee",
+    "email": "eialyafe@gmail.com",
+    "task": "Ronstring",
+    "password": "3asXvZy"
+  },
+  {
+    "id": "9197159",
+    "first_name": "Eiush",
+    "last_name": "Yafeeee",
+    "email": "eialyafe@gmail.com",
+    "task": "Ronstring",
+    "password": "3asXvZy",
+    "projects": [
+      {
+        "project_id": "12",
+        "role": "Human Resources Assistant IV",
+        "rates": "18",
+        "hours": "20"
+      }
+    ]
+  },
+  {
+    "id": "5509246472",
+    "first_name": "Eiush",
+    "last_name": "Yafeeee",
+    "email": "eialyafe@gmail.com",
+    "task": "Ronstring",
+    "password": "3asXvZy",
+    "projects": [
+      {
+        "project_id": "12",
         "role": "Human Resources Assistant IV",
         "rates": "18",
         "hours": "20"
