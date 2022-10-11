@@ -37,8 +37,7 @@ router.get('/getByName/:name', (req, res) => {
 
 //  Get projects by start date
 router.get('/getByDate/:date', (req, res) => {
-  const projectStartDate = req.params.date;
-  console.log(projectStartDate);
+  const projectStartDate = req.params.date;   
   const foundProject = projects.find((project) => project.start_date === projectStartDate);
   if (foundProject) {
     res.send(foundProject);
@@ -51,7 +50,10 @@ router.get('/getByDate/:date', (req, res) => {
 
 //  Create new project
 router.post('/add', (req, res) => {
-  const newProject = req.body;
+  const bodys = req.body;
+  const idNewProject = new Date().getTime().toString().substring(6);
+  const idNPJSON = { id: idNewProject };
+  const newProject = Object.assign(idNPJSON, bodys);
   projects.push(newProject);
   fs.writeFile('src/data/projects.json', JSON.stringify(projects), (err) => {
     if (err) {
