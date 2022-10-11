@@ -7,7 +7,10 @@ const admins = require('./data/admins.json');
 const app = express();
 const port = process.env.PORT || 3000;
 
+const adminsRouter = require('./resources/admins');
+
 app.use(express.json());
+app.use('/admins', adminsRouter);
 
 app.get('/', async (req, res) => {
   res.send('Hello World!');
