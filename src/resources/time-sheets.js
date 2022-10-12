@@ -4,7 +4,7 @@ import fs from 'fs';
 const router = express.Router();
 const timeSheets = require('../data/time-sheets.json');
 
-router.get('/all', (req, res) => {
+router.get('/get', (req, res) => {
   res.send(timeSheets);
 });
 
@@ -61,7 +61,7 @@ router.delete('/delete/:id', (req, res) => {
       }
     });
   } else {
-    res.send('Time-Sheet cannot be deleted.');
+    res.send(`Time-Sheet with id ${timeSheetId} not found.`);
   }
 });
 
