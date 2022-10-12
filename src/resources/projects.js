@@ -8,7 +8,7 @@ router.put('/edit/:id', (req, res) => {
   const upProject = req.body;
   projects.forEach((project) => {
     if (parseInt(project.id, 10) === parseInt(req.params.id, 10)) {
-      const proj = project; // mandatory
+      const proj = project;
       proj.project_name = upProject.project_name ?? project.project_name;
       proj.start_date = upProject.start_date ?? project.start_date;
 
