@@ -1,18 +1,18 @@
-const express = require('express');
+// const express = require('express');
+
+import express from 'express';
+import fs from 'fs';
 
 const router = express.Router();
-const fs = require('fs');
 const admins = require('../data/admins.json');
 
-module.exports = router;
-
-router.get('/getAll', (req, res) => {
+router.get('/get', (req, res) => {
   res.status(200).json({
     data: admins,
   });
 });
 
-router.get('/getById/:id', (req, res) => {
+router.get('/get/:id', (req, res) => {
   const adminId = req.params.id;
   const foundAdmin = admins.find((adminFilter) => adminFilter.id === adminId);
   if (foundAdmin) {
@@ -27,7 +27,7 @@ router.get('/filter/:filterValue', (req, res) => {
   const foundAdmin = admins.filter((adminFilter) => adminFilter.firstName === filterParam
     || adminFilter.lastName === filterParam
     || adminFilter.email === filterParam);
-  if (foundAdmin) {
+  if (foundAdmin.length > 0) {
     res.send(foundAdmin);
   } else {
     res.send('Admin not found');
@@ -45,3 +45,5 @@ router.delete('/delete/:id', (req, res) => {
     }
   });
 });
+
+export default router;
