@@ -4,7 +4,7 @@ import fs from 'fs';
 const router = express.Router();
 const employee = require('../data/employees.json');
 
-router.get('/all', (req, res) => {
+router.get('/get', (req, res) => {
   res.send(employee);
 });
 
@@ -56,7 +56,7 @@ router.get('/getProject/:projectId', (req, res) => {
       filteredProject.push(e);
     }
   });
-  if (filteredProject.length !== 0) {
+  if (filteredProject.length > 0) {
     res.send(filteredProject);
   } else {
     res.send('Project not found');
@@ -71,7 +71,7 @@ router.get('/getRole/:role', (req, res) => {
       filteredRole.push(e);
     }
   });
-  if (filteredRole.length !== 0) {
+  if (filteredRole.length > 0) {
     res.send(filteredRole);
   } else {
     res.send('Role not found');
@@ -91,7 +91,7 @@ router.delete('/delete/:id', (req, res) => {
       }
     });
   } else {
-    res.send('Employee cannot be deleted.');
+    res.send(`Employee with id ${employeeId} not found.`);
   }
 });
 
