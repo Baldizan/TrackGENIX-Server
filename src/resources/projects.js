@@ -59,7 +59,7 @@ router.post('/add', (req, res) => {
   });
 
   bodys.tasks.forEach((task) => {
-    newTasks.push( {
+    newTasks.push({
       id: task.id,
       name: task.name,
       description: task.description,
