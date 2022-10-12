@@ -1,15 +1,13 @@
-const express = require('express');
+import express from 'express';
+import fs from 'fs';
 
 const router = express.Router();
-const fs = require('fs');
 const admins = require('../data/admins.json');
-
-module.exports = router;
 
 router.post('/add', (req, res) => {
   const adminParam = req.body;
   const newAdmin = {
-    id: adminParam.id = new Date().getTime().toString().substring(6),
+    id: new Date().getTime().toString().substring(6),
     first_name: adminParam.first_name ?? 'name undefined',
     last_name: adminParam.last_name ?? 'last name undefined',
     email: adminParam.email ?? 'email undefined',
@@ -31,17 +29,17 @@ router.post('/add', (req, res) => {
 router.put('/edit', (req, res) => {
   const editAdmin = req.body;
   const adminId = editAdmin.id;
-  const adminIndex = admins.map((index) => index.id).indexOf(adminId);
+  const adminIndex = admins.findIndex((index) => index.id === adminId);
   if (adminIndex === -1) {
     res.send('Admin not found');
   } else if (JSON.stringify(admins[adminIndex]) === JSON.stringify(editAdmin)) {
-    res.send('Admin not have data to change');
+    res.send('Admin does not have data to change');
   } else {
-    if (admins[adminIndex].first_name !== editAdmin.first_name) {
-      admins[adminIndex].first_name = editAdmin.first_name;
+    if (admins[adminIndex].firstName !== editAdmin.firstName) {
+      admins[adminIndex].firstName = editAdmin.firstName;
     }
-    if (admins[adminIndex].last_name !== editAdmin.last_name) {
-      admins[adminIndex].last_name = editAdmin.last_name;
+    if (admins[adminIndex].lastName !== editAdmin.lastName) {
+      admins[adminIndex].lastName = editAdmin.lastName;
     }
     if (admins[adminIndex].email !== editAdmin.email) {
       admins[adminIndex].email = editAdmin.email;
@@ -49,14 +47,14 @@ router.put('/edit', (req, res) => {
     if (admins[adminIndex].password !== editAdmin.password) {
       admins[adminIndex].password = editAdmin.password;
     }
-    if (admins[adminIndex].create_employee_id !== editAdmin.create_employee_id) {
-      admins[adminIndex].create_employee_id = editAdmin.create_employee_id;
+    if (admins[adminIndex].createEmployeeId !== editAdmin.createEmployeeId) {
+      admins[adminIndex].createEmployeeId = editAdmin.createEmployeeId;
     }
-    if (admins[adminIndex].delete_employee_id !== editAdmin.delete_employee_id) {
-      admins[adminIndex].delete_employee_id = editAdmin.delete_employee_id;
+    if (admins[adminIndex].deleteEmployeeId !== editAdmin.deleteEmployeeId) {
+      admins[adminIndex].deleteEmployeeId = editAdmin.deleteEmployeeId;
     }
-    if (admins[adminIndex].edit_employee_id !== editAdmin.edit_employee_id) {
-      admins[adminIndex].edit_employee_id = editAdmin.edit_employee_id;
+    if (admins[adminIndex].editEmployeeId !== editAdmin.editEmployeeId) {
+      admins[adminIndex].editEmployeeId = editAdmin.editEmployeeId;
     }
     fs.writeFile('src/data/admins.json', JSON.stringify(admins), (err) => {
       if (err) {
@@ -67,3 +65,5 @@ router.put('/edit', (req, res) => {
     });
   }
 });
+
+export default router;
