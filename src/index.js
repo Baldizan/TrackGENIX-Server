@@ -1,5 +1,3 @@
-// use "require" to import JSON files
-// use "import" to import libraries
 import express from 'express';
 import projectRouter from './resources/projects';
 
@@ -23,6 +21,5 @@ app.get('/admins', (req, res) => {
 app.use('/projects', projectRouter);
 
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
   console.log(`Example app listening on port ${port}`);
 });

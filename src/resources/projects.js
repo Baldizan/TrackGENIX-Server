@@ -4,12 +4,10 @@ import express from 'express';
 const router = express.Router();
 const projects = require('../data/projects.json');
 
-// update project
 router.put('/edit/:id', (req, res) => {
   const upProject = req.body;
   projects.forEach((project) => {
     if (parseInt(project.id, 10) === parseInt(req.params.id, 10)) {
-      /* edit the name and the start_date of a project */
       const proj = project; // mandatory
       proj.project_name = upProject.project_name ?? project.project_name;
       proj.start_date = upProject.start_date ?? project.start_date;
@@ -27,7 +25,7 @@ router.put('/edit/:id', (req, res) => {
       res.send(`The project with id:${req.params.id} does not exists`);
     }
   });
-  fs.writeFileSync('src/data/projects.json', JSON.stringify(projects, null, 4));
+  fs.writeFileSync('src/da/* edit the name and the start_date of a project */ta/projects.json', JSON.stringify(projects, null, 4));
   res.end();
 });
 
