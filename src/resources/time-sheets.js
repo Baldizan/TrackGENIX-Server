@@ -7,13 +7,13 @@ const timeSheets = require('../data/time-sheets.json');
 router.put('/edit/:id', (req, res) => {
   const found = timeSheets.some((timeSheet) => timeSheet.id === (req.params.id));
   if (found) {
-    const upTS = req.body;
+    const updateTimeSheet = req.body;
     timeSheets.forEach((timeSheet) => {
       if (timeSheet.id === req.params.id) {
         const tSheet = timeSheet;
-        tSheet.task = upTS.task ? upTS.task : tSheet.task;
-        tSheet.date = upTS.date ?? tSheet.date;
-        tSheet.description = upTS.description ?? tSheet.description;
+        tSheet.task = updateTimeSheet.task ?? tSheet.task;
+        tSheet.date = updateTimeSheet.date ?? tSheet.date;
+        tSheet.description = updateTimeSheet.description ?? tSheet.description;
         res.json({ msg: 'Time sheet updated', tSheet });
       }
     });
