@@ -50,13 +50,12 @@ router.delete('/delete/:id', (req, res) => {
 
 router.get('/filter/:name', (req, res) => {
   const taskFilter = req.params.name;
-  const filteredTaskName = tasks.filter((task) => task.name === taskFilter);
-  const filteredTaskDes = tasks.filter((task) => task.description === taskFilter);
-  if (filteredTaskName.length) {
-    res.send(filteredTaskName);
-  }
-  if (filteredTaskDes.length) {
-    res.send(filteredTaskDes);
+  const filteredTask = tasks.filter(
+    (task) => task.name === taskFilter
+     || task.description === taskFilter,
+  );
+  if (filteredTask.length) {
+    res.send(filteredTask);
   } else {
     res.send(tasks);
   }
