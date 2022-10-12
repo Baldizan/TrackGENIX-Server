@@ -1,16 +1,14 @@
-const express = require('express');
+import fs from 'fs';
+import express from 'express';
 
 const router = express.Router();
-const fs = require('fs');
 const tasks = require('../data/tasks.json');
 
-// GET ALL TASK
-router.get('/getAll', (req, res) => {
+router.get('/get', (req, res) => {
   res.send(tasks);
 });
 
-// GET TASK BY ID
-router.get('/getById/:id', (req, res) => {
+router.get('/get/:id', (req, res) => {
   const taskId = req.params.id;
   const foundTask = tasks.find((task) => task.id === taskId);
   if (foundTask) {
@@ -20,12 +18,16 @@ router.get('/getById/:id', (req, res) => {
   }
 });
 
-// ADD TASK
 router.post('/add', (req, res) => {
-  const newTask = req.body;
-  // req.body.name
+  const newTask = {
+    id: new Date().getTime().toString().substring(6),
+    name: req.body.name,
+    description: req.body.description,
+    project_id: req.body.project_id,
+    hours: req.body.hours,
+  };
   tasks.push(newTask);
-  fs.writeFile('src/data/tasks.json', JSON.stringify(tasks), (err) => {
+  fs.writeFile('src/data/tasks.json', JSON.stringify(tasks, null, 2), (err) => {
     if (err) {
       res.send('Cannot save new task');
     } else {
@@ -34,44 +36,32 @@ router.post('/add', (req, res) => {
   });
 });
 
-// DELETE TASK
 router.delete('/delete/:id', (req, res) => {
   const taskId = req.params.id;
   const filteredTask = tasks.filter((task) => task.id !== taskId);
-  fs.writeFile('src/data/tasks.json', JSON.stringify(filteredTask), (err) => {
+  fs.writeFile('src/data/tasks.json', JSON.stringify(filteredTask, null, 2), (err) => {
     if (err) {
       res.send('Cannot delete task');
     } else {
-      res.send('Task deleted7');
+      res.send('Task deleted');
     }
   });
 });
 
-// FILTER BY NAME
 router.get('/filter/:name', (req, res) => {
-  const taskName = req.params.name;
-  const foundTaskName = tasks.find((task) => task.name === taskName);
-  const filteredTaskName = tasks.filter((task) => task.name === taskName);
-  if (foundTaskName) {
+  const taskFilter = req.params.name;
+  const filteredTaskName = tasks.filter((task) => task.name === taskFilter);
+  const filteredTaskDes = tasks.filter((task) => task.description === taskFilter);
+  if (filteredTaskName.length) {
     res.send(filteredTaskName);
-  } else {
-    res.send(tasks);
   }
-});
-
-// FILTER BY DESCRIPTION
-router.get('/filter/:description', (req, res) => {
-  const taskDes = req.params.description;
-  const foundTaskDes = tasks.find((task) => task.description === taskDes);
-  const filteredTaskDes = tasks.filter((task) => task.description === taskDes);
-  if (foundTaskDes) {
+  if (filteredTaskDes.length) {
     res.send(filteredTaskDes);
   } else {
     res.send(tasks);
   }
 });
 
-// EDIT TASK
 router.put('/edit/:id', (req, res) => {
   const taskId = req.params.id;
   const foundTask = tasks.find((task) => task.id === taskId);
@@ -79,10 +69,10 @@ router.put('/edit/:id', (req, res) => {
     const updateTask = req.body;
     tasks.forEach((task) => {
       if (task.id === taskId) {
-        foundTask.name = updateTask.name ? updateTask.name : task.name;
-        foundTask.description = updateTask.description ? updateTask.description : task.description;
-        foundTask.proyect_id = updateTask.proyect_id ? updateTask.proyect_id : task.proyect_id;
-        foundTask.hours = updateTask.hours ? updateTask.hours : task.hours;
+        foundTask.name = updateTask.name ?? task.name;
+        foundTask.description = updateTask.description ?? task.description;
+        foundTask.project_id = updateTask.project_id ?? task.project_id;
+        foundTask.hours = updateTask.hours ?? task.hours;
 
         res.json({ msg: 'Task updated', task });
       }
@@ -99,4 +89,4 @@ router.put('/edit/:id', (req, res) => {
   });
 });
 
-module.exports = router;
+export default router;
