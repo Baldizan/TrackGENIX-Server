@@ -30,16 +30,35 @@ router.post('/add', (req, res) => {
 
 router.put('/edit', (req, res) => {
   const editAdmin = req.body;
-  const adminId = Number(editAdmin.id);
-  const foundAdmin = admins.find((adminFilter) => adminFilter.id === adminId);
-  if (!foundAdmin) {
+  const adminId = editAdmin.id;
+  const adminIndex = admins.map((index) => index.id).indexOf(adminId);
+  if (adminIndex === -1) {
     res.send('Admin not found');
-  } else if (JSON.stringify(editAdmin) === JSON.stringify(foundAdmin)) {
+  } else if (JSON.stringify(admins[adminIndex]) === JSON.stringify(editAdmin)) {
     res.send('Admin not have data to change');
   } else {
-    const filterAdmin = admins.filter((adminFilter) => adminFilter.id !== editAdmin.id);
-    filterAdmin.push(editAdmin);
-    fs.writeFile('src/data/admins.json', JSON.stringify(filterAdmin), (err) => {
+    if (admins[adminIndex].first_name !== editAdmin.first_name) {
+      admins[adminIndex].first_name = editAdmin.first_name;
+    }
+    if (admins[adminIndex].last_name !== editAdmin.last_name) {
+      admins[adminIndex].last_name = editAdmin.last_name;
+    }
+    if (admins[adminIndex].email !== editAdmin.email) {
+      admins[adminIndex].email = editAdmin.email;
+    }
+    if (admins[adminIndex].password !== editAdmin.password) {
+      admins[adminIndex].password = editAdmin.password;
+    }
+    if (admins[adminIndex].create_employee_id !== editAdmin.create_employee_id) {
+      admins[adminIndex].create_employee_id = editAdmin.create_employee_id;
+    }
+    if (admins[adminIndex].delete_employee_id !== editAdmin.delete_employee_id) {
+      admins[adminIndex].delete_employee_id = editAdmin.delete_employee_id;
+    }
+    if (admins[adminIndex].edit_employee_id !== editAdmin.edit_employee_id) {
+      admins[adminIndex].edit_employee_id = editAdmin.edit_employee_id;
+    }
+    fs.writeFile('src/data/admins.json', JSON.stringify(admins), (err) => {
       if (err) {
         res.send('Cannot edit Admin');
       } else {
