@@ -5,7 +5,7 @@
         "start_date": "07/12/2022",
         "employees": [
             {
-                "id": "2",
+                "id": "1",
                 "name": "maxi schmidt",
                 "rol": [
                     "DEV"
@@ -13,6 +13,7 @@
                 "rate": 80000
             },
             {
+                "id":"2",
                 "name": "maxiii",
                 "rol": [
                     "DEV"
@@ -20,7 +21,7 @@
             },
             {
                 "id": "7",
-                "name": "maxiii",
+                "name": "maxiiimiliano",
                 "rol": [
                     "PM",
                     "DEV"
