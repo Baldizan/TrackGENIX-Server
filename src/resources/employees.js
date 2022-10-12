@@ -1,12 +1,10 @@
-const express = require('express');
+import express from 'express';
+import fs from 'fs';
 
 const router = express.Router();
-const fs = require('fs');
 const employees = require('../data/employees.json');
 
-module.exports = router;
-
-router.post('/createEmployee', (req, res) => {
+router.post('/create', (req, res) => {
   const employeeName = req.body.first_name;
   const employeeLastName = req.body.last_name;
   const employeeEmail = req.body.email;
@@ -32,7 +30,7 @@ router.post('/createEmployee', (req, res) => {
   });
 });
 
-router.put('/editEmployee', (req, res) => {
+router.put('/edit', (req, res) => {
   const employeeId = req.body.id;
   const employeeName = req.body.first_name;
   const employeeLastName = req.body.last_name;
@@ -49,8 +47,7 @@ router.put('/editEmployee', (req, res) => {
     password: employeePassword,
     projects: employeeProject,
   };
-  let newEmployeesList = employees;
-  newEmployeesList = newEmployeesList.map((employee) => {
+  const newEmployeesList = employees.map((employee) => {
     if (employee.id === employeeId) {
       return employeeToBeEdited;
     }
@@ -64,3 +61,5 @@ router.put('/editEmployee', (req, res) => {
     }
   });
 });
+
+export default router;
