@@ -1,0 +1,76 @@
+[
+    {
+        "id": "2",
+        "project_name": "track genix web",
+        "start_date": "07/12/2022",
+        "employees": [
+            {
+                "id": "1",
+                "name": "maxi schmidt",
+                "rol": [
+                    "DEV"
+                ],
+                "rate": 80000
+            },
+            {
+                "id":"2",
+                "name": "maxiii",
+                "rol": [
+                    "DEV"
+                ]
+            },
+            {
+                "id": "7",
+                "name": "maxiiimiliano",
+                "rol": [
+                    "PM",
+                    "DEV"
+                ]
+            }
+        ],
+        "tasks": [
+            {
+                "id": "1",
+                "name": "Open-architected-maxi",
+                "description": "quisque porta volutpat erat quisque"
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "project_name": "testing",
+        "start_date": "10/05/2022",
+        "employees": [
+            {
+                "id": "13",
+                "name": "elias bermudez",
+                "rol": [
+                    "DEV"
+                ],
+                "rate": 80000
+            },
+            {
+                "id":"21",
+                "name": "elelias",
+                "rol": [
+                    "QA"
+                ]
+            },
+            {
+                "id": "17",
+                "name": "eliassberrmudez",
+                "rol": [
+                    "PM",
+                    "TL"
+                ]
+            }
+        ],
+        "tasks": [
+            {
+                "id": "1",
+                "name": "fixing-changes",
+                "description": "utpat erat quisququi sque porta vole"
+            }
+        ]
+    }
+]
