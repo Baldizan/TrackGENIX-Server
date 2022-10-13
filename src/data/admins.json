@@ -1,6 +1,91 @@
-{
-    "name": "esteban",
-    "lastName": "frare",
-    "email": "esteban.frare@radiumrocket.com"
-
-}
+[{
+  "id": "1",
+  "firstName": "esteban",
+  "lastName": "frare",
+  "email": "esteban.frare@radiumrocket.com",
+  "password": "tBqLi9J3V",
+  "createEmployeeId": [1,3,4],
+  "deleteEmployeeId": [2,5],
+  "editEmployeeId": [6,7,9]
+}, {
+  "id": "2",
+  "firstName": "Maria",
+  "lastName": "frare",
+  "email": "eseathwright1@biblegateway.com",
+  "password": "R7ojszT",
+  "createEmployeeId": [1,3,4],
+  "deleteEmployeeId": [2,5],
+  "editEmployeeId": [6,7,9]
+}, {
+  "id": "3",
+  "firstName": "Guthry",
+  "lastName": "frare",
+  "email": "gdanelutti2@privacy.gov.au",
+  "password": "d3xKb5",
+  "createEmployeeId": [1,3,4],
+  "deleteEmployeeId": [2,5],
+  "editEmployeeId": [6,7,9]
+}, {
+  "id": "4",
+  "firstName": "Grenville",
+  "lastName": "Bromage",
+  "email": "gbromage3@skype.com",
+  "password": "IdPFcPg8",
+  "createEmployeeId": [1,3,4],
+  "deleteEmployeeId": [2,5],
+  "editEmployeeId": [6,7,9]
+}, {
+  "id": "5",
+  "firstName": "Fannie",
+  "lastName": "Warters",
+  "email": "fwarters4@usnews.com",
+  "password": "j2Q5ysGY",
+  "createEmployeeId": [1,3,4],
+  "deleteEmployeeId": [2,5],
+  "editEmployeeId": [6,7,9]
+}, {
+  "id": "6",
+  "firstName": "Heloise",
+  "lastName": "Ianno",
+  "email": "hianno5@hibu.com",
+  "password": "IxPVB0K0b7w",
+  "createEmployeeId": [1,3,4],
+  "deleteEmployeeId": [2,5],
+  "editEmployeeId": [6,7,9]
+}, {
+  "id": "7",
+  "firstName": "Nelli",
+  "lastName": "Howgill",
+  "email": "nhowgill6@desdev.cn",
+  "password": "gCaGHVcwukN",
+  "createEmployeeId": [1,3,4],
+  "deleteEmployeeId": [2,5],
+  "editEmployeeId": [6,7,9]
+}, {
+  "id": "8",
+  "firstName": "Linnea",
+  "lastName": "Upfold",
+  "email": "lupfold7@dmoz.org",
+  "password": "ScoGhNtE",
+  "createEmployeeId": [1,3,4],
+  "deleteEmployeeId": [2,5],
+  "editEmployeeId": [6,7,9]
+}, {
+  "id": "9",
+  "firstName": "Larina",
+  "lastName": "Fahrenbach",
+  "email": "lfahrenbach8@umich.edu",
+  "password": "V2pwtUrqN",
+  "createEmployeeId": [1,3,4],
+  "deleteEmployeeId": [2,5],
+  "editEmployeeId": [6,7,9]
+}, {
+  "id": "10",
+  "firstName": "Cosmo",
+  "lastName": "Auty",
+  "email": "cauty9@sitemeter.com",
+  "password": "AZ9iKJ58Rrbz",
+  "createEmployeeId": [1,3,4],
+  "deleteEmployeeId": [2,5],
+  "editEmployeeId": [6,7,9]
+}]
