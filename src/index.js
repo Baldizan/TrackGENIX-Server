@@ -11,7 +11,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-
 app.use('/admins', adminsRouter);
 app.use('/timesheets', timeSheets);
 app.use('/employees', employeeRouter);
