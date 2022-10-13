@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use('/timesheets', timeSheets);
 app.use('/employees', employeeRouter);
-
+app.use('/projects', projectRouter);
 app.get('/', async (req, res) => {
   res.send('Hello World!');
 });
@@ -22,8 +22,6 @@ app.get('/admins', (req, res) => {
     data: admins,
   });
 });
-
-app.use('/projects', projectRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
