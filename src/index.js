@@ -1,4 +1,5 @@
 import express from 'express';
+import taskRouter from './resources/tasks';
 import projectRouter from './resources/projects';
 import timeSheets from './resources/time-sheets';
 import employeeRouter from './resources/employees';
@@ -26,3 +27,5 @@ app.get('/admins', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+app.use('/tasks', taskRouter);
