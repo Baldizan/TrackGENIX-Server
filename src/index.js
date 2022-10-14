@@ -1,32 +1,25 @@
 import express from 'express';
-import adminsRouter from './resources/admins';
-import taskRouter from './resources/tasks';
-import projectRouter from './resources/projects';
-import timeSheets from './resources/time-sheets';
-import employeeRouter from './resources/employees';
-
-const admins = require('./data/admins.json');
+import mongoose from 'mongoose';
+import routes from './routes';
 
 const app = express();
 const port = process.env.PORT || 3000;
+const MONGO_URL = 'mongodb+srv://RadiumA:RadiumA@trackgenix.r6u6do6.mongodb.net/?retryWrites=true&w=majority';
 
 app.use(express.json());
-app.use('/admins', adminsRouter);
-app.use('/timesheets', timeSheets);
-app.use('/employees', employeeRouter);
-app.use('/projects', projectRouter);
+app.use(routes);
+
 app.get('/', async (req, res) => {
-  res.send('Hello World!');
+  res.send('Welcome to TrackGenix!');
 });
 
-app.get('/admins', (req, res) => {
-  res.status(200).json({
-    data: admins,
-  });
+mongoose.connect(MONGO_URL, (error) => {
+  if (error) {
+    console.log('Fail conection to database 🔴 ', error);
+  } else {
+    console.log('Connected to database 🟢');
+    app.listen(port, () => {
+      console.log(`App listening on port ${port}`);
+    });
+  }
 });
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
-
-app.use('/tasks', taskRouter);

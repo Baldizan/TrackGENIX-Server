@@ -1,8 +1,8 @@
 import express from 'express';
 import fs from 'fs';
+import projects from '../models/Projects';
 
 const router = express.Router();
-const projects = require('../data/projects.json');
 
 router.get('/get', (req, res) => {
   res.send(projects);

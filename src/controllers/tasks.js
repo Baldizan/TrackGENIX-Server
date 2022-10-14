@@ -1,8 +1,8 @@
 import fs from 'fs';
 import express from 'express';
+import tasks from '../models/Tasks';
 
 const router = express.Router();
-const tasks = require('../data/tasks.json');
 
 router.get('/get', (req, res) => {
   res.send(tasks);

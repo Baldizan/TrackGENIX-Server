@@ -1,8 +1,8 @@
 import express from 'express';
 import fs from 'fs';
+import timeSheets from '../models/Timesheets';
 
 const router = express.Router();
-const timeSheets = require('../data/time-sheets.json');
 
 router.put('/edit/:id', (req, res) => {
   const found = timeSheets.some((timeSheet) => timeSheet.id === (req.params.id));

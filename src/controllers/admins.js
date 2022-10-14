@@ -1,8 +1,8 @@
 import express from 'express';
 import fs from 'fs';
+import admins from '../models/Admins';
 
 const router = express.Router();
-const admins = require('../data/admins.json');
 
 router.get('/get', (req, res) => {
   res.status(200).json({
