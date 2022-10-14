@@ -3,10 +3,10 @@ import mongoose from 'mongoose';
 import adminsRouter from './controllers/admins';
 import taskRouter from './controllers/tasks';
 import projectRouter from './controllers/projects';
-import timeSheets from './controllers/time-sheets';
+import timeSheets from './controllers/timeSheets';
 import employeeRouter from './controllers/employees';
 
-const admins = require('./models/Admins');
+import admins from './models/Admins';
 
 const app = express();
 const port = process.env.PORT || 3000;
