@@ -2,7 +2,7 @@ import express from 'express';
 import fs from 'fs';
 
 const router = express.Router();
-const admins = require('../data/admins.json');
+const admins = require('../models/Admins');
 
 router.get('/get', (req, res) => {
   res.status(200).json({

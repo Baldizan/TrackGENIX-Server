@@ -6,11 +6,11 @@ import projectRouter from './controllers/projects';
 import timeSheets from './controllers/time-sheets';
 import employeeRouter from './controllers/employees';
 
-const admins = require('./data/admins.json');
+const admins = require('./models/Admins');
 
 const app = express();
 const port = process.env.PORT || 3000;
-const MONGO_URL = "mongodb+srv://RadiumA:RadiumA@trackgenix.r6u6do6.mongodb.net/?retryWrites=true&w=majority"
+const MONGO_URL = 'mongodb+srv://RadiumA:RadiumA@trackgenix.r6u6do6.mongodb.net/?retryWrites=true&w=majority';
 
 app.use(express.json());
 app.use('/admins', adminsRouter);
@@ -29,15 +29,13 @@ app.get('/admins', (req, res) => {
   });
 });
 
-mongoose.connect(
-  MONGO_URL, (error) => {
-    if (error) {
-      console.log('Fail conection to database', error);
-    } else{
-        console.log('Connected to database');
-        app.listen(port, () => {
-          console.log(`Example app listening on port ${port}`);
-        });
-    }
+mongoose.connect(MONGO_URL, (error) => {
+  if (error) {
+    console.log('Fail conection to database', error);
+  } else {
+    console.log('Connected to database');
+    app.listen(port, () => {
+      console.log(`Example app listening on port ${port}`);
+    });
   }
-);
+});

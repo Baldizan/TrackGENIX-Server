@@ -2,7 +2,7 @@ import express from 'express';
 import fs from 'fs';
 
 const router = express.Router();
-const timeSheets = require('../data/time-sheets.json');
+const timeSheets = require('../models/Time-sheets');
 
 router.put('/edit/:id', (req, res) => {
   const found = timeSheets.some((timeSheet) => timeSheet.id === (req.params.id));

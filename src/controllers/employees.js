@@ -2,7 +2,7 @@ import express from 'express';
 import fs from 'fs';
 
 const router = express.Router();
-const employees = require('../data/employees.json');
+const employees = require('../models/Employee');
 
 router.post('/create', (req, res) => {
   const employeeName = req.body.first_name;

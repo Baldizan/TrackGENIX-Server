@@ -2,7 +2,7 @@ import fs from 'fs';
 import express from 'express';
 
 const router = express.Router();
-const tasks = require('../data/tasks.json');
+const tasks = require('../models/Tasks');
 
 router.get('/get', (req, res) => {
   res.send(tasks);
