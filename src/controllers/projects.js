@@ -9,7 +9,7 @@ const getAllProjects = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.json({
+    return res.status(400).json({
       message: 'Error.',
       error,
     });
@@ -26,7 +26,32 @@ const getProjectById = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.json({
+    return res.status(400).json({
+      message: 'Error.',
+      error,
+    });
+  }
+};
+
+const createProject = async (req, res) => {
+  try {
+    const project = new Projects({
+      name: req.body.name,
+      description: req.body.description,
+      startDate: req.body.startDate,
+      endDate: req.body.endDate,
+      clientName: req.body.clientName,
+      employees: req.body.employees,
+    });
+
+    const result = await project.save();
+    return res.status(201).json({
+      message: 'Project created.',
+      data: result,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(400).json({
       message: 'Error.',
       error,
     });
@@ -36,4 +61,5 @@ const getProjectById = async (req, res) => {
 export default {
   getAllProjects,
   getProjectById,
+  createProject,
 };
