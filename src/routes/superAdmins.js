@@ -1,12 +1,11 @@
-// import express from 'express';
+import express from 'express';
 
-// const router = express.Router();
+const router = express.Router();
+router
+  .get('/')
+  .get('/:id')
+  .post('/')
+  .delete('/:id')
+  .put('/:id');
 
-// router
-//   .get('/',)
-//   .get('/:id')
-//   .post('/')
-//   .delete('/:id')
-//   .put('/:id')
-
-// export default router;
+export default router;
