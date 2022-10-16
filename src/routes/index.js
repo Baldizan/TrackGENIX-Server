@@ -3,7 +3,7 @@ import express from 'express';
 // import admins from './admins';
 // import timesheets from './timesheets';
 // import employees from './employees';
-// import projects from './projects';
+import projects from './projects';
 // import tasks from './tasks';
 
 const router = express.Router();
@@ -12,7 +12,7 @@ const router = express.Router();
 // router.use('/admins', admins);
 // router.use('/timesheets', timesheets);
 // router.use('/employees', employees);
-// router.use('/projects', projects);
+router.use('/projects', projects);
 // router.use('/tasks', tasks);
 
 export default router;
