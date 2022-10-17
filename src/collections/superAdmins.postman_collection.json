@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "7f003440-4e4a-4a38-a32e-e8e448403da1",
+		"name": "superAdmins",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all super admins",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/superAdmins/",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"superAdmins",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a super admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/superAdmins/",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"superAdmins",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

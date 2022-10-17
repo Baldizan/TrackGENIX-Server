@@ -5,7 +5,7 @@ const router = express.Router();
 router
   .get('/', superAdminsController.getAllSuperAdmins)
   .get('/:id', superAdminsController.getAdminById)
-  .post('/')
+  .post('/', superAdminsController.createSuperAdmin)
   .delete('/:id')
   .put('/:id');
 
