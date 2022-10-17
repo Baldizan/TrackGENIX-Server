@@ -1,87 +1,106 @@
-import express from 'express';
-import fs from 'fs';
-import timeSheets from '../models/Timesheets';
+import timeSheets from '../models/TimeSheets';
 
-const router = express.Router();
+const getAllTimeSheets = async (req, res) => {
+  try {
+    const timeSheet = await timeSheets.find();
 
-router.put('/edit/:id', (req, res) => {
-  const found = timeSheets.some((timeSheet) => timeSheet.id === (req.params.id));
-  if (found) {
-    const updateTimeSheet = req.body;
-    timeSheets.forEach((timeSheet) => {
-      if (timeSheet.id === req.params.id) {
-        const tSheet = timeSheet;
-        tSheet.task = updateTimeSheet.task ?? tSheet.task;
-        tSheet.date = updateTimeSheet.date ?? tSheet.date;
-        tSheet.description = updateTimeSheet.description ?? tSheet.description;
-        res.json({ msg: 'Time sheet updated', tSheet });
-      }
+    return res(200).json({
+      message: 'Time Sheet found',
+      data: timeSheet,
+      error: false,
     });
-    fs.writeFileSync('src/data/time-sheets.json', JSON.stringify(timeSheets));
-  } else {
-    res.status(400).json({ msg: `No time sheet with id of ${req.params.id}` });
-  }
-});
-
-router.get('/get', (req, res) => {
-  res.send(timeSheets);
-});
-
-router.get('/get/:id', (req, res) => {
-  const timeSheetId = req.params.id;
-  const findTimeSheet = timeSheets.find((ts) => ts.id === timeSheetId);
-  if (findTimeSheet) {
-    res.send(findTimeSheet);
-  } else {
-    res.send('Time-Sheet not found.');
-  }
-});
-
-router.get('/getDate/:date', (req, res) => {
-  const timeSheetsDate = req.params.date;
-  const findTimeSheet = timeSheets.filter((d) => d.date === timeSheetsDate);
-  if (findTimeSheet.length > 0) {
-    res.send(findTimeSheet);
-  } else {
-    res.send('Time-sheet not found');
-  }
-});
-
-router.post('/create', (req, res) => {
-  const newTask = req.body.task;
-  const newDate = req.body.date;
-  const newDescription = req.body.description;
-  const newTimeSheet = {
-    id: new Date().getTime().toString().substring(6),
-    task: newTask,
-    date: newDate,
-    description: newDescription,
-  };
-  timeSheets.push(newTimeSheet);
-  fs.writeFile('src/data/time-sheets.json', JSON.stringify(timeSheets, null, 2), (err) => {
-    if (err) {
-      res.send('Error! cannot create Time-sheet');
-    } else {
-      res.send('Time-sheet was created');
-    }
-  });
-});
-
-router.delete('/delete/:id', (req, res) => {
-  const timeSheetId = req.params.id;
-  const findTimeSheet = timeSheets.find((ts) => ts.id === timeSheetId);
-  if (findTimeSheet) {
-    const filteredTimeSheet = timeSheets.filter((ts) => ts.id !== timeSheetId);
-    fs.writeFile('src/data/time-sheets.json', JSON.stringify(filteredTimeSheet), (err) => {
-      if (err) {
-        res.send('Time-Sheet cannot be deleted.');
-      } else {
-        res.send('Time-Sheet deleted.');
-      }
+  } catch (error) {
+    return res.json({
+      message: 'An error ocurred',
+      error,
     });
-  } else {
-    res.send(`Time-Sheet with id ${timeSheetId} not found.`);
   }
-});
+};
 
-export default router;
+const getTimeSheetsbyId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await timeSheets.findById(id);
+
+    return res.status(200).json({
+      message: `Timesheet with id ${id} found`,
+      data: result,
+      error: false,
+    });
+  } catch (error) {
+    return res.json({
+      message: 'An error ocurred',
+      error,
+    });
+  }
+};
+
+const createTimeSheets = async (req, res) => {
+  try {
+    const timeSheet = new timeSheets({
+      description: req.body.description,
+      date: req.body.date,
+      task: req.body.task,
+    });
+
+    const result = await timeSheet.save();
+    return res.status(201).json({
+      message: 'Timesheet created succesfully',
+      default: result,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: 'An error ocurred',
+      error,
+    });
+  }
+};
+
+const deleteTimeSheet = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await timeSheets.findByIdAndDelete(id);
+
+    return res.status(200).json({
+      message: `Timesheet with id ${id} deleted`,
+      data: result,
+      error: false,
+    });
+  } catch (error) {
+    return res.json({
+      message: 'An error ocurred',
+      error,
+    });
+  }
+};
+
+const editTimeSheet = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await timeSheets.findByIdAndUpdate(
+      { _id: id },
+      { ...req.body },
+      { new: true },
+    );
+
+    return res.status(200).json({
+      message: `Timesheet with id ${id} edited`,
+      data: result,
+      error: false,
+    });
+  } catch (error) {
+    return res.json({
+      message: 'An error ocurred',
+      error,
+    });
+  }
+};
+
+export default {
+  getAllTimeSheets,
+  getTimeSheetsbyId,
+  createTimeSheets,
+  deleteTimeSheet,
+  editTimeSheet,
+};
