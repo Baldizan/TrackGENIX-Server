@@ -29,6 +29,78 @@
 		{
 			"name": "Time sheets",
 			"item": []
+		},
+    {
+			"name": "Get all super admins",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/superAdmins/",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"superAdmins",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a super admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"admin2\",\n    \"lastName\":\"adminLn2\",\n    \"email\":\"admin2@gmail.com\",\n    \"password\":\"admin1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/superAdmins/",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"superAdmins",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get super admin by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/superAdmins/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"superAdmins",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
