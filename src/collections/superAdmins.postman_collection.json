@@ -25,7 +25,7 @@
 			"response": []
 		},
 		{
-			"name": "create a super admin",
+			"name": "Create a super admin",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -40,6 +40,15 @@
 						""
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get super admin by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
 			},
 			"response": []
 		}
