@@ -1,12 +1,13 @@
 import express from 'express';
-import projectsControllers from '../controllers/projects';
+import { getAllProjects, getProjectById, createProject } from '../controllers/projects';
 import projectsValidations from '../validations/projects';
 
 const router = express.Router();
 
-router
-  .get('/', projectsControllers.getAllProjects)
-  .get('/:id', projectsControllers.getProjectById)
-  .post('/', projectsValidations.validateCreation, projectsControllers.createProject);
+router.get('/', getAllProjects);
+
+router.get('/:id', getProjectById);
+
+router.post('/', projectsValidations.validateCreation, createProject);
 
 export default router;

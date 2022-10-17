@@ -10,7 +10,8 @@ const getAllProjects = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'Error.',
+      message: error,
+      data: undefined,
       error,
     });
   }
@@ -27,7 +28,8 @@ const getProjectById = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'Error.',
+      message: error,
+      data: undefined,
       error,
     });
   }
@@ -52,13 +54,14 @@ const createProject = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'Error.',
+      message: error,
+      data: undefined,
       error,
     });
   }
 };
 
-export default {
+export {
   getAllProjects,
   getProjectById,
   createProject,

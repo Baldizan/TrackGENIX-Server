@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "0799a0d8-e2ad-4566-bf3c-731ec40b5d7c",
+		"_postman_id": "13e64d08-f07a-4f62-b950-7cdcc9caf475",
 		"name": "capi-a-trackgenix-server",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23769436"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -20,7 +19,84 @@
 		},
 		{
 			"name": "Projects",
-			"item": []
+			"item": [
+				{
+					"name": "Get all ",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects/634c973322e3ae91f635cf8f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"634c973322e3ae91f635cf8f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Aegon\",\r\n  \"description\": \"lorem varius\",\r\n  \"startDate\": \"6/8/2022\",\r\n  \"endDate\": \"5/9/2022\",\r\n  \"clientName\": \"Rich Mad\",\r\n  \"employees\": [\r\n    {\r\n      \"role\": \"TL\" ,\r\n      \"rate\": 19\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Tasks",
