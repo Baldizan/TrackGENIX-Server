@@ -10,9 +10,10 @@ const getAllTimeSheets = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.json({
-      message: 'An error ocurred',
-      error,
+    return res.status(400).json({
+      message: error, // error.toString()
+      data: undefined,
+      error: true,
     });
   }
 };
@@ -28,9 +29,10 @@ const getTimeSheetsbyId = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.json({
-      message: 'An error ocurred',
-      error,
+    return res.status(400).json({
+      message: error, // error.toString()
+      data: undefined,
+      error: true,
     });
   }
 };
@@ -52,8 +54,9 @@ const createTimeSheets = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error ocurred',
-      error,
+      message: error, // error.toString()
+      data: undefined,
+      error: true,
     });
   }
 };
@@ -63,15 +66,16 @@ const deleteTimeSheet = async (req, res) => {
     const { id } = req.params;
     const result = await timeSheets.findByIdAndDelete(id);
 
-    return res.status(200).json({
+    return res.status(204).json({
       message: `Timesheet with id ${id} deleted`,
       data: result,
       error: false,
     });
   } catch (error) {
-    return res.json({
-      message: 'An error ocurred',
-      error,
+    return res.status(400).json({
+      message: error, // error.toString()
+      data: undefined,
+      error: true,
     });
   }
 };
@@ -91,9 +95,10 @@ const editTimeSheet = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.json({
-      message: 'An error ocurred',
-      error,
+    return res.status(400).json({
+      message: error, // error.toString()
+      data: undefined,
+      error: true,
     });
   }
 };
