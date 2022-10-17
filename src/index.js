@@ -8,7 +8,7 @@ const port = process.env.PORT || 5000;
 const MONGO_URL = 'mongodb+srv://RadiumA:RadiumA@trackgenix.r6u6do6.mongodb.net/?retryWrites=true&w=majority';
 
 app.use(express.json());
-app.use(superAdminRoute);
+app.use('/superAdmins', superAdminRoute);
 
 app.get('/', async (req, res) => {
   res.send('Welcome to TrackGenix!');

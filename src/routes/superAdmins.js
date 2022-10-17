@@ -1,9 +1,10 @@
 import express from 'express';
+import superAdminsController from '../controllers/superAdmins';
 
 const router = express.Router();
 router
-  .get('/')
-  .get('/:id')
+  .get('/', superAdminsController.getAllSuperAdmins)
+  .get('/:id', superAdminsController.getAdminById)
   .post('/')
   .delete('/:id')
   .put('/:id');
