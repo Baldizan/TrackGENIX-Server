@@ -2,11 +2,11 @@ import timeSheets from '../models/TimeSheets';
 
 const getAllTimeSheets = async (req, res) => {
   try {
-    const timeSheet = await timeSheets.find();
+    const timesheet = await timeSheets.find();
 
-    return res(200).json({
+    return res.status(200).json({
       message: 'Time Sheet found',
-      data: timeSheet,
+      data: timesheet,
       error: false,
     });
   } catch (error) {
@@ -37,6 +37,7 @@ const getTimeSheetsbyId = async (req, res) => {
 
 const createTimeSheets = async (req, res) => {
   try {
+    // eslint-disable-next-line new-cap
     const timeSheet = new timeSheets({
       description: req.body.description,
       date: req.body.date,
