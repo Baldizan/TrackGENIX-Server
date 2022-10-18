@@ -1,13 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import routes from './routes';
+import taskRoutes from './routes/tasks';
 
 const app = express();
 const port = process.env.PORT || 3000;
 const MONGO_URL = 'mongodb+srv://RadiumA:RadiumA@trackgenix.r6u6do6.mongodb.net/?retryWrites=true&w=majority';
 
 app.use(express.json());
-app.use(routes);
+app.use('/tasks', taskRoutes);
 
 app.get('/', async (req, res) => {
   res.send('Welcome to TrackGenix!');
