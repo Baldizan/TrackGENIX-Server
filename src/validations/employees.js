@@ -18,7 +18,7 @@ const validateCreation = (req, res, next) => {
       error: true,
     });
   }
-  return next;
+  return next();
 };
 
 export default {

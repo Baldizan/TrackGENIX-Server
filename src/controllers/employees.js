@@ -59,7 +59,7 @@ const createEmployees = async (req, res) => {
   }
 };
 
-export default {
+export {
   getAllEmployees,
   getEmployeesById,
   createEmployees,
