@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "0799a0d8-e2ad-4566-bf3c-731ec40b5d7c",
+		"_postman_id": "d02d7137-9703-49ff-b825-2b9204d0ae8e",
 		"name": "capi-a-trackgenix-server",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23769436"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -20,7 +19,74 @@
 		},
 		{
 			"name": "Projects",
-			"item": []
+			"item": [
+				{
+					"name": "Assign Employee",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"role\": \"QA\",\r\n    \"rate\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/projects/634c973322e3ae91f635cf8f/assignEmployee",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"634c973322e3ae91f635cf8f",
+								"assignEmployee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete project",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects/634dd7d67d2ac2167f992de2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"634dd7d67d2ac2167f992de2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update project",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/634ddcc37d2ac2167f992deb",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"634ddcc37d2ac2167f992deb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Tasks",

@@ -18,7 +18,7 @@ const validateUpdate = (req, res, next) => {
   const validation = projectsValidations.validate(req.body);
   if (validation.error) {
     return res.status(400).json({
-      message: `Ups! There was an error: ${validation.error.details[0].message}`,
+      message: `There was an error: ${validation.error.details[0].message}`,
       data: undefined,
       error: true,
     });
@@ -26,6 +26,24 @@ const validateUpdate = (req, res, next) => {
   return next();
 };
 
-export default {
+const validateEmployee = (req, res, next) => {
+  const employeeValidation = Joi.object({
+    role: Joi.string().valid('DEV', 'QA', 'TL', 'PM').required(),
+    rate: Joi.number().required(),
+  });
+
+  const validation = employeeValidation.validate(req.body);
+  if (validation.error) {
+    return res.status(400).json({
+      message: `There was an error: ${validation.error.details[0].message}`,
+      data: undefined,
+      error: true,
+    });
+  }
+  return next();
+};
+
+export {
   validateUpdate,
+  validateEmployee,
 };

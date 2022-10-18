@@ -1,17 +1,17 @@
 import mongoose from 'mongoose';
 
 const projectSchema = new mongoose.Schema({
-  name: { type: String },
-  description: { type: String },
-  startDate: { type: Date, default: () => Date.now() },
-  endDate: { type: Date, default: () => Date.now() },
-  clientName: { type: String },
   employees: [
     {
       id: mongoose.SchemaTypes.ObjectId,
-      role: { type: String, enum: ['DEV', 'QA', 'TL', 'PM'] },
-      rate: { type: Number },
+      role: { type: String, require: true, enum: ['DEV', 'QA', 'TL', 'PM'] },
+      rate: { type: Number, require: true },
     }],
+  name: { type: String, require: true },
+  description: { type: String, require: true },
+  startDate: { type: Date, require: true },
+  endDate: { type: Date, require: true },
+  clientName: { type: String, require: true },
 });
 
 export default mongoose.model('Project', projectSchema);

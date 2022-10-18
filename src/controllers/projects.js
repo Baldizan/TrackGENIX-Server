@@ -12,7 +12,8 @@ const deleteProject = async (req, res) => {
     });
   } catch (error) {
     return res.status(404).json({
-      message: 'Error! project not found',
+      message: error,
+      data: undefined,
       error,
     });
   }
@@ -33,13 +34,36 @@ const updateProject = async (req, res) => {
     });
   } catch (error) {
     return res.status(404).json({
-      message: 'Error. Cannot updated',
+      message: error,
+      data: undefined,
       error,
     });
   }
 };
 
-export default {
+const assignEmployee = async (req, res) => {
+  try {
+    const result = await Projects.findByIdAndUpdate(
+      { _id: req.params.id },
+      { $push: { employees: req.body } },
+      { new: true },
+    );
+    return res.status(200).json({
+      message: 'Employee was created',
+      data: result,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(404).json({
+      message: error,
+      data: undefined,
+      error,
+    });
+  }
+};
+
+export {
   deleteProject,
   updateProject,
+  assignEmployee,
 };
