@@ -27,7 +27,7 @@ const updateProject = async (req, res) => {
       { ...req.body },
       { new: true },
     );
-    return res.status(200).json({
+    return res.status(201).json({
       message: `Project with id ${id} updated.`,
       data: result,
       error: false,
@@ -48,13 +48,13 @@ const assignEmployee = async (req, res) => {
       { $push: { employees: req.body } },
       { new: true },
     );
-    return res.status(200).json({
+    return res.status(201).json({
       message: 'Employee was created',
       data: result,
       error: false,
     });
   } catch (error) {
-    return res.status(404).json({
+    return res.status(400).json({
       message: error,
       data: undefined,
       error,
