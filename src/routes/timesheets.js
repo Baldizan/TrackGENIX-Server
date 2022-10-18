@@ -1,14 +1,15 @@
 import express from 'express';
-import timeSheetsControllers from '../controllers/timeSheets';
-import timeSheetsValidations from '../validations/timesheets';
+import {
+  getAllTimeSheets, getTimeSheetsbyId, createTimeSheets, deleteTimeSheet, editTimeSheet,
+} from '../controllers/timeSheets';
+import { validateCreation, validateEdition } from '../validations/timesheets';
 
 const router = express.Router();
 
-router
-  .get('/', timeSheetsControllers.getAllTimeSheets)
-  .get('/:id', timeSheetsControllers.getTimeSheetsbyId)
-  .post('/', timeSheetsValidations.validateCreation, timeSheetsControllers.createTimeSheets)
-  .delete('/:id', timeSheetsControllers.deleteTimeSheet)
-  .put('/:id', timeSheetsValidations.validateCreation, timeSheetsControllers.editTimeSheet);
+router.get('/', getAllTimeSheets);
+router.get('/:id', getTimeSheetsbyId);
+router.post('/', validateCreation, createTimeSheets);
+router.delete('/:id', deleteTimeSheet);
+router.put('/:id', validateEdition, editTimeSheet);
 
 export default router;

@@ -11,7 +11,7 @@ const getAllTimeSheets = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: error, // error.toString()
+      message: error.toString(),
       data: undefined,
       error: true,
     });
@@ -30,7 +30,7 @@ const getTimeSheetsbyId = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: error, // error.toString()
+      message: error.toString(),
       data: undefined,
       error: true,
     });
@@ -54,7 +54,7 @@ const createTimeSheets = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: error, // error.toString()
+      message: error.toString(),
       data: undefined,
       error: true,
     });
@@ -73,7 +73,7 @@ const deleteTimeSheet = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: error, // error.toString()
+      message: error.toString(),
       data: undefined,
       error: true,
     });
@@ -96,14 +96,14 @@ const editTimeSheet = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: error, // error.toString()
+      message: error.toString(),
       data: undefined,
       error: true,
     });
   }
 };
 
-export default {
+export {
   getAllTimeSheets,
   getTimeSheetsbyId,
   createTimeSheets,
