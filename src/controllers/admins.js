@@ -4,35 +4,39 @@ const getAllAdmins = async (req, res) => {
   try {
     const admins = await Admins.find(req.query);
     if (Object.keys(req.query).length !== 0 && admins.length === 0) {
-      throw new Error('no admins found');
+      throw new Error('Admin not found');
     }
-    const message = admins.length ? 'Admin found' : 'No admins found';
+    const message = admins.length ? 'Admin found' : 'There are no admins';
     return res.status(200).json({
       message,
+      adminsLength: admins.length,
       data: admins,
       error: false,
     });
   } catch (error) {
-    return res.json({
-      message: 'An error occurred',
-      error,
+    let statusCode = 400;
+    if (error.message.includes('Admin not found')) {
+      statusCode = 404;
+    }
+    return res.status(statusCode).json({
+      message: error.toString(),
+      error: true,
     });
   }
 };
 
 const getAdminById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const admin = await Admins.findById(id);
+    const admin = await Admins.findById(req.params.id);
     return res.status(200).json({
       message: 'Admin found',
       data: admin,
       error: false,
     });
   } catch (error) {
-    return res.json({
-      message: 'Admin not found, an error occurred',
-      error,
+    return res.status(400).json({
+      message: error.message,
+      error: true,
     });
   }
 };
