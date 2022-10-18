@@ -22,11 +22,11 @@
           "method": "GET",
           "header": [],
           "url": {
-            "raw": "localhost:5000/superAdmins/",
+            "raw": "localhost:3000/superAdmins/",
             "host": [
               "localhost"
             ],
-            "port": "5000",
+            "port": "3000",
             "path": [
               "superAdmins",
               ""
@@ -50,11 +50,11 @@
             }
           },
           "url": {
-            "raw": "localhost:5000/superAdmins/",
+            "raw": "localhost:3000/superAdmins/",
             "host": [
               "localhost"
             ],
-            "port": "5000",
+            "port": "3000",
             "path": [
               "superAdmins",
               ""
@@ -69,11 +69,11 @@
           "method": "GET",
           "header": [],
           "url": {
-            "raw": "localhost:5000/superAdmins/:id",
+            "raw": "localhost:3000/superAdmins/:id",
             "host": [
               "localhost"
             ],
-            "port": "5000",
+            "port": "3000",
             "path": [
               "superAdmins",
               ":id"

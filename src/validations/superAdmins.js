@@ -8,9 +8,7 @@ const validateCreation = (req, res, next) => {
     email: Joi.string().pattern(new RegExp(pattern)).required(),
     password: Joi.string().alphanum().min(8).required(),
   });
-
-  const validation = superAdminValidation.validateAsync(req.body);
-
+  const validation = superAdminValidation.validateAsync(req.body, { abortEarly: false });
   if (validation.error) {
     return res.status(400).json({
       message: `There was an error: ${validation.error.details[0].message}`,
@@ -18,7 +16,6 @@ const validateCreation = (req, res, next) => {
       error: true,
     });
   }
-
   return next();
 };
 

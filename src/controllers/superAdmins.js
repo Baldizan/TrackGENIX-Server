@@ -2,33 +2,47 @@ import SuperAdmins from '../models/SuperAdmins';
 
 const getAllSuperAdmins = async (req, res) => {
   try {
-    const superAdmins = await SuperAdmins.find();
+    const result = await SuperAdmins.find(req.query);
+
+    if (Object.keys(req.query).length !== 0 && result.length === 0) {
+      throw new Error('Super admin not found');
+    }
+
     return res.status(200).json({
       message: 'Super admins found',
-      data: superAdmins,
+      data: result,
       error: false,
     });
   } catch (error) {
-    return res.json({
-      message: 'An error ocurred',
-      error,
+    let statusCode = 400;
+    if (error.message.includes('Super admin with')) {
+      statusCode = 404;
+    }
+    return res.status(statusCode).json({
+      message: error.toString(),
+      data: undefined,
+      error: true,
     });
   }
 };
 
-const getAdminById = async (req, res) => {
-  const idAdmin = req.params.id;
+const getSuperAdminById = async (req, res) => {
+  const idSuperAdmin = req.params.id;
   try {
-    const superAdmin = await SuperAdmins.findById(idAdmin);
+    const superAdmin = await SuperAdmins.findById(idSuperAdmin);
+    if (superAdmin === null) {
+      throw new Error('Super admin not found');
+    }
     return res.status(200).json({
-      message: `Admin with id: ${idAdmin} found`,
+      message: `Super admin with id: ${idSuperAdmin} found`,
       data: superAdmin,
       error: false,
     });
   } catch (error) {
-    return res.json({
-      message: 'An error ocurred',
-      error,
+    return res.status(404).json({
+      message: error.toString(),
+      data: undefined,
+      error: true,
     });
   }
 };
@@ -38,7 +52,7 @@ const createSuperAdmin = async (req, res) => {
     const superAdmin = new SuperAdmins({
       name: req.body.name,
       lastName: req.body.lastName,
-      email: req.body.lastName,
+      email: req.body.email,
       password: req.body.password,
     });
 
@@ -49,15 +63,16 @@ const createSuperAdmin = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
-      message: 'An error ocurred',
-      error,
+    return res.status(404).json({
+      message: error.toString(),
+      error: true,
+      data: undefined,
     });
   }
 };
 
-export default {
+export {
   getAllSuperAdmins,
-  getAdminById,
+  getSuperAdminById,
   createSuperAdmin,
 };
