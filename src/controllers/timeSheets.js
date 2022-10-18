@@ -1,9 +1,8 @@
-import timeSheets from '../models/TimeSheets';
+import TimeSheets from '../models/TimeSheets';
 
 const getAllTimeSheets = async (req, res) => {
   try {
-    const timesheet = await timeSheets.find();
-
+    const timesheet = await TimeSheets.find();
     return res.status(200).json({
       message: 'Time Sheet found',
       data: timesheet,
@@ -21,8 +20,10 @@ const getAllTimeSheets = async (req, res) => {
 const getTimeSheetsbyId = async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await timeSheets.findById(id);
-
+    const result = await TimeSheets.findById(id);
+    if (!result) {
+      throw new Error('Id doesnt exist');
+    }
     return res.status(200).json({
       message: `Timesheet with id ${id} found`,
       data: result,
@@ -39,13 +40,11 @@ const getTimeSheetsbyId = async (req, res) => {
 
 const createTimeSheets = async (req, res) => {
   try {
-    // eslint-disable-next-line new-cap
-    const timeSheet = new timeSheets({
+    const timeSheet = new TimeSheets({
       description: req.body.description,
       date: req.body.date,
       task: req.body.task,
     });
-
     const result = await timeSheet.save();
     return res.status(201).json({
       message: 'Timesheet created succesfully',
@@ -64,8 +63,10 @@ const createTimeSheets = async (req, res) => {
 const deleteTimeSheet = async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await timeSheets.findByIdAndDelete(id);
-
+    const result = await TimeSheets.findByIdAndDelete(id);
+    if (!result) {
+      throw new Error('Id doesnt exist');
+    }
     return res.status(204).json({
       message: `Timesheet with id ${id} deleted`,
       data: result,
@@ -83,12 +84,14 @@ const deleteTimeSheet = async (req, res) => {
 const editTimeSheet = async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await timeSheets.findByIdAndUpdate(
+    const result = await TimeSheets.findByIdAndUpdate(
       { _id: id },
       { ...req.body },
       { new: true },
     );
-
+    if (!result) {
+      throw new Error('Id doesnt exist');
+    }
     return res.status(200).json({
       message: `Timesheet with id ${id} edited`,
       data: result,
