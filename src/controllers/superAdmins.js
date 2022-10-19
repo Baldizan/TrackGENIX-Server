@@ -3,19 +3,20 @@ import SuperAdmins from '../models/SuperAdmins';
 const getAllSuperAdmins = async (req, res) => {
   try {
     const result = await SuperAdmins.find(req.query);
+    const message = result.length ? "Super admins found" : "There are no super admins";
 
     if (Object.keys(req.query).length !== 0 && result.length === 0) {
       throw new Error('Super admin not found');
     }
 
     return res.status(200).json({
-      message: 'Super admins found',
+      message,
       data: result,
       error: false,
     });
   } catch (error) {
     let statusCode = 400;
-    if (error.message.includes('Super admin with')) {
+    if (error.message.includes('Super admin not found')) {
       statusCode = 404;
     }
     return res.status(statusCode).json({
@@ -39,7 +40,11 @@ const getSuperAdminById = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(404).json({
+    let statusCode = 400;
+    if(error.message.includes('Super admin not found')){
+      statusCode = 404;
+    }
+    return res.status(statusCode).json({
       message: error.toString(),
       data: undefined,
       error: true,
@@ -63,7 +68,7 @@ const createSuperAdmin = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(404).json({
+    return res.status(400).json({
       message: error.toString(),
       error: true,
       data: undefined,
