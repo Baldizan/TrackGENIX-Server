@@ -17,4 +17,4 @@ const validateCreation = (req, res, next) => {
   return next();
 };
 
-export default validateCreation;  
+export default validateCreation;
