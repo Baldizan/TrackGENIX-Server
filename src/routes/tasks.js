@@ -1,6 +1,6 @@
 import express from 'express';
 import { deleteTask, editTask } from '../controllers/tasks';
-import { validateEdit } from '../validations/tasks';
+import validateEdit from '../validations/tasks';
 
 const router = express.Router();
 
