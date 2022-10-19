@@ -81,7 +81,7 @@ const deleteSuperAdmin = async (req, res) => {
         error: true,
       });
     }
-    return res.status(200).json({
+    return res.status(204).json({
       message: `Super admin with id: ${idSuperAdmin} deleted`,
       data: superAdmin,
       error: false,
