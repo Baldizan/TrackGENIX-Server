@@ -2,19 +2,17 @@ import Projects from '../models/Projects';
 
 const deleteProject = async (req, res) => {
   try {
-    const { id } = req.params;
-    const result = await Projects.findByIdAndDelete(id);
-
+    const result = await Projects.findByIdAndDelete(req.params.id);
     return res.status(204).json({
-      message: `Project with id ${id} deleted.`,
+      message: `Project with id ${result.id} deleted.`,
       data: result,
       error: false,
     });
   } catch (error) {
     return res.status(404).json({
-      message: error,
+      message: error.toString(),
       data: undefined,
-      error,
+      error: true,
     });
   }
 };
@@ -34,9 +32,9 @@ const updateProject = async (req, res) => {
     });
   } catch (error) {
     return res.status(404).json({
-      message: error,
+      message: error.toString(),
       data: undefined,
-      error,
+      error: true,
     });
   }
 };
@@ -55,9 +53,9 @@ const assignEmployee = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: error,
+      message: error.toString(),
       data: undefined,
-      error,
+      error: true,
     });
   }
 };
