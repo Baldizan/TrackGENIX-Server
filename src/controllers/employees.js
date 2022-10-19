@@ -2,17 +2,26 @@ import Employees from '../models/Employees';
 
 const getAllEmployees = async (req, res) => {
   try {
-    const employees = await Employees.find();
+    const employees = await Employees.find(req.query);
+    if (Object.keys(req.query).length !== 0 && employees.length === 0) {
+      throw new Error('Employees not found');
+    }
 
+    const message = employees.length ? 'Employee found' : 'There are no employees';
     return res.status(200).json({
-      message: 'Employee found',
+      message,
       data: employees,
       error: false,
     });
   } catch (error) {
-    return res.json({
-      message: 'An error ocurred',
-      error,
+    let statusCode = 400;
+    if (error.message.includes('Employees not found')) {
+      statusCode = 404;
+    }
+    return res.status(statusCode).json({
+      message: error.toString(),
+      data: undefined,
+      error: true,
     });
   }
 };
@@ -28,9 +37,10 @@ const getEmployeesById = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.json({
-      message: 'An error occurred',
-      error,
+    return res.status(400).json({
+      message: error.toString(),
+      data: undefined,
+      error: true,
     });
   }
 };
@@ -53,8 +63,9 @@ const createEmployees = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error ocurred',
-      error,
+      message: error.toString(),
+      data: undefined,
+      error: true,
     });
   }
 };
