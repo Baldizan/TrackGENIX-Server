@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "0799a0d8-e2ad-4566-bf3c-731ec40b5d7c",
+		"_postman_id": "ae8911b9-81e1-4583-9bee-1bfe7f0e39b2",
 		"name": "capi-a-trackgenix-server",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23769436"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -16,78 +15,120 @@
 		},
 		{
 			"name": "Super admin",
-			"item": [{
-        "name": "Get all super admins",
-        "request": {
-          "method": "GET",
-          "header": [],
-          "url": {
-            "raw": "localhost:3000/superAdmins/",
-            "host": [
-              "localhost"
-            ],
-            "port": "3000",
-            "path": [
-              "superAdmins",
-              ""
-            ]
-          }
-        },
-        "response": []
-      },
-      {
-        "name": "Create a super admin",
-        "request": {
-          "method": "POST",
-          "header": [],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n    \"name\":\"admin2\",\n    \"lastName\":\"adminLn2\",\n    \"email\":\"admin2@gmail.com\",\n    \"password\":\"admin1234\"\n}",
-            "options": {
-              "raw": {
-                "language": "json"
-              }
-            }
-          },
-          "url": {
-            "raw": "localhost:3000/superAdmins/",
-            "host": [
-              "localhost"
-            ],
-            "port": "3000",
-            "path": [
-              "superAdmins",
-              ""
-            ]
-          }
-        },
-        "response": []
-      },
-      {
-        "name": "Get super admin by id",
-        "request": {
-          "method": "GET",
-          "header": [],
-          "url": {
-            "raw": "localhost:3000/superAdmins/:id",
-            "host": [
-              "localhost"
-            ],
-            "port": "3000",
-            "path": [
-              "superAdmins",
-              ":id"
-            ],
-            "variable": [
-              {
-                "key": "id",
-                "value": null
-              }
-            ]
-          }
-        },
-        "response": []
-      }]
+			"item": [
+				{
+					"name": "Get all super admins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/superAdmins",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"superAdmins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a super admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"adminMaxi\",\n    \"lastName\":\"adminLn\",\n    \"email\":\"adminln@hmail.com\",\n    \"password\":\"aksdm122\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/superAdmins/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"superAdmins",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get super admin by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/superAdmins/634f461147e3e538b7ec120f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"superAdmins",
+								"634f461147e3e538b7ec120f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update super admin",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"superAdminMaximiliano\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/superAdmins/634f461147e3e538b7ec120f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"superAdmins",
+								"634f461147e3e538b7ec120f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete super admin by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/superAdmins/634f40ea9a7922c0e156c965",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"superAdmins",
+								"634f40ea9a7922c0e156c965"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Projects",

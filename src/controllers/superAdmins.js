@@ -71,8 +71,46 @@ const createSuperAdmin = async (req, res) => {
   }
 };
 
+const deleteSuperAdmin = async (req, res) => {
+  const idSuperAdmin = req.params.id;
+  SuperAdmins.findByIdAndDelete(idSuperAdmin, (err, superAdmin) => {
+    if (err) {
+      return res.status(404).json({
+        message: err,
+        data: undefined,
+        error: true,
+      });
+    }
+    return res.status(200).json({
+      message: `Super admin with id: ${idSuperAdmin} deleted`,
+      data: superAdmin,
+      error: false,
+    });
+  });
+};
+
+const updateSuperAdmin = (req, res) => {
+  SuperAdmins.findByIdAndUpdate(req.params.id, req.body, (err, result) => {
+    if (err) {
+      return res.status(404).json({
+        message: err.message,
+        data: undefined,
+        error: true,
+      });
+    }
+
+    return res.status(200).json({
+      message: 'Super admin updated',
+      data: result,
+      error: false,
+    });
+  });
+};
+
 export {
   getAllSuperAdmins,
   getSuperAdminById,
   createSuperAdmin,
+  deleteSuperAdmin,
+  updateSuperAdmin,
 };
