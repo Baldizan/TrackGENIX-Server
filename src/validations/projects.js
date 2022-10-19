@@ -3,7 +3,7 @@ import Joi from 'joi';
 const validateCreation = (req, res, next) => {
   const employeeValidation = Joi.object({
     role: Joi.string().valid('DEV', 'QA', 'TL', 'PM').required(),
-    rate: Joi.number().required(),
+    rate: Joi.number().min(1).max(1000).required(),
   });
 
   const projectsValidations = Joi.object({
@@ -18,7 +18,7 @@ const validateCreation = (req, res, next) => {
   const validation = projectsValidations.validate(req.body);
   if (validation.error) {
     return res.status(400).json({
-      message: `Ups! There was an error: ${validation.error.details[0].message}`,
+      message: `There was an error: ${validation.error.details[0].message}`,
       data: undefined,
       error: true,
     });

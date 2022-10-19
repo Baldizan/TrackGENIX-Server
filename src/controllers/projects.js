@@ -2,17 +2,25 @@ import Projects from '../models/Projects';
 
 const getAllProjects = async (req, res) => {
   try {
-    const projects = await Projects.find();
+    const projects = await Projects.find(req.query);
+    if (Object.keys(req.query).length !== 0 && projects.length === 0) {
+      throw new Error('Project not found');
+    }
+    const message = projects.length ? 'Project found.' : 'Project not found.';
     return res.status(200).json({
-      message: 'Project found.',
+      message,
       data: projects,
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
-      message: error,
+    let statusCode = 400;
+    if (error.message.includes('Project not found.')) {
+      statusCode = 404;
+    }
+    return res.status(statusCode).json({
+      message: error.toString(),
       data: undefined,
-      error,
+      error: true,
     });
   }
 };
@@ -20,24 +28,24 @@ const getAllProjects = async (req, res) => {
 const getProjectById = async (req, res) => {
   try {
     const { id } = req.params;
-    const projects = await Projects.findById(id);
+    const project = await Projects.findById(id);
     return res.status(200).json({
       message: `Project ${req.params.id} found.`,
-      data: projects,
+      data: project,
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
-      message: error,
+    return res.status(404).json({
+      message: error.toString(),
       data: undefined,
-      error,
+      error: true,
     });
   }
 };
 
 const createProject = async (req, res) => {
   try {
-    const project = new Projects({
+    const post = new Projects({
       name: req.body.name,
       description: req.body.description,
       startDate: req.body.startDate,
@@ -46,7 +54,7 @@ const createProject = async (req, res) => {
       employees: req.body.employees,
     });
 
-    const result = await project.save();
+    const result = await post.save();
     return res.status(201).json({
       message: 'Project created.',
       data: result,
@@ -54,9 +62,9 @@ const createProject = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: error,
+      message: error.toString(),
       data: undefined,
-      error,
+      error: true,
     });
   }
 };

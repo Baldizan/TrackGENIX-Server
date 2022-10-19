@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "13e64d08-f07a-4f62-b950-7cdcc9caf475",
+		"_postman_id": "c3e965a5-3991-47d2-b3be-8d82edf834b3",
 		"name": "capi-a-trackgenix-server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -21,7 +21,7 @@
 			"name": "Projects",
 			"item": [
 				{
-					"name": "Get all ",
+					"name": "Get all projects",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -51,19 +51,24 @@
 					"response": []
 				},
 				{
-					"name": "Get by Id",
+					"name": "Get project by Id",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/projects/634c973322e3ae91f635cf8f",
+							"raw": "localhost:3000/projects?_id=",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"projects",
-								"634c973322e3ae91f635cf8f"
+								"projects"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": ""
+								}
 							]
 						}
 					},
