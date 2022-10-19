@@ -2,10 +2,7 @@ import Joi from 'joi';
 
 const validateCreation = (req, res, next) => {
   const tasksValidation = Joi.object({
-    name: Joi.string().min(3).max(50).required(),
     description: Joi.string().min(3).max(50).required(),
-    project_id: Joi.required(),
-    hours: Joi.number().required(),
   });
 
   const validation = tasksValidation.validate(req.body);
@@ -20,6 +17,4 @@ const validateCreation = (req, res, next) => {
   return next();
 };
 
-export default {
-  validateCreation,
-};
+export default validateCreation;  

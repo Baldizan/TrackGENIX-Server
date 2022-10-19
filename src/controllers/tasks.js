@@ -53,10 +53,7 @@ const getTaskById = async (req, res) => {
 const createTask = async (req, res) => {
   try {
     const task = new Tasks({
-      name: req.body.name,
       description: req.body.description,
-      project_id: req.body.project_id,
-      hours: req.body.hours,
     });
 
     const result = await task.save();
