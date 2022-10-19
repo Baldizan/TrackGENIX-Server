@@ -1,13 +1,10 @@
 import express from 'express';
 import adminsControllers from '../controllers/admins';
-import adminsValidations from '../validations/admins';
 
 const router = express.Router();
 
-router.get('/', adminsControllers.getAllAdmins);
+router.delete('/:id', adminsControllers.deleteAdmin);
 
-router.get('/:id', adminsControllers.getAdminById);
-
-router.post('/', adminsValidations.validateCreation, adminsControllers.createAdmin);
+router.put('/:id', adminsControllers.editAdmin);
 
 export default router;
