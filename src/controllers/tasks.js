@@ -2,8 +2,10 @@ import Tasks from '../models/Tasks';
 
 const getAllTasks = async (req, res) => {
   try {
-    const tasks = await Tasks.find();
-
+    const tasks = await Tasks.find(req.query);
+    if (tasks.length === 0) {
+      throw new Error('Task not found');
+    }
     return res.status(200).json({
       message: 'Tasks found',
       data: tasks,
