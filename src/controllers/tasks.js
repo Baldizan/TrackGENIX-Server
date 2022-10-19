@@ -12,7 +12,11 @@ const getAllTasks = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    let status = 400;
+    if (error.message.includes('Task not found')) {
+      status = 404;
+    }
+    return res.status(status).json({
       message: error.toString(),
       data: undefined,
       error: true,
@@ -24,14 +28,20 @@ const getTaskById = async (req, res) => {
   try {
     const { id } = req.params;
     const tasks = await Tasks.findById(id);
-
+    if (!tasks) {
+      throw new Error(`Task with id: ${id} not found`);
+    }
     return res.status(200).json({
       message: 'Task found',
       data: tasks,
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    let status = 400;
+    if (error.message.includes('Task with id:')) {
+      status = 404;
+    }
+    return res.status(status).json({
       message: error.toString(),
       data: undefined,
       error: true,
