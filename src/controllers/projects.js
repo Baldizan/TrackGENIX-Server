@@ -29,13 +29,20 @@ const getProjectById = async (req, res) => {
   try {
     const { id } = req.params;
     const project = await Projects.findById(id);
+    if (!project) {
+      return res.status(404).json({
+        message: `Project ${req.params.id} not found.`,
+        data: {},
+        error: true,
+      });
+    }
     return res.status(200).json({
       message: `Project ${req.params.id} found.`,
       data: project,
       error: false,
     });
   } catch (error) {
-    return res.status(404).json({
+    return res.status(400).json({
       message: error.toString(),
       data: undefined,
       error: true,
