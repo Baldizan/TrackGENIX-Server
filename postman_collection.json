@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "0799a0d8-e2ad-4566-bf3c-731ec40b5d7c",
+		"_postman_id": "8103a4c0-0e7b-4f29-a6b6-060dcfb869c1",
 		"name": "capi-a-trackgenix-server",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23769436"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -20,7 +19,84 @@
 		},
 		{
 			"name": "Projects",
-			"item": []
+			"item": [
+				{
+					"name": "Assign Employee",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"role\": \"PM\",\r\n    \"rate\": 30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/projects/634c973322e3ae91f635cf8f/assignEmployee",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"634c973322e3ae91f635cf8f",
+								"assignEmployee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update project",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Doro\",\r\n    \"description\": \"platea dictumst morbi vestibulum velit id\",\r\n    \"startDate\": \"7/24/2022\",\r\n    \"endDate\": \"7/8/2022\",\r\n    \"clientName\": \"Garnall\",\r\n    \"employees\": [ {\r\n        \"role\": \"QA\",\r\n        \"rate\": 25\r\n    }]\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/projects/634c973322e3ae91f635cf8f",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"634c973322e3ae91f635cf8f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete project",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects/634e0de3a45cd1812d324b67",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"634e0de3a45cd1812d324b67"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Tasks",
