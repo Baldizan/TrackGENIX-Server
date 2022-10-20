@@ -1,7 +1,6 @@
 import Joi from 'joi';
 
 const validateEdit = (req, res, next) => {
-
   const superAdminValidation = Joi.object({
     name: Joi.string().min(3).max(50),
     lastName: Joi.string().min(3).max(50),
@@ -20,6 +19,4 @@ const validateEdit = (req, res, next) => {
   return next();
 };
 
-export {
-  validateEdit,
-};
+export default validateEdit;
