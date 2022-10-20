@@ -22,13 +22,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/superAdmins",
+							"raw": "localhost:3000/super-admins",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"superAdmins"
+								"super-admins"
 							]
 						}
 					},
@@ -41,7 +41,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"adminMaxi\",\n    \"lastName\":\"adminLn\",\n    \"email\":\"adminln@hmail.com\",\n    \"password\":\"aksdm122\"\n}",
+							"raw": "{\n    \"name\":\"a\",\n    \"lastName\":\"adminLn\",\n    \"email\":\"adminl@gmail.com\",\n    \"password\":\"aksdm122\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -49,13 +49,13 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/superAdmins/",
+							"raw": "localhost:3000/super-admins/",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"superAdmins",
+								"super-admins",
 								""
 							]
 						}
@@ -68,14 +68,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/superAdmins/634f461147e3e538b7ec120f",
+							"raw": "localhost:3000/super-admins/6350b5e9e493deeb9aa4a7cc",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"superAdmins",
-								"634f461147e3e538b7ec120f"
+								"super-admins",
+								"6350b5e9e493deeb9aa4a7cc"
 							]
 						}
 					},
@@ -88,7 +88,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"superAdminMaximiliano\"\n}",
+							"raw": "{\n    \"name\":\"su\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -96,14 +96,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/superAdmins/634f461147e3e538b7ec120f",
+							"raw": "localhost:3000/super-admins/63518e14dc85e59242652e46",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"superAdmins",
-								"634f461147e3e538b7ec120f"
+								"super-admins",
+								"63518e14dc85e59242652e46"
 							]
 						}
 					},
@@ -114,15 +114,19 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "localhost:3000/superAdmins/634f40ea9a7922c0e156c965",
+							"raw": "localhost:3000/super-admins/63519b632b611499e4a21401",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"superAdmins",
-								"634f40ea9a7922c0e156c965"
+								"super-admins",
+								"63519b632b611499e4a21401"
 							]
 						}
 					},

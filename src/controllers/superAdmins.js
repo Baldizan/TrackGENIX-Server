@@ -1,116 +1,58 @@
 import SuperAdmins from '../models/SuperAdmins';
 
-const getAllSuperAdmins = async (req, res) => {
+const deleteSuperAdmin = async (req, res) => {
+  const idSuperAdmin = req.params.id;
+
   try {
-    const result = await SuperAdmins.find(req.query);
-
-    if (Object.keys(req.query).length !== 0 && result.length === 0) {
-      throw new Error('Super admin not found');
+    const result = await SuperAdmins.findByIdAndDelete(idSuperAdmin);
+    if(result === null){
+      throw new Error("Super admin doesn't exist");
     }
-
-    return res.status(200).json({
-      message: 'Super admins found',
+    return res.status(204).json({
+      message:"super admin deleted",
       data: result,
-      error: false,
-    });
+      error:false
+    })
+    
   } catch (error) {
     let statusCode = 400;
-    if (error.message.includes('Super admin with')) {
+    if (error.message.includes("Super admin doesn't exist")){
       statusCode = 404;
     }
     return res.status(statusCode).json({
-      message: error.toString(),
-      data: undefined,
-      error: true,
-    });
+      message:error.toString(),
+      data:undefined,
+      error:true
+    })
   }
 };
 
-const getSuperAdminById = async (req, res) => {
-  const idSuperAdmin = req.params.id;
+const updateSuperAdmin = async (req, res) => {
+  
   try {
-    const superAdmin = await SuperAdmins.findById(idSuperAdmin);
-    if (superAdmin === null) {
-      throw new Error('Super admin not found');
+    const result = await SuperAdmins.findByIdAndUpdate(req.params.id,req.body);
+    if (result === null){
+      throw new Error("Super admin doesn't exist");
     }
     return res.status(200).json({
-      message: `Super admin with id: ${idSuperAdmin} found`,
-      data: superAdmin,
-      error: false,
-    });
+      message:"Super admin updated",
+      data:result,
+      error:false
+    })
   } catch (error) {
-    return res.status(404).json({
-      message: error.toString(),
-      data: undefined,
-      error: true,
-    });
-  }
-};
-
-const createSuperAdmin = async (req, res) => {
-  try {
-    const superAdmin = new SuperAdmins({
-      name: req.body.name,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-    });
-
-    const result = await superAdmin.save();
-    return res.status(201).json({
-      message: 'Super admin created succesfully',
-      data: result,
-      error: false,
-    });
-  } catch (error) {
-    return res.status(404).json({
-      message: error.toString(),
-      error: true,
-      data: undefined,
-    });
-  }
-};
-
-const deleteSuperAdmin = async (req, res) => {
-  const idSuperAdmin = req.params.id;
-  SuperAdmins.findByIdAndDelete(idSuperAdmin, (err, superAdmin) => {
-    if (err) {
-      return res.status(404).json({
-        message: err,
-        data: undefined,
-        error: true,
-      });
+    let statusCode = 400;
+    if (error.message.includes("Super admin doesn't exist")){
+      statusCode = 404;
     }
-    return res.status(204).json({
-      message: `Super admin with id: ${idSuperAdmin} deleted`,
-      data: superAdmin,
-      error: false,
-    });
-  });
-};
-
-const updateSuperAdmin = (req, res) => {
-  SuperAdmins.findByIdAndUpdate(req.params.id, req.body, (err, result) => {
-    if (err) {
-      return res.status(404).json({
-        message: err.message,
-        data: undefined,
-        error: true,
-      });
-    }
-
-    return res.status(200).json({
-      message: 'Super admin updated',
-      data: result,
-      error: false,
-    });
-  });
+    return res.status(statusCode).json({
+      message:error.toString(),
+      data:result,
+      error:true
+    })
+  }
 };
 
 export {
-  getAllSuperAdmins,
-  getSuperAdminById,
-  createSuperAdmin,
   deleteSuperAdmin,
   updateSuperAdmin,
 };

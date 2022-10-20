@@ -1,5 +1,5 @@
 import express from 'express';
-// import superAdmins from './superAdmins';
+import superAdmins from './superAdmins';
 // import admins from './admins';
 // import timesheets from './timesheets';
 // import employees from './employees';
@@ -8,7 +8,7 @@ import express from 'express';
 
 const router = express.Router();
 
-// router.use('/super-admins', superAdmins);
+router.use('/super-admins', superAdmins);
 // router.use('/admins', admins);
 // router.use('/timesheets', timesheets);
 // router.use('/employees', employees);
