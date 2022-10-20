@@ -4,7 +4,7 @@ import express from 'express';
 // import timesheets from './timesheets';
 // import employees from './employees';
 // import projects from './projects';
-// import tasks from './tasks';
+import tasks from './tasks';
 
 const router = express.Router();
 
@@ -13,6 +13,6 @@ const router = express.Router();
 // router.use('/timesheets', timesheets);
 // router.use('/employees', employees);
 // router.use('/projects', projects);
-// router.use('/tasks', tasks);
+router.use('/tasks', tasks);
 
 export default router;
