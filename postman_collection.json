@@ -31,14 +31,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/tasks/634e0900a03fce6411f4c801",
+							"raw": "localhost:3000/tasks/63508598a66feb850ab67a2d",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"tasks",
-								"634e0900a03fce6411f4c801"
+								"63508598a66feb850ab67a2d"
 							]
 						}
 					},
@@ -51,7 +51,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Task3\",\r\n    \"description\": \"One more task descritpion for test purposes\",\r\n    \"project_id\": \"634de88a9a45e5e780e62787\",\r\n    \"hours\": 1\r\n}   ",
+							"raw": "{\r\n    \"description\": \"There is only this param to fill\"\r\n}   ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -77,14 +77,21 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/tasks/",
+							"raw": "localhost:3000/tasks",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"tasks",
-								""
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "description",
+									"value": "There is only this param to fill",
+									"description": "Filter",
+									"disabled": true
+								}
 							]
 						}
 					},
