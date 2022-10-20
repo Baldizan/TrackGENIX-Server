@@ -6,7 +6,7 @@ const getAllProjects = async (req, res) => {
     if (Object.keys(req.query).length !== 0 && projects.length === 0) {
       throw new Error('Project not found');
     }
-    const message = projects.length ? 'Project found.' : 'Project not found.';
+    const message = projects.length ? 'Project found' : 'Project not found';
     return res.status(200).json({
       message,
       data: projects,
@@ -14,7 +14,7 @@ const getAllProjects = async (req, res) => {
     });
   } catch (error) {
     let statusCode = 400;
-    if (error.message.includes('Project not found.')) {
+    if (error.message.includes('Project not found')) {
       statusCode = 404;
     }
     return res.status(statusCode).json({
@@ -39,7 +39,7 @@ const getProjectById = async (req, res) => {
     });
   } catch (error) {
     let statusCode = 400;
-    if (error.message.includes('Project not found.')) {
+    if (error.message.includes('Project not found')) {
       statusCode = 404;
     }
     return res.status(statusCode).json({
