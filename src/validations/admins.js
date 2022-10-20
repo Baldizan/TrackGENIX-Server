@@ -8,7 +8,7 @@ const validateCreation = (req, res, next) => {
     password: Joi.string().min(8).max(50).required(),
   });
 
-  const validation = adminValidation.validate(req.body);
+  const validation = adminValidation.validate(req.body, { abortEarly: false });
 
   if (validation.error) {
     return res.status(400).json({

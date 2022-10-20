@@ -13,7 +13,7 @@ const getAllAdmins = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    const statusCode = error.message.includes('Admin not found') ? 404 : 404;
+    const statusCode = error.message.includes('Admin not found') ? 404 : 400;
     return res.status(statusCode).json({
       message: error.toString(),
       error: true,
@@ -24,13 +24,16 @@ const getAllAdmins = async (req, res) => {
 const getAdminById = async (req, res) => {
   try {
     const admin = await Admins.findById(req.params.id);
+    if (!admin) {
+      throw new Error('Admin not found');
+    }
     return res.status(200).json({
       message: 'Admin found',
       data: admin,
       error: false,
     });
   } catch (error) {
-    const statusCode = error.name === 'CastError' ? 404 : 400;
+    const statusCode = error.message.includes('Admin not found') ? 404 : 400;
     return res.status(statusCode).json({
       message: error.toString(),
       error: true,
@@ -56,7 +59,7 @@ const createAdmin = async (req, res) => {
   } catch (error) {
     return res.status(400).json({
       message: error.toString(),
-      error,
+      error: true,
     });
   }
 };
