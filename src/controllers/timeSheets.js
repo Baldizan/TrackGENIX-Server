@@ -1,11 +1,11 @@
 import TimeSheets from '../models/TimeSheets';
 
 const getAllTimeSheets = async (req, res) => {
-  const timesheet = await TimeSheets.find(req.query);
-  if (timesheet.length === 0) {
-    throw new Error('Time sheet not found');
-  }
   try {
+    const timesheet = await TimeSheets.find(req.query);
+    if (timesheet.length === 0) {
+      throw new Error(`Time sheet with id ${req.query.id} not found`);
+    }
     return res.status(200).json({
       message: 'Time Sheet found',
       data: timesheet,
@@ -13,7 +13,7 @@ const getAllTimeSheets = async (req, res) => {
     });
   } catch (error) {
     let status = 400;
-    if (timesheet.length === 0) {
+    if (error.message.includes('Time sheet not found')) {
       status = 404;
     }
     return res.status(status).json({
@@ -25,11 +25,11 @@ const getAllTimeSheets = async (req, res) => {
 };
 
 const getTimeSheetsbyId = async (req, res) => {
-  const { id } = req.params;
-  const result = await TimeSheets.findById(id);
   try {
+    const { id } = req.params;
+    const result = await TimeSheets.findById(id);
     if (!result) {
-      throw new Error('Id doesnt exist');
+      throw new Error(`Time sheet with id ${req.query.id} not found`);
     }
     return res.status(200).json({
       message: `Timesheet with id ${id} found`,
@@ -38,7 +38,7 @@ const getTimeSheetsbyId = async (req, res) => {
     });
   } catch (error) {
     let status = 400;
-    if (!result) {
+    if (error.message.includes('Time sheet not found')) {
       status = 404;
     }
     return res.status(status).json({
@@ -72,11 +72,11 @@ const createTimeSheets = async (req, res) => {
 };
 
 const deleteTimeSheet = async (req, res) => {
-  const { id } = req.params;
-  const result = await TimeSheets.findByIdAndDelete(id);
   try {
+    const { id } = req.params;
+    const result = await TimeSheets.findByIdAndDelete(id);
     if (!result) {
-      throw new Error('Id doesnt exist');
+      throw new Error(`Time sheet with id ${req.query.id} not found`);
     }
     return res.status(204).json({
       message: `Timesheet with id ${id} deleted`,
@@ -85,7 +85,7 @@ const deleteTimeSheet = async (req, res) => {
     });
   } catch (error) {
     let status = 400;
-    if (!result) {
+    if (error.message.includes('Time sheet not found')) {
       status = 404;
     }
     return res.status(status).json({
@@ -100,12 +100,12 @@ const editTimeSheet = async (req, res) => {
   try {
     const { id } = req.params;
     const result = await TimeSheets.findByIdAndUpdate(
-      { _id: id },
-      { ...req.body },
+      req.params.id,
+      req.body,
       { new: true },
     );
     if (!result) {
-      throw new Error('Id doesnt exist');
+      throw new Error(`Time sheet with id ${req.query.id} not found`);
     }
     return res.status(200).json({
       message: `Timesheet with id ${id} edited`,
@@ -113,7 +113,11 @@ const editTimeSheet = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    let status = 400;
+    if (error.message.includes('Time sheet not found')) {
+      status = 404;
+    }
+    return res.status(status).json({
       message: error.toString(),
       data: undefined,
       error: true,
