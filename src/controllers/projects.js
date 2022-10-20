@@ -30,11 +30,7 @@ const getProjectById = async (req, res) => {
     const { id } = req.params;
     const project = await Projects.findById(id);
     if (!project) {
-      return res.status(404).json({
-        message: `Project ${req.params.id} not found.`,
-        data: {},
-        error: true,
-      });
+      throw new Error('Project not found');
     }
     return res.status(200).json({
       message: `Project ${req.params.id} found.`,
@@ -42,7 +38,11 @@ const getProjectById = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    let statusCode = 400;
+    if (error.message.includes('Project not found.')) {
+      statusCode = 404;
+    }
+    return res.status(statusCode).json({
       message: error.toString(),
       data: undefined,
       error: true,
@@ -60,7 +60,6 @@ const createProject = async (req, res) => {
       clientName: req.body.clientName,
       employees: req.body.employees,
     });
-
     const result = await post.save();
     return res.status(201).json({
       message: 'Project created.',
