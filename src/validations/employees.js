@@ -9,11 +9,11 @@ const validateUpdate = (req, res, next) => {
     password: Joi.string().min(8).required(),
   });
 
-  const validation = employeesValidations.validate(req.body);
+  const validation = employeesValidations.validate(req.body, { abortEarly: false });
 
   if (validation.error) {
     return res.status(400).json({
-      message: `There was an error: ${validation.error.details[0].message}`,
+      message: validation.error.message,
       data: undefined,
       error: true,
     });
@@ -21,6 +21,4 @@ const validateUpdate = (req, res, next) => {
   return next();
 };
 
-export default {
-  validateUpdate,
-};
+export default validateUpdate;
