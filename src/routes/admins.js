@@ -1,13 +1,13 @@
 import express from 'express';
-import adminsControllers from '../controllers/admins';
-import adminsValidations from '../validations/admins';
+import { getAllAdmins, getAdminById, createAdmin } from '../controllers/admins';
+import validateCreation from '../validations/admins';
 
 const router = express.Router();
 
-router.get('/', adminsControllers.getAllAdmins);
+router.get('/', getAllAdmins);
 
-router.get('/:id', adminsControllers.getAdminById);
+router.get('/:id', getAdminById);
 
-router.post('/', adminsValidations.validateCreation, adminsControllers.createAdmin);
+router.post('/', validateCreation, createAdmin);
 
 export default router;

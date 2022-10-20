@@ -12,7 +12,7 @@ const validateCreation = (req, res, next) => {
 
   if (validation.error) {
     return res.status(400).json({
-      message: `There was an error: ${validation.error.details[0].message}`,
+      message: `There was an error: ${validation.error.message}`,
       data: undefined,
       error: true,
     });
@@ -20,6 +20,4 @@ const validateCreation = (req, res, next) => {
   return next();
 };
 
-export default {
-  validateCreation,
-};
+export default validateCreation;
