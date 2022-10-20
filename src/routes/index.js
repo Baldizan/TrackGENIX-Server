@@ -5,6 +5,8 @@ import express from 'express';
 // import employees from './employees';
 import projects from './projects';
 // import tasks from './tasks';
+// import projects from './projects';
+import tasks from './tasks';
 
 const router = express.Router();
 
@@ -14,5 +16,7 @@ const router = express.Router();
 // router.use('/employees', employees);
 router.use('/projects', projects);
 // router.use('/tasks', tasks);
+// router.use('/projects', projects);
+router.use('/tasks', tasks);
 
 export default router;
