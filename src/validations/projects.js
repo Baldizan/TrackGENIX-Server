@@ -15,7 +15,7 @@ const validateUpdate = (req, res, next) => {
     employees: Joi.array().items(employeeValidation),
   });
 
-  const validation = projectsValidations.validate(req.body);
+  const validation = projectsValidations.validate(req.body, { abortEarly: false });
   if (validation.error) {
     return res.status(400).json({
       message: validation.error.message,
@@ -32,7 +32,7 @@ const validateEmployee = (req, res, next) => {
     rate: Joi.number().required(),
   });
 
-  const validation = employeeValidation.validate(req.body);
+  const validation = employeeValidation.validate(req.body, { abortEarly: false });
   if (validation.error) {
     return res.status(400).json({
       message: validation.error.message,
