@@ -3,14 +3,18 @@ import Admins from '../models/Admins';
 const deleteAdmin = async (req, res) => {
   try {
     const admin = await Admins.findByIdAndDelete(req.params.id);
+    if (!admin) {
+      throw new Error('Admin not found');
+    }
     return res.status(204).json({
-      message: `Admin whit id ${admin.id} deleted successfully`,
+      message: `Admin with id ${admin.id} deleted successfully`,
       data: admin,
       error: false,
     });
   } catch (error) {
-    return res.status(404).json({
-      message: 'Admin not found',
+    const statusCode = error.message.includes('Admin not found') ? 404 : 400;
+    return res.status(statusCode).json({
+      message: error.toString(),
       error: true,
     });
   }
@@ -19,24 +23,28 @@ const deleteAdmin = async (req, res) => {
 const editAdmin = async (req, res) => {
   try {
     const admin = await Admins.findByIdAndUpdate(
-      { _id: req.params.id },
-      { ...req.body },
+      req.params.id,
+      req.body,
       { new: true },
     );
+    if (!admin) {
+      throw new Error('Admin not found');
+    }
     return res.status(201).json({
-      message: `Admin whit id ${admin.id} edited successfully`,
+      message: `Admin with id ${admin.id} edited successfully`,
       data: admin,
       error: false,
     });
   } catch (error) {
-    return res.status(404).json({
-      message: 'Admin not found',
+    const statusCode = error.message.includes('Admin not found') ? 404 : 400;
+    return res.status(statusCode).json({
+      message: error.toString(),
       error: true,
     });
   }
 };
 
-export default {
+export {
   deleteAdmin,
   editAdmin,
 };

@@ -1,10 +1,10 @@
 import express from 'express';
-import adminsControllers from '../controllers/admins';
+import { deleteAdmin, editAdmin } from '../controllers/admins';
 
 const router = express.Router();
 
-router.delete('/:id', adminsControllers.deleteAdmin);
+router.delete('/:id', deleteAdmin);
 
-router.put('/:id', adminsControllers.editAdmin);
+router.put('/:id', editAdmin);
 
 export default router;
