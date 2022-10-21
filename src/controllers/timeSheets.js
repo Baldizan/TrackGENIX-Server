@@ -4,7 +4,7 @@ const getAllTimeSheets = async (req, res) => {
   try {
     const timesheet = await TimeSheets.find(req.query);
     if (timesheet.length === 0) {
-      throw new Error(`Time sheet with id ${req.query.id} not found`);
+      throw new Error('Time sheet not found');
     }
     return res.status(200).json({
       message: 'Time Sheet found',
@@ -38,7 +38,7 @@ const getTimeSheetsbyId = async (req, res) => {
     });
   } catch (error) {
     let status = 400;
-    if (error.message.includes('Time sheet not found')) {
+    if (error.message.includes('Time sheet with id')) {
       status = 404;
     }
     return res.status(status).json({
@@ -85,7 +85,7 @@ const deleteTimeSheet = async (req, res) => {
     });
   } catch (error) {
     let status = 400;
-    if (error.message.includes('Time sheet not found')) {
+    if (error.message.includes('Time sheet with id')) {
       status = 404;
     }
     return res.status(status).json({
@@ -114,7 +114,7 @@ const editTimeSheet = async (req, res) => {
     });
   } catch (error) {
     let status = 400;
-    if (error.message.includes('Time sheet not found')) {
+    if (error.message.includes('Time sheet with id')) {
       status = 404;
     }
     return res.status(status).json({
