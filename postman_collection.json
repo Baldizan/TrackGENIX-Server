@@ -11,7 +11,147 @@
 		},
 		{
 			"name": "Admin",
-			"item": []
+			"item": [
+				{
+					"name": "Get all admins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get filter admins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admins?name=Maxi&lastName=Gonzalez",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Maxi"
+								},
+								{
+									"key": "lastName",
+									"value": "Gonzalez"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get admin by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admins/634ec2354fd5ed80690d44f3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"634ec2354fd5ed80690d44f3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Victoria\",\r\n    \"lastName\":\"Casas\",\r\n    \"email\":\"test@radium.com\",\r\n    \"password\":\"2022BaSP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete admin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admins/634f36dfbb616e7bc3334b9c",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"634f36dfbb616e7bc3334b9c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit admin",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Victoria\",\r\n    \"lastName\":\"Casas\",\r\n    \"email\":\"test@radium.com\",\r\n    \"password\":\"2022BaSP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins/634f499f9141d3b326d0dfde",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"634f499f9141d3b326d0dfde"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Super admin",
