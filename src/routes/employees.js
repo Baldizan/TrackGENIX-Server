@@ -1,11 +1,11 @@
 import express from 'express';
-import { getAllEmployees, getEmployeesById, createEmployees } from '../controllers/employees';
-import employeesValidations from '../validations/employees';
+import { getAllEmployees, getEmployeeById, createEmployees } from '../controllers/employees';
+import validateCreation from '../validations/employees';
 
 const router = express.Router();
 
 router.get('/', getAllEmployees);
-router.get('/:id', getEmployeesById);
-router.post('/', employeesValidations.validateCreation, createEmployees);
+router.get('/:id', getEmployeeById);
+router.post('/', validateCreation, createEmployees);
 
 export default router;

@@ -26,7 +26,7 @@ const getAllEmployees = async (req, res) => {
   }
 };
 
-const getEmployeesById = async (req, res) => {
+const getEmployeeById = async (req, res) => {
   try {
     const { id } = req.params;
     const employees = await Employees.findById(id);
@@ -37,7 +37,7 @@ const getEmployeesById = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(404).json({
       message: error.toString(),
       data: undefined,
       error: true,
@@ -72,6 +72,6 @@ const createEmployees = async (req, res) => {
 
 export {
   getAllEmployees,
-  getEmployeesById,
+  getEmployeeById,
   createEmployees,
 };
