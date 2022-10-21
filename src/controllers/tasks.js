@@ -135,6 +135,5 @@ export {
   getTaskById,
   createTask,
   deleteTask,
-  editTask
+  editTask,
 };
-

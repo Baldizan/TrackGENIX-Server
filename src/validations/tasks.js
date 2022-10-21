@@ -33,6 +33,7 @@ const validateEdit = (req, res, next) => {
   return next();
 };
 
-export{ validateCreation ,
- validateEdit 
+export {
+  validateCreation,
+  validateEdit,
 };

@@ -1,6 +1,8 @@
 import express from 'express';
-import { getAllTasks, getTaskById, createTask, deleteTask, editTask } from '../controllers/tasks';
-import {validateCreation, validateEdit} from '../validations/tasks';
+import {
+  getAllTasks, getTaskById, createTask, deleteTask, editTask,
+} from '../controllers/tasks';
+import { validateCreation, validateEdit } from '../validations/tasks';
 
 const router = express.Router();
 
