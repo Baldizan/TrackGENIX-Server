@@ -1,11 +1,11 @@
 import Joi from 'joi';
 
-const validateAdmin = (req, res, next) => {
+const validateUpdate = (req, res, next) => {
   const adminValidation = Joi.object({
-    name: Joi.string().min(3).max(50).required(),
-    lastName: Joi.string().min(3).max(50).required(),
-    email: Joi.string().email().required(),
-    password: Joi.string().min(8).max(50).required(),
+    name: Joi.string().min(3).max(50),
+    lastName: Joi.string().min(3).max(50),
+    email: Joi.string().email(),
+    password: Joi.string().min(8).max(50),
   });
 
   const validation = adminValidation.validate(req.body, { abortEarly: false });
@@ -20,4 +20,4 @@ const validateAdmin = (req, res, next) => {
   return next();
 };
 
-export default validateAdmin;
+export default validateUpdate;
