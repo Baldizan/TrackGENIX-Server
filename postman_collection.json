@@ -1,15 +1,8 @@
 {
 	"info": {
-<<<<<<< HEAD
-		"_postman_id": "7a30a5c9-184e-495c-9fd1-a4952d22275d",
-		"name": "capi-a-trackgenix-server",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "23778094"
-=======
 		"_postman_id": "ae8911b9-81e1-4583-9bee-1bfe7f0e39b2",
 		"name": "capi-a-trackgenix-server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
->>>>>>> origin/master
 	},
 	"item": [
 		{
