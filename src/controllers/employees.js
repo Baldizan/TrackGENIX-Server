@@ -30,14 +30,20 @@ const getEmployeeById = async (req, res) => {
   try {
     const { id } = req.params;
     const employees = await Employees.findById(id);
-
+    if (!employees) {
+      throw new Error('Employee not found');
+    }
     return res.status(200).json({
       message: 'Employee found',
       data: employees,
       error: false,
     });
   } catch (error) {
-    return res.status(404).json({
+    let statusCode = 400;
+    if (error.message.includes('Employee not found')) {
+      statusCode = 404;
+    }
+    return res.status(statusCode).json({
       message: error.toString(),
       data: undefined,
       error: true,
