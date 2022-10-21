@@ -1,8 +1,16 @@
 import express from 'express';
-import { deleteProject, updateProject, assignEmployee } from '../controllers/projects';
-import { validateUpdate, validateEmployee } from '../validations/projects';
+import {
+  getAllProjects, getProjectById, createProject, deleteProject, updateProject, assignEmployee,
+} from '../controllers/projects';
+import { validateCreation, validateUpdate, validateEmployee } from '../validations/projects';
 
 const router = express.Router();
+
+router.get('/', getAllProjects);
+
+router.get('/:id', getProjectById);
+
+router.post('/', validateCreation, createProject);
 
 router.delete('/:id', deleteProject);
 

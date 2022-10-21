@@ -20,6 +20,82 @@
 		{
 			"name": "Projects",
 			"item": [
+        {
+					"name": "Get all projects",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+        {
+					"name": "Get project by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects/634e0e50a45cd1812d324b70",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"634e0e50a45cd1812d324b70"
+							]
+						}
+					},
+					"response": []
+				},
+        {
+					"name": "Create project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Baela\",\r\n  \"description\": \"lorem varius\",\r\n  \"startDate\": \"6/8/2022\",\r\n  \"endDate\": \"5/9/2022\",\r\n  \"clientName\": \"Rich Mad\",\r\n  \"employees\": [\r\n    {\r\n      \"role\": \"TL\" ,\r\n      \"rate\": 19\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Assign Employee",
 					"request": {
