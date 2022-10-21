@@ -13,8 +13,8 @@ const deleteEmployees = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    let status = 404;
-    if (!error.message.includes('Employee not found')) {
+    let status = 400;
+    if (error.message.includes('Employee with id')) {
       status = 404;
     }
     return res.status(status).json({
@@ -43,7 +43,7 @@ const updateEmployees = async (req, res) => {
     });
   } catch (error) {
     let status = 400;
-    if (!error.message.includes('Employee not found')) {
+    if (error.message.includes(`Employee ${req.query.id} not found`)) {
       status = 404;
     }
     return res.status(status).json({
