@@ -14,7 +14,7 @@ const deleteEmployees = async (req, res) => {
     });
   } catch (error) {
     let status = 404;
-    if (error.message.includes('Employee not found')) {
+    if (!error.message.includes('Employee not found')) {
       status = 404;
     }
     return res.status(status).json({
@@ -34,7 +34,7 @@ const updateEmployees = async (req, res) => {
       { new: true },
     );
     if (!result) {
-      throw new Error(`Employee with id ${req.query.id} not found`);
+      throw new Error(`Employee ${req.query.id} not found`);
     }
     return res.status(200).json({
       message: `Employee with id ${id} edited`,
@@ -42,8 +42,8 @@ const updateEmployees = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    let status = 404;
-    if (error.message.includes('Employee not found')) {
+    let status = 400;
+    if (!error.message.includes('Employee not found')) {
       status = 404;
     }
     return res.status(status).json({
