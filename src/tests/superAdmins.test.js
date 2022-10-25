@@ -7,6 +7,13 @@ beforeAll(async () => {
   await SuperAdmins.collection.insertMany(superAdminsSeed);
 });
 
+const dataSuperAdmin = {
+  name: 'superADM',
+  lastName: 'adminLn',
+  email: 'adminl@gmail.com',
+  password: 'aksdm122',
+};
+
 const correctId = '63519b632b611499e4a21401';
 const incorrectId = 'x';
 const notFoundId = '6357f056457ff7c72b2374d0';
@@ -29,5 +36,17 @@ describe('GET /superAdmins', () => {
   test('Should return status code 404 if not found super admin Id', async () => {
     const response = await request(app).get(`/super-admins/${notFoundId}`).send();
     expect(response.status).toBe(404);
+  });
+});
+
+describe('POST /superAdmins', () => {
+  test('Should create an super admin', async () => {
+    const response = await request(app).post('/super-admins').send(dataSuperAdmin);
+    expect(response.status).toBe(201);
+    expect(response.body.error).toBeFalsy();
+  });
+  test('Should not create an super admin', async () => {
+    const response = await request(app).post('/super-admins').send();
+    expect(response.status).toBe(400);
   });
 });
