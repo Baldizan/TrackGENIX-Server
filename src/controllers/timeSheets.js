@@ -2,7 +2,10 @@ import TimeSheets from '../models/TimeSheets';
 
 const getAllTimeSheets = async (req, res) => {
   try {
-    const timesheet = await TimeSheets.find(req.query);
+    const timesheet = await TimeSheets.find(req.query)
+      .populate('task')
+      .populate('project')
+      .populate('employee');
     if (timesheet.length === 0) {
       throw new Error('Time sheet not found');
     }
@@ -55,6 +58,9 @@ const createTimeSheets = async (req, res) => {
       description: req.body.description,
       date: req.body.date,
       task: req.body.task,
+      hours: req.body.hours,
+      project: req.body.project,
+      employee: req.body.employee,
     });
     const result = await timeSheet.save();
     return res.status(201).json({
