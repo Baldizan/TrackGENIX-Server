@@ -1,59 +1,85 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 export default [{
-  "name": "Keylex",
-  "description": "consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus",
-  "clientName": "Denver",
-  "startDate": "7/5/2022",
-  "endDate": "11/1/2021",
-  "employees": [{
-    "employee": {
-      "_id": "63575b52fc13ae2eee000005"
-    }
+  _id: mongoose.Types.ObjectId('63580774bc5b0634809b67d5'),
+  name: 'Zara',
+  description: 'nullam orci pede venenatis non stodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem',
+  startDate: '4/30/2022',
+  endDate: '6/13/2022',
+  employees: [{
+    employee: {
+      _id: mongoose.Types.ObjectId('63575b52fc13ae2eee000005'),
+    },
   }, {
-    "employee": {
-      "_id": "63575b52fc13ae2eee000006"
-    }
+    employee: {
+      _id: mongoose.Types.ObjectId('63575b52fc13ae2eee000006'),
+    },
   }, {
-    "employee": {
-      "_id": "63575b52fc13ae2eee000007"
-    }
+    employee: {
+      _id: mongoose.Types.ObjectId('63575b52fc13ae2eee000007'),
+    },
   }, {
-    "employee": {
-      "_id": "63575b52fc13ae2eee000008"
-    }
+    employee: {
+      _id: mongoose.Types.ObjectId('63575b52fc13ae2eee000008'),
+    },
   }, {
-    "employee": {
-      "_id": "63575b52fc13ae2eee000009"
-    }
-  }]
+    employee: {
+      _id: mongoose.Types.ObjectId('63575b52fc13ae2eee000009'),
+    },
+  }],
 }, {
-  "name": "Y-Solowarm",
-  "description": "in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue",
-  "clientName": "Thane",
-  "startDate": "2/23/2022",
-  "endDate": "5/18/2022",
-  "employees": [
+  _id: mongoose.Types.ObjectId('6357ee1efc13ae37e7000aa6'),
+  name: 'Barthel',
+  description: 'ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu',
+  startDate: '12/5/2021',
+  endDate: '5/7/2022',
+  employees: [
     {
-      "employee": {
-        "_id": "63575b52fc13ae2eee000008"
-      }
+      employee: {
+        _id: mongoose.Types.ObjectId('63575b52fc13ae2eee000008'),
+      },
     }, {
-      "employee": {
-        "_id": "63575b52fc13ae2eee000009"
-      }
-    }]
+      employee: {
+        _id: mongoose.Types.ObjectId('63575b52fc13ae2eee000009'),
+      },
+    },
+  ],
 }, {
-  "name": "Stim",
-  "description": "amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis",
-  "clientName": "Sheffie",
-  "startDate": "4/1/2022",
-  "endDate": "7/4/2022",
-  "employees": [
+  _id: {
+    _id: '6357ee1efc13ae37e7000aa7',
+  },
+  name: 'Sansone',
+  description: 'sit amet turpis elementum ligula vehicula consequat morbi a ipsum',
+  startDate: '9/24/2022',
+  endDate: '11/24/2021',
+  employees: [
     {
-      "employee": {
-        "_id": "63575b52fc13ae2eee000009"
-      }
-    }
-  ]
-}]
+      employee: {
+        _id: mongoose.Types.ObjectId('63575b52fc13ae2eee000008'),
+      },
+    }, {
+      employee: {
+        _id: mongoose.Types.ObjectId('63575b52fc13ae2eee000009'),
+      },
+    },
+  ],
+}, {
+  _id: {
+    _id: '6357ee1efc13ae37e7000aa8',
+  },
+  name: 'Grazia',
+  description: 'aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum',
+  startDate: '9/6/2022',
+  endDate: '11/23/2021',
+  employees: [
+    {
+      employee: {
+        _id: mongoose.Types.ObjectId('63575b52fc13ae2eee000005'),
+      },
+    }, {
+      employee: {
+        _id: mongoose.Types.ObjectId('63575b52fc13ae2eee000006'),
+      },
+    },
+  ],
+}];
