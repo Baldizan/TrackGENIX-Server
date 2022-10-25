@@ -10,6 +10,12 @@ beforeAll(async () => {
 const mockedTask = {
   description: 'App development',
 };
+const taskLessThanMinDescription = {
+  description: 'Ap',
+};
+const taskMoreThanMaxDescription = {
+  description: 'Apasjalaskndlaskdjadlasdaldkjadljsladjsljdljadslajkal',
+};
 const correctId = '63572d9ddaa20935d72f7f1a';
 const idNotFound = '63572d9ddaa20123d72f7f1a';
 const wrongId = '623333';
@@ -59,6 +65,18 @@ describe('POST /tasks', () => {
     expect(response.status).toBe(400);
     expect(response.body.error).toBeTruthy();
   });
+
+  test('Should not create a task because desciption validation (less)', async () => {
+    const response = await request(app).post('/tasks').send(taskLessThanMinDescription);
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+  });
+
+  test.only('Should not create a task because desciption validation (more)', async () => {
+    const response = await request(app).post('/tasks').send(taskMoreThanMaxDescription);
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+  });
 });
 
 describe('PUT /tasks', () => {
@@ -77,6 +95,18 @@ describe('PUT /tasks', () => {
   test('Should not create a task because id wasnt found', async () => {
     const response = await request(app).put(`/tasks/${idNotFound}`).send();
     expect(response.status).toBe(404);
+    expect(response.body.error).toBeTruthy();
+  });
+
+  test.only('Should not edit a task because desciption validation (less)', async () => {
+    const response = await request(app).put(`/tasks/${correctId}`).send(taskLessThanMinDescription);
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+  });
+
+  test.only('Should not create a task because desciption validation (more)', async () => {
+    const response = await request(app).put(`/tasks/${correctId}`).send(taskMoreThanMaxDescription);
+    expect(response.status).toBe(400);
     expect(response.body.error).toBeTruthy();
   });
 });
