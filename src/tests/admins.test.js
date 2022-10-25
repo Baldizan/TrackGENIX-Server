@@ -7,10 +7,6 @@ beforeAll(async () => {
   await Admins.collection.insertMany(adminsSeeds);
 });
 
-const correctId = '635693feaf6c44edd6a63f94';
-const incorrectId = 'x';
-const notFoundId = '6356b89974af15f3e427ea43';
-
 const validMocked = {
   name: 'Jhon',
   lastName: 'Doe',
@@ -29,6 +25,11 @@ const emptyMocked = {
   name: 'J',
 };
 
+const deleteId = '635693feaf6c44edd6a63f94';
+const validId = '6356aa7c571bd6a8b0486a3b';
+const notFoundId = '6356b89974af15f3e427ea43';
+const incorrectId = 'x';
+
 describe('GET /admins', () => {
   test('Should return status code 200', async () => {
     const res = await request(app).get('/admins').send();
@@ -45,7 +46,7 @@ describe('GET /admins', () => {
 
 describe('GETbyID /admins', () => {
   test('Should return status code 200 and return Admin by Id', async () => {
-    const res = await request(app).get(`/admins/${correctId}`).send();
+    const res = await request(app).get(`/admins/${validId}`).send();
     expect(res.status).toBe(200);
     expect(res.body.error).toBeFalsy();
     expect(res.body.data).toBeDefined();
@@ -63,7 +64,7 @@ describe('GETbyID /admins', () => {
     expect(res.body.data).toBeUndefined();
   });
   test('Should return status code 404 if endpoint is wrong', async () => {
-    const res = await request(app).get(`/admin/${correctId}`).send();
+    const res = await request(app).get(`/admin/${validId}`).send();
     expect(res.status).toBe(404);
     expect(res.body.data).toBeUndefined();
   });
@@ -71,7 +72,7 @@ describe('GETbyID /admins', () => {
 
 describe('DELETE /admins', () => {
   test('Should return status code 204 and delete an Admin', async () => {
-    const res = await request(app).delete(`/admins/${correctId}`).send();
+    const res = await request(app).delete(`/admins/${deleteId}`).send();
     expect(res.status).toBe(204);
     expect(res.body.error).toBeFalsy();
   });
@@ -120,5 +121,28 @@ describe('POST /admins', () => {
     const res = await request(app).post('/admins').send(emptyMocked);
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
+  });
+});
+
+describe('PUT /admins', () => {
+  test('Should return status code 204 and update an Admin', async () => {
+    const res = await request(app).put(`/admins/${validId}`).send(validMocked);
+    expect(res.status).toBe(201);
+    expect(res.body.error).toBeFalsy();
+  });
+  test('Should return status code 400 if the Admin Id is incorrect', async () => {
+    const res = await request(app).put(`/admins/${incorrectId}`).send();
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBeTruthy();
+  });
+  test('Should return status code 404 if not found Admin Id', async () => {
+    const res = await request(app).put(`/admins/${notFoundId}`).send();
+    expect(res.status).toBe(404);
+    expect(res.body.error).toBeTruthy();
+  });
+  test('Should return status code 404 if endpoint Admin Id', async () => {
+    const res = await request(app).put('/admin').send();
+    expect(res.status).toBe(404);
+    expect(res.body.data).toBeUndefined();
   });
 });

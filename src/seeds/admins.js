@@ -35,4 +35,11 @@ export default [{
   email: 'lulidee@hotmail.com',
   password: 'luQWER123456',
 },
+{
+  _id: mongoose.Types.ObjectId('63584b5f84aad527bbf8286d'),
+  name: 'Julieta',
+  lastName: 'Raome',
+  email: 'raomejuli@hotmail.com',
+  password: 'ashf123456',
+},
 ];
