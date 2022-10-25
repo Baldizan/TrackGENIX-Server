@@ -4,6 +4,7 @@ import projects from '../models/Projects';
 import projectsSeed from '../seeds/projects';
 
 const correctId = '63580774bc5b0634809b67d5';
+const wrongId = 'asd';
 
 const mockedProject = {
   name: 'Barthel',
@@ -15,12 +16,10 @@ const wrongMockedProject = {
   description: 'ac est lacinia nisi venenatis tristique',
   clientName: 'Maximiliano',
 };
-
 beforeAll(async () => {
   await projects.collection.insertMany(projectsSeed);
 });
 
-// el describe permite agrupar conjunto de test relacionados
 describe('GET /projects', () => {
   test('should return status 200', async () => {
     const response = await request(app).get('/projects').send();
@@ -41,6 +40,16 @@ describe('GET /projectById', () => {
     expect(response.status).toBe(200);
     expect(response.body.error).toBeFalsy();
   });
+  test('should return satus 400, so the request is wrong', async () => {
+    const response = await request(app).get(`/projects/${wrongId}`).send();
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+  });
+  test('should return satus 404, so the object not exists', async () => {
+    const response = await request(app).get(`/projects/${'63575b52fc13ae2eee000005'}`).send();
+    expect(response.status).toBe(404);
+    expect(response.body.error).toBeTruthy();
+  });
 });
 
 describe('POST /projects', () => {
@@ -55,3 +64,22 @@ describe('POST /projects', () => {
     expect(response.body.data).toBeUndefined();
   });
 });
+
+describe('DELETE /projects', () => {
+  test('should delete a project and return status 204', async () => {
+    const response = await request(app).delete(`/projects/${correctId}`).send();
+    expect(response.status).toBe(204);
+    expect(response.body.error).toBeFalsy();
+  });
+  test('should not delete a project and return status 400', async () => {
+    const response = await request(app).delete(`/projects/${wrongId}`).send();
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+  });
+  test('should not delete a project and return status 404', async () => {
+    const response = await request(app).delete(`/projects/${'63575b52fc13ae2eee000005'}`).send();
+    expect(response.status).toBe(404);
+    expect(response.body.error).toBeTruthy();
+  });
+});
+
