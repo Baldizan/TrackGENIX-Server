@@ -72,7 +72,7 @@ describe('POST /tasks', () => {
     expect(response.body.error).toBeTruthy();
   });
 
-  test.only('Should not create a task because desciption validation (more)', async () => {
+  test('Should not create a task because desciption validation (more)', async () => {
     const response = await request(app).post('/tasks').send(taskMoreThanMaxDescription);
     expect(response.status).toBe(400);
     expect(response.body.error).toBeTruthy();
@@ -92,19 +92,19 @@ describe('PUT /tasks', () => {
     expect(response.body.error).toBeTruthy();
   });
 
-  test('Should not create a task because id wasnt found', async () => {
-    const response = await request(app).put(`/tasks/${idNotFound}`).send();
+  test('Should not edit a task because id wasnt found', async () => {
+    const response = await request(app).put(`/tasks/${idNotFound}`).send(mockedTask);
     expect(response.status).toBe(404);
     expect(response.body.error).toBeTruthy();
   });
 
-  test.only('Should not edit a task because desciption validation (less)', async () => {
+  test('Should not edit a task because desciption validation (less)', async () => {
     const response = await request(app).put(`/tasks/${correctId}`).send(taskLessThanMinDescription);
     expect(response.status).toBe(400);
     expect(response.body.error).toBeTruthy();
   });
 
-  test.only('Should not create a task because desciption validation (more)', async () => {
+  test('Should not create a task because desciption validation (more)', async () => {
     const response = await request(app).put(`/tasks/${correctId}`).send(taskMoreThanMaxDescription);
     expect(response.status).toBe(400);
     expect(response.body.error).toBeTruthy();
