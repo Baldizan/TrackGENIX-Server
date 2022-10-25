@@ -4,6 +4,7 @@ import projects from '../models/Projects';
 import projectsSeed from '../seeds/projects';
 
 const correctId = '63580774bc5b0634809b67d5';
+const correctIdPut = '6357ee1efc13ae37e7000aa6';
 const wrongId = 'asd';
 
 const mockedProject = {
@@ -16,6 +17,11 @@ const wrongMockedProject = {
   description: 'ac est lacinia nisi venenatis tristique',
   clientName: 'Maximiliano',
 };
+
+const notValidMockedProject = {
+  clientName: '',
+};
+
 beforeAll(async () => {
   await projects.collection.insertMany(projectsSeed);
 });
@@ -83,3 +89,25 @@ describe('DELETE /projects', () => {
   });
 });
 
+describe('PUT /projects', () => {
+  test('should edit a project and return status 201', async () => {
+    const response = await request(app).put(`/projects/${correctIdPut}`).send(mockedProject);
+    expect(response.status).toBe(201);
+    expect(response.body.error).toBeFalsy();
+  });
+  test('should not edit a project and return status 400', async () => {
+    const response = await request(app).put(`/projects/${wrongId}`).send(mockedProject);
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+  })
+  test('should not edit a project because it was deleted', async () => {
+    const response = await request(app).put(`/projects/${correctId}`).send(mockedProject);
+    expect(response.status).toBe(404);
+    expect(response.body.error).toBeTruthy();
+  })
+  test('should not edit a project because is not valid', async () => {
+    const response = await request(app).put(`/projects/${correctIdPut}`).send(notValidMockedProject);
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+  });
+})
