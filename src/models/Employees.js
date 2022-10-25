@@ -11,4 +11,4 @@ const employeeSchema = new Schema({
   project: { type: String },
 });
 
-export default mongoose.model('Employees', employeeSchema);
+export default mongoose.model('Employee', employeeSchema);

@@ -2,7 +2,7 @@ import Projects from '../models/Projects';
 
 const getAllProjects = async (req, res) => {
   try {
-    const projects = await Projects.find(req.query);
+    const projects = await Projects.find(req.query).populate('employees.employee');
     if (Object.keys(req.query).length !== 0 && projects.length === 0) {
       throw new Error('Project not found');
     }
@@ -28,7 +28,7 @@ const getAllProjects = async (req, res) => {
 const getProjectById = async (req, res) => {
   try {
     const { id } = req.params;
-    const project = await Projects.findById(id);
+    const project = await Projects.findById(id).populate('employees.employee');
     if (!project) {
       throw new Error('Project not found');
     }
@@ -106,7 +106,7 @@ const updateProject = async (req, res) => {
       { _id: id },
       req.body,
       { new: true },
-    );
+    ).populate('employees.employee');
     if (!result) {
       throw new Error('Project not found');
     }
