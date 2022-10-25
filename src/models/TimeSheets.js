@@ -7,7 +7,7 @@ const timeSheetsSchema = new Schema({
   date: { type: Date, required: true },
   task: { type: Schema.Types.ObjectId, ref: 'Tasks' },
   hours: { type: Number, required: true },
-  project: { type: Schema.Types.ObjectId, ref: 'Projects' },
+  project: { type: Schema.Types.ObjectId, ref: 'Project' },
   employee: { type: Schema.Types.ObjectId, ref: 'Employees' },
 });
 

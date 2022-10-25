@@ -4,7 +4,10 @@ const validateCreation = (req, res, next) => {
   const timeSheetsValidations = Joi.object().keys({
     description: Joi.string().min(5).max(100).required(),
     date: Joi.date().required(),
-    task: Joi.string().min(10).max(100).required(),
+    task: Joi.required(),
+    hours: Joi.number().required(),
+    project: Joi.required(),
+    employee: Joi.required(),
   });
 
   const validation = timeSheetsValidations.validate(req.body, { abortEarly: false });
@@ -23,7 +26,10 @@ const validateEdition = (req, res, next) => {
   const timeSheetsValidations = Joi.object({
     description: Joi.string().min(5).max(100).required(),
     date: Joi.date().required(),
-    task: Joi.string().min(10).max(100).required(),
+    task: Joi.required(),
+    hours: Joi.number().required(),
+    project: Joi.required(),
+    employee: Joi.required(),
   });
 
   const validation = timeSheetsValidations.validate(req.body, { abortEarly: false });

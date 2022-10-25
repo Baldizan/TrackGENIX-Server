@@ -30,7 +30,10 @@ const getAllTimeSheets = async (req, res) => {
 const getTimeSheetsbyId = async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await TimeSheets.findById(id);
+    const result = await TimeSheets.findById(id)
+      .populate('task')
+      .populate('project')
+      .populate('employee');
     if (!result) {
       throw new Error(`Time sheet with id ${req.query.id} not found`);
     }
