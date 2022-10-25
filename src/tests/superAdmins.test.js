@@ -50,3 +50,18 @@ describe('POST /superAdmins', () => {
     expect(response.status).toBe(400);
   });
 });
+
+describe('DELETE /superAdmins', () => {
+  test('Should delete an super super admin', async () => {
+    const response = await request(app).delete(`/super-admins/${correctId}`).send();
+    expect(response.status).toBe(204);
+  });
+  test('Should return status code 400 if the super admin Id is incorrect', async () => {
+    const response = await request(app).delete(`/super-admins/${incorrectId}`).send();
+    expect(response.status).toBe(400);
+  });
+  test('Should return status code 404 if not found super admin Id', async () => {
+    const response = await request(app).delete(`/super-admins/${notFoundId}`).send();
+    expect(response.status).toBe(404);
+  });
+});
