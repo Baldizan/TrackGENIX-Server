@@ -29,7 +29,6 @@ describe('GET /tasks', () => {
 
   test('Should not get anything because URL is wrong', async () => {
     const response = await request(app).get('/tasks1').send();
-    console.log(response.error.message);
     expect(response.status).toBe(404);
     expect(response.error).toBeTruthy();
     expect(response.error.message).toMatch('cannot GET');
