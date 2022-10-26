@@ -35,7 +35,7 @@ const getTimeSheetsbyId = async (req, res) => {
       .populate('project')
       .populate('employee');
     if (!result) {
-      throw new Error(`Time sheet with id ${req.query.id} not found`);
+      throw new Error(`Time sheet with id ${id} not found`);
     }
     return res.status(200).json({
       message: `Timesheet with id ${id} found`,
@@ -114,7 +114,7 @@ const editTimeSheet = async (req, res) => {
       { new: true },
     );
     if (!result) {
-      throw new Error(`Time sheet with id ${req.query.id} not found`);
+      throw new Error(`Time sheet with id ${id} not found`);
     }
     return res.status(200).json({
       message: `Timesheet with id ${id} edited`,
