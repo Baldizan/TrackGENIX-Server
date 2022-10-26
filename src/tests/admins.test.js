@@ -31,10 +31,11 @@ const notFoundId = '6356b89974af15f3e427ea43';
 const incorrectId = 'x';
 
 describe('GET /admins', () => {
-  test('Should return status code 200', async () => {
+  test('Should return status code 200 and return Admins', async () => {
     const res = await request(app).get('/admins').send();
     expect(res.status).toBe(200);
     expect(res.body.error).toBeFalsy();
+    expect(res.body.message).toBe('Admin found');
     expect(res.body.data.length).toBeGreaterThan(0);
   });
   test('Should return status code 404 if endpoint is wrong', async () => {
@@ -44,12 +45,13 @@ describe('GET /admins', () => {
   });
 });
 
-describe('GETbyID /admins', () => {
+describe('GET /admins/:id', () => {
   test('Should return status code 200 and return Admin by Id', async () => {
     const res = await request(app).get(`/admins/${validId}`).send();
     expect(res.status).toBe(200);
     expect(res.body.error).toBeFalsy();
     expect(res.body.data).toBeDefined();
+    expect(res.body.message).toBe('Admin found');
   });
   test('Should return status code 400 if the Admin Id is incorrect', async () => {
     const res = await request(app).get(`/admins/${incorrectId}`).send();
@@ -57,7 +59,7 @@ describe('GETbyID /admins', () => {
     expect(res.body.error).toBeTruthy();
     expect(res.body.data).toBeUndefined();
   });
-  test('Should return status code 404 if not found Admin Id', async () => {
+  test('Should return status code 404 if Admin is not found', async () => {
     const res = await request(app).get(`/admins/${notFoundId}`).send();
     expect(res.status).toBe(404);
     expect(res.body.error).toBeTruthy();
@@ -76,19 +78,19 @@ describe('DELETE /admins', () => {
     expect(res.status).toBe(204);
     expect(res.body.error).toBeFalsy();
   });
-  test('Should return status code 400 if the Admin Id is incorrect', async () => {
+  test('Should return status code 400 if Admin Id is incorrect', async () => {
     const res = await request(app).delete(`/admins/${incorrectId}`).send();
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
     expect(res.body.data).toBeUndefined();
   });
-  test('Should return status code 404 if not found Admin Id', async () => {
+  test('Should return status code 404 if Admin is not found', async () => {
     const res = await request(app).delete(`/admins/${notFoundId}`).send();
     expect(res.status).toBe(404);
     expect(res.body.error).toBeTruthy();
     expect(res.body.data).toBeUndefined();
   });
-  test('Should return status code 404 if endpoint Admin Id', async () => {
+  test('Should return status code 404 if endpoint is wrong', async () => {
     const res = await request(app).delete('/admin').send();
     expect(res.status).toBe(404);
     expect(res.body.data).toBeUndefined();
@@ -101,6 +103,7 @@ describe('POST /admins', () => {
     expect(res.status).toBe(201);
     expect(res.body.error).toBeFalsy();
     expect(res.body.data).toMatchObject(validMocked);
+    expect(res.body.message).toBe('Admin created successfully');
   });
   test('Should return status code 404 if endpoint is wrong', async () => {
     const res = await request(app).post('/admin').send();
@@ -135,14 +138,18 @@ describe('PUT /admins', () => {
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
   });
-  test('Should return status code 404 if not found Admin Id', async () => {
+  test('Should return status code 404 if Admin is not found', async () => {
     const res = await request(app).put(`/admins/${notFoundId}`).send();
     expect(res.status).toBe(404);
     expect(res.body.error).toBeTruthy();
   });
-  test('Should return status code 404 if endpoint Admin Id', async () => {
+  test('Should return status code 404 if endpoint is wrong', async () => {
     const res = await request(app).put('/admin').send();
     expect(res.status).toBe(404);
     expect(res.body.data).toBeUndefined();
+  });
+  test('Should return status code 400 if data is wrong or empty', async () => {
+    const res = await request(app).put(`/admins/${validId}`).send(emptyMocked);
+    expect(res.status).toBe(400);
   });
 });
