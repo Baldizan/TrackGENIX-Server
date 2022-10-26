@@ -65,3 +65,19 @@ describe('DELETE /superAdmins', () => {
     expect(response.status).toBe(404);
   });
 });
+
+describe('PUT /superAdmins', () => {
+  test('Should update an super admin', async () => {
+    // eslint-disable-next-line no-underscore-dangle
+    const response = await request(app).put(`/super-admins/${superAdminsSeed[2]._id}`).send();
+    expect(response.status).toBe(200);
+  });
+  test('Should return status code 400 if the super admin Id is incorrect', async () => {
+    const response = await request(app).put(`/super-admins/${incorrectId}`).send();
+    expect(response.status).toBe(400);
+  });
+  test('Should return status code 404 if not found super admin Id', async () => {
+    const response = await request(app).put(`/super-admins/${notFoundId}`).send();
+    expect(response.status).toBe(404);
+  });
+});
