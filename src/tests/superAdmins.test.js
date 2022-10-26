@@ -25,17 +25,23 @@ describe('GET /superAdmins', () => {
     expect(response.body.error).toBeFalsy();
     expect(response.body.data.length).toBeGreaterThan(0);
   });
+});
+
+describe('GET /superAdmins/:id', () => {
   test('Should return status code 200 if found Id', async () => {
     const response = await request(app).get(`/super-admins/${correctId}`).send();
     expect(response.status).toBe(200);
+    expect(response.body.error).toBeFalsy();
   });
   test('Should return status code 400 if the super admin Id is incorrect', async () => {
     const response = await request(app).get(`/super-admins/${incorrectId}`).send();
     expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
   });
   test('Should return status code 404 if not found super admin Id', async () => {
     const response = await request(app).get(`/super-admins/${notFoundId}`).send();
     expect(response.status).toBe(404);
+    expect(response.body.error).toBeTruthy();
   });
 });
 
