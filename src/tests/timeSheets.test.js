@@ -28,6 +28,15 @@ const mockedTimeSheet = {
   employee: mongoose.Types.ObjectId('63585a24fc13ae5116000064'),
 };
 
+const editedMockedTimeSheet = {
+  description: 'Mocked timesheet with test prouposes edited',
+  date: '2022-10-26',
+  task: '63572efde5172c64cb0e1197',
+  hours: 28,
+  project: '6357ee1efc13ae37e7000aa7',
+  employee: '63585a24fc13ae5116000064',
+};
+
 const descriptionEmptyBadMTS = {
   date: '2022-10-25',
   task: mongoose.Types.ObjectId('63572efde5172c64cb0e1197'),
@@ -96,9 +105,40 @@ const hoursNotNumberBadMTS = {
   project: mongoose.Types.ObjectId('6357ee1efc13ae37e7000aa7'),
   employee: mongoose.Types.ObjectId('63585a24fc13ae5116000064'),
 };
+const projectEmptyBadMTS = {
+  description: 'Mocked timesheet with test prouposes',
+  date: '2022-10-25',
+  task: mongoose.Types.ObjectId('63572efde5172c64cb0e1197'),
+  hours: 24,
+  employee: mongoose.Types.ObjectId('63585a24fc13ae5116000064'),
+};
+const projectBadMTS = {
+  description: 'Mocked timesheet with test prouposes',
+  date: '2022-10-25',
+  task: mongoose.Types.ObjectId('63572efde5172c64cb0e1197'),
+  hours: 24,
+  project: 'Proyecto X',
+  employee: mongoose.Types.ObjectId('63585a24fc13ae5116000064'),
+};
+const employeeEmptyBadMTS = {
+  description: 'Mocked timesheet with test prouposes',
+  date: '2022-10-25',
+  task: mongoose.Types.ObjectId('63572efde5172c64cb0e1197'),
+  hours: 24,
+  project: mongoose.Types.ObjectId('6357ee1efc13ae37e7000aa7'),
+};
+const employeeBadMTS = {
+  description: 'Mocked timesheet with test prouposes',
+  date: '2022-10-25',
+  task: mongoose.Types.ObjectId('63572efde5172c64cb0e1197'),
+  hours: 24,
+  project: mongoose.Types.ObjectId('6357ee1efc13ae37e7000aa7'),
+  employee: 'Carlos Ipsofacto',
+};
 
 const goodTimeSheetId = '63573e59ca9eab60e9e9519e';
 const badTimeSheetId = 'bla';
+const editTimeSheetId = '63582bae409c42a5b45d5361';
 const notFoundTimeSheetId = '63582bbafc6d0eb186ca16e8';
 
 describe('GET /timesheets', () => {
@@ -119,7 +159,7 @@ describe('GET /timesheets', () => {
     const response = await request(app).get('/timesheets').send();
 
     expect(response.status).toBe(404);
-    expect(response.body.message).toMatch('Time sheet not found');
+    expect(response.body.message).toMatch('Timesheet not found');
     expect(response.body.data).toBeUndefined();
     expect(response.body.error).toBeTruthy();
 
@@ -145,7 +185,7 @@ describe('GET /timesheets/:id', () => {
     expect(response.status).toBe(404);
     expect(response.body.error).toBeTruthy();
     expect(response.body.data).toBeUndefined();
-    expect(response.body.message).toMatch(`Time sheet with id ${notFoundTimeSheetId} not found`);
+    expect(response.body.message).toMatch(`Timesheet with id ${notFoundTimeSheetId} not found`);
   });
   test('Should return: status code 400, error true, undefined data and expected msg when id passed is wrong', async () => {
     const response = await request(app).get(`/timesheets/${badTimeSheetId}`).send();
@@ -203,6 +243,7 @@ describe('POST /timesheets', () => {
     expect(response.body.data).toBeUndefined();
     expect(response.body.message).toBe('There was an error: "description" length must be less than or equal to 100 characters long ');
   });
+
   test('Empty date type in timesheets should not be acepted', async () => {
     const response = await request(app).post('/timesheets').send(dateEmptyBadMTS);
 
@@ -211,6 +252,7 @@ describe('POST /timesheets', () => {
     expect(response.body.data).toBeUndefined();
     expect(response.body.message).toBe('There was an error: "date" is required ');
   });
+
   test('Bad date type in timesheets should not be acepted', async () => {
     const response = await request(app).post('/timesheets').send(dateBadMTS);
 
@@ -219,6 +261,7 @@ describe('POST /timesheets', () => {
     expect(response.body.data).toBeUndefined();
     expect(response.body.message).toBe('There was an error: "date" must be a valid date ');
   });
+
   test('Empty task in timesheets should not be acepted', async () => {
     const response = await request(app).post('/timesheets').send(taskEmptyBadMTS);
 
@@ -227,6 +270,7 @@ describe('POST /timesheets', () => {
     expect(response.body.data).toBeUndefined();
     expect(response.body.message).toMatch('There was an error: "task" is required ');
   });
+
   test('Bad task type in timesheets should not be acepted', async () => {
     const response = await request(app).post('/timesheets').send(taskBadMTS);
 
@@ -235,6 +279,7 @@ describe('POST /timesheets', () => {
     expect(response.body.data).toBeUndefined();
     expect(response.body.message).toMatch('ValidationError: task: Cast to ObjectId failed');
   });
+
   test('Empty hours in timesheets should not be acepted', async () => {
     const response = await request(app).post('/timesheets').send(hoursEmptyBadMTS);
 
@@ -243,6 +288,7 @@ describe('POST /timesheets', () => {
     expect(response.body.data).toBeUndefined();
     expect(response.body.message).toMatch('There was an error: "hours" is required ');
   });
+
   test('Bad hours type in timesheets should not be acepted', async () => {
     const response = await request(app).post('/timesheets').send(hoursNotNumberBadMTS);
 
@@ -251,13 +297,223 @@ describe('POST /timesheets', () => {
     expect(response.body.data).toBeUndefined();
     expect(response.body.message).toMatch('There was an error: "hours" must be a number ');
   });
+
+  test('Empty project in timesheets should not be acepted', async () => {
+    const response = await request(app).post('/timesheets').send(projectEmptyBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('There was an error: "project" is required ');
+  });
+
+  test('Bad project type in timesheets should not be acepted', async () => {
+    const response = await request(app).post('/timesheets').send(projectBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('ValidationError: project: Cast to ObjectId failed');
+  });
+
+  test('Empty employee in timesheets should not be acepted', async () => {
+    const response = await request(app).post('/timesheets').send(employeeEmptyBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('There was an error: "employee" is required ');
+  });
+
+  test('Bad employee type in timesheets should not be acepted', async () => {
+    const response = await request(app).post('/timesheets').send(employeeBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('ValidationError: employee: Cast to ObjectId failed');
+  });
 });
 
 describe('DELETE /timesheets', () => {
-  test('Should return: status code 204, error false and expected msg, when timesheet is deleted', async () => {
+  test('Should return: status code 204 and error false when timesheet is deleted', async () => {
     const response = await request(app).delete(`/timesheets/${goodTimeSheetId}`).send();
 
     expect(response.status).toBe(204);
     expect(response.body.error).toBeFalsy();
+  });
+
+  test('Should return: status code 404, error true, undefined data and expected msg because id not found', async () => {
+    const response = await request(app).delete(`/timesheets/${notFoundTimeSheetId}`).send();
+
+    expect(response.status).toBe(404);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toBe(`Error: Timesheet with id ${notFoundTimeSheetId} not found`);
+  });
+
+  test('Should return: status code 400, error true, undefined data and expected msg when id passed is wrong', async () => {
+    const response = await request(app).delete(`/timesheets/${badTimeSheetId}`).send();
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('CastError: Cast to ObjectId failed for value');
+  });
+});
+
+describe('PUT /timesheets/:id', () => {
+  test('Should return: status code 200, error false and expected msg, when timesheet is created', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(editedMockedTimeSheet);
+
+    expect(response.status).toBe(200);
+    expect(response.body.error).toBeFalsy();
+    expect(response.body.message).toBe(`Timesheet with id ${editTimeSheetId} edited`);
+    expect(response.body.data.task).not.toBeNull();
+    expect(response.body.data.employee).not.toBeNull();
+    expect(response.body.data.project).not.toBeNull();
+  });
+
+  test('Should return: status code 400, error true, and expected msg, with empty data', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send();
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.default).toBeUndefined();
+  });
+
+  test('Should return: status code 404, error true, undefined data and expected msg because id not found', async () => {
+    const response = await request(app).put(`/timesheets/${notFoundTimeSheetId}`).send(mockedTimeSheet);
+
+    expect(response.status).toBe(404);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toBe(`Error: Timesheet with id ${notFoundTimeSheetId} not found`);
+  });
+
+  test('Should return: status code 400, error true, undefined data and expected msg when id passed is wrong', async () => {
+    const response = await request(app).put(`/timesheets/${badTimeSheetId}`).send(mockedTimeSheet);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('CastError: Cast to ObjectId failed for value');
+  });
+
+  test('Empty description in timesheets should not be acepted', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(descriptionEmptyBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toBe('There was an error: "description" is required ');
+  });
+
+  test('Short description in timesheets should not be acepted', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(descriptionShortBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toBe('There was an error: "description" length must be at least 5 characters long ');
+  });
+
+  test('Long description in timesheets should not be acepted', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(descriptionLongBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toBe('There was an error: "description" length must be less than or equal to 100 characters long ');
+  });
+
+  test('Empty date type in timesheets should not be acepted', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(dateEmptyBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toBe('There was an error: "date" is required ');
+  });
+
+  test('Bad date type in timesheets should not be acepted', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(dateBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toBe('There was an error: "date" must be a valid date ');
+  });
+
+  test('Empty task in timesheets should not be acepted', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(taskEmptyBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('There was an error: "task" is required ');
+  });
+
+  test('Bad task type in timesheets should not be acepted', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(taskBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('CastError: Cast to ObjectId failed');
+  });
+
+  test('Empty hours in timesheets should not be acepted', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(hoursEmptyBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('There was an error: "hours" is required ');
+  });
+
+  test('Bad hours type in timesheets should not be acepted', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(hoursNotNumberBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('There was an error: "hours" must be a number ');
+  });
+
+  test('Empty project in timesheets should not be acepted', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(projectEmptyBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('There was an error: "project" is required ');
+  });
+
+  test('Bad project type in timesheets should not be acepted', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(projectBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('CastError: Cast to ObjectId failed ');
+  });
+
+  test('Empty employee in timesheets should not be acepted', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(employeeEmptyBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('There was an error: "employee" is required ');
+  });
+
+  test('Bad employee type in timesheets should not be acepted', async () => {
+    const response = await request(app).put(`/timesheets/${editTimeSheetId}`).send(employeeBadMTS);
+
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
+    expect(response.body.message).toMatch('CastError: Cast to ObjectId failed ');
   });
 });
