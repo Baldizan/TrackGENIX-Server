@@ -55,10 +55,16 @@ describe('POST /superAdmins', () => {
     expect(response.status).toBe(201);
     expect(response.body.error).toBeFalsy();
   });
-  test('Should not create an super admin', async () => {
+  test('Should not create an super admin if has no data', async () => {
     const response = await request(app).post('/super-admins').send();
     expect(response.status).toBe(400);
     expect(response.body.error).toBeTruthy();
+  });
+  test('Should not create an super admin if data is invalid', async () => {
+    const response = await request(app).post('/super-admins').send(invalidDataSuperAdmin);
+    expect(response.status).toBe(400);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.data).toBeUndefined();
   });
 });
 
