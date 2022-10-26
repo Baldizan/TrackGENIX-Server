@@ -27,6 +27,14 @@ describe('GET /tasks', () => {
     expect(response.body.error).toBeFalsy();
   });
 
+  test('Should not get anything because URL is wrong', async () => {
+    const response = await request(app).get('/tasks1').send();
+    console.log(response.error.message);
+    expect(response.status).toBe(404);
+    expect(response.error).toBeTruthy();
+    expect(response.error.message).toMatch('cannot GET');
+  });
+
   test('Should return at least one task', async () => {
     const response = await request(app).get('/tasks').send();
     expect(response.body.data.length).toBeGreaterThan(0);
@@ -77,6 +85,12 @@ describe('POST /tasks', () => {
     expect(response.status).toBe(400);
     expect(response.body.error).toBeTruthy();
   });
+
+  test('Should not create a task because URL is wrong', async () => {
+    const response = await request(app).post('/tasks1').send(mockedTask);
+    expect(response.status).toBe(404);
+    expect(response.error).toBeTruthy();
+  });
 });
 
 describe('PUT /tasks', () => {
@@ -104,10 +118,16 @@ describe('PUT /tasks', () => {
     expect(response.body.error).toBeTruthy();
   });
 
-  test('Should not create a task because desciption validation (more)', async () => {
+  test('Should not edit a task because desciption validation (more)', async () => {
     const response = await request(app).put(`/tasks/${correctId}`).send(taskMoreThanMaxDescription);
     expect(response.status).toBe(400);
     expect(response.body.error).toBeTruthy();
+  });
+
+  test('Should not edit a task because URL is wrong', async () => {
+    const response = await request(app).put(`/tasks1/${correctId}`).send(mockedTask);
+    expect(response.status).toBe(404);
+    expect(response.error).toBeTruthy();
   });
 });
 
@@ -128,5 +148,13 @@ describe('DELETE /tasks', () => {
     const response = await request(app).delete(`/tasks/${idNotFound}`).send();
     expect(response.status).toBe(404);
     expect(response.body.error).toBeTruthy();
+    expect(response.error.message).toMatch('not ');
+  });
+
+  test('Should not delete a task because URL is wrong', async () => {
+    const response = await request(app).delete(`/tasks1/${correctId}`).send();
+    expect(response.status).toBe(404);
+    expect(response.error).toBeTruthy();
+    expect(response.error.message).toMatch('cannot');
   });
 });
