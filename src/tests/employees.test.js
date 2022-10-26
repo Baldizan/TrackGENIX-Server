@@ -101,7 +101,7 @@ describe('POST /employees', () => {
 });
 
 describe('PUT /employees', () => {
-  test('Should return status code 201 and update an employee', async () => {
+  test('Should return status code 201 and update the employee', async () => {
     const res = await request(app).put(`/employees/${foundId}`).send(validBody);
     expect(res.status).toBe(201);
     expect(res.body.error).toBeFalsy();
@@ -118,6 +118,31 @@ describe('PUT /employees', () => {
   });
   test('Should return status code 404 if endpoint is wrong', async () => {
     const res = await request(app).put('/employee').send();
+    expect(res.status).toBe(404);
+    expect(res.body.data).toBeUndefined();
+  });
+});
+
+describe('DELETE /employees', () => {
+  test('Should return status code 204 and delete the employee', async () => {
+    const res = await request(app).delete(`/employees/${foundId}`).send();
+    expect(res.status).toBe(204);
+    expect(res.body.error).toBeFalsy();
+  });
+  test('Should return status code 404 if employee id is not found', async () => {
+    const res = await request(app).delete(`/employees/${notFoundId}`).send();
+    expect(res.status).toBe(404);
+    expect(res.body.error).toBeTruthy();
+    expect(res.body.data).toBeUndefined();
+  });
+  test('Should return status code 400 if employee id is not valid', async () => {
+    const res = await request(app).delete(`/employees/${invalidId}`).send();
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBeTruthy();
+    expect(res.body.data).toBeUndefined();
+  });
+  test('Should return status code 404 if endpoint is wrong', async () => {
+    const res = await request(app).delete('/employee').send();
     expect(res.status).toBe(404);
     expect(res.body.data).toBeUndefined();
   });
