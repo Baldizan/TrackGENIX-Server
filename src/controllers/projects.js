@@ -1,3 +1,4 @@
+import Employees from '../models/Employees';
 import Projects from '../models/Projects';
 
 const getAllProjects = async (req, res) => {
@@ -28,7 +29,7 @@ const getAllProjects = async (req, res) => {
 const getProjectById = async (req, res) => {
   try {
     const { id } = req.params;
-    const project = await Projects.findById(id).populate('employees.employee');
+    const project = await Projects.findById(id);
     if (!project) {
       throw new Error('Project not found');
     }
@@ -130,11 +131,25 @@ const updateProject = async (req, res) => {
 
 const assignEmployee = async (req, res) => {
   try {
+    const employeeExist = await Employees.findById(req.body.employee);
+
+    if (!employeeExist) {
+      throw new Error('Employee do not exist');
+    }
+
+    const employeeInProject = await Projects.findById(req.params.id);
+    const employeeExists = employeeInProject.employees
+      .find((emp) => emp.employee.toString() === req.body.employee);
+
+    if (employeeExists) {
+      throw new Error('Employee already exist in project');
+    }
     const result = await Projects.findByIdAndUpdate(
       { _id: req.params.id },
       { $push: { employees: req.body } },
       { new: true },
     );
+
     if (!result) {
       throw new Error('Project not found');
     }

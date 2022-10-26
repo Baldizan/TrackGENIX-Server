@@ -56,6 +56,7 @@ const validateEmployee = (req, res, next) => {
   const employeeValidation = Joi.object({
     role: Joi.string().valid('DEV', 'QA', 'TL', 'PM').required(),
     rate: Joi.number().required(),
+    employee: Joi.string().required(),
   });
 
   const validation = employeeValidation.validate(req.body, { abortEarly: false });
