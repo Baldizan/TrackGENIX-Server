@@ -1,10 +1,10 @@
 import request from 'supertest';
 import app from '../app';
-import Employees from '../models/Employees';
-import EmployeesSeeds from '../seeds/employees';
+import employees from '../models/Employees';
+import employeesSeeds from '../seeds/employees';
 
 beforeAll(async () => {
-  await Employees.collection.insertMany(EmployeesSeeds);
+  await employees.collection.insertMany(employeesSeeds);
 });
 
 const foundId = '63585a24fc13ae5116000064';
@@ -78,24 +78,47 @@ describe('POST /employees', () => {
     expect(res.body.error).toBeFalsy();
     expect(res.body.data).toMatchObject(validBody);
   });
-  test('Should return status code 404 if endpoint is wrong', async () => {
-    const res = await request(app).post('/employee').send();
-    expect(res.status).toBe(404);
-    expect(res.body.data).toBeUndefined();
+  test('Should return status code 400 if data is wrong', async () => {
+    const res = await request(app).post('/employees').send(invalidBody);
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBeTruthy();
+  });
+  test('Should return status code 400 if data is incomplete', async () => {
+    const res = await request(app).post('/employees').send(incompleteBody);
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBeTruthy();
   });
   test('Should return status code 400 if has no data', async () => {
     const res = await request(app).post('/employees').send();
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
   });
-  test('Should return status code 400 if data is wrong', async () => {
-    const res = await request(app).post('/employees').send(invalidBody);
+  test('Should return status code 404 if endpoint is wrong', async () => {
+    const res = await request(app).post('/employee').send();
+    expect(res.status).toBe(404);
+    expect(res.body.data).toBeUndefined();
+  });
+});
+
+describe('PUT /employees', () => {
+  test('Should return status code 201 and update an employee', async () => {
+    const res = await request(app).put(`/employees/${foundId}`).send(validBody);
+    expect(res.status).toBe(201);
+    expect(res.body.error).toBeFalsy();
+  });
+  test('Should return status code 404 if employee id is not found', async () => {
+    const res = await request(app).put(`/employees/${notFoundId}`).send();
+    expect(res.status).toBe(404);
+    expect(res.body.error).toBeTruthy();
+  });
+  test('Should return status code 400 if employee id is not valid', async () => {
+    const res = await request(app).put(`/employees/${invalidId}`).send();
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
   });
-  test('Should return status code 400 if data is empty', async () => {
-    const res = await request(app).post('/employees').send(incompleteBody);
-    expect(res.status).toBe(400);
-    expect(res.body.error).toBeTruthy();
+  test('Should return status code 404 if endpoint is wrong', async () => {
+    const res = await request(app).put('/employee').send();
+    expect(res.status).toBe(404);
+    expect(res.body.data).toBeUndefined();
   });
 });

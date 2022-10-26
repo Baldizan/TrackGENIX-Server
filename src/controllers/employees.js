@@ -7,7 +7,7 @@ const deleteEmployees = async (req, res) => {
     if (!result) {
       throw new Error(`Employee with id ${req.query.id} not found`);
     }
-    return res.status(200).json({
+    return res.status(204).json({
       message: `Employee with id ${id} deleted`,
       data: result,
       error: false,
@@ -62,7 +62,7 @@ const updateEmployees = async (req, res) => {
     if (!result) {
       throw new Error(`Employee ${req.query.id} not found`);
     }
-    return res.status(200).json({
+    return res.status(201).json({
       message: `Employee with id ${id} edited`,
       date: result,
       error: false,
