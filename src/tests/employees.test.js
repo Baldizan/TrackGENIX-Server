@@ -11,6 +11,26 @@ const foundId = '63585a24fc13ae5116000064';
 const notFoundId = '63585a24fc13ae5116000010';
 const invalidId = 'Id';
 
+const validBody = {
+  name: 'Maxi',
+  lastName: 'Gonzalez',
+  phone: 1234567890,
+  email: 'test@gmail.com',
+  password: 'BaSP2022',
+};
+
+const invalidBody = {
+  name: 'M',
+  lastName: 'G',
+  phone: 1,
+  email: '.com',
+  password: '1',
+};
+
+const incompleteBody = {
+  password: '1',
+};
+
 describe('GET /employees', () => {
   test('Should return status code 200', async () => {
     const res = await request(app).get('/employees').send();
@@ -48,5 +68,34 @@ describe('GET /employees/:id', () => {
     const res = await request(app).get('/employee').send();
     expect(res.status).toBe(404);
     expect(res.body.data).toBeUndefined();
+  });
+});
+
+describe('POST /employees', () => {
+  test('Should return status code 201 and create new employee', async () => {
+    const res = await request(app).post('/employees').send(validBody);
+    expect(res.status).toBe(201);
+    expect(res.body.error).toBeFalsy();
+    expect(res.body.data).toMatchObject(validBody);
+  });
+  test('Should return status code 404 if endpoint is wrong', async () => {
+    const res = await request(app).post('/employee').send();
+    expect(res.status).toBe(404);
+    expect(res.body.data).toBeUndefined();
+  });
+  test('Should return status code 400 if has no data', async () => {
+    const res = await request(app).post('/employees').send();
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBeTruthy();
+  });
+  test('Should return status code 400 if data is wrong', async () => {
+    const res = await request(app).post('/employees').send(invalidBody);
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBeTruthy();
+  });
+  test('Should return status code 400 if data is empty', async () => {
+    const res = await request(app).post('/employees').send(incompleteBody);
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBeTruthy();
   });
 });
