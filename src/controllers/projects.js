@@ -154,13 +154,13 @@ const assignEmployee = async (req, res) => {
       throw new Error('Project not found');
     }
     return res.status(201).json({
-      message: 'Employee was created',
+      message: 'Employee was assigned',
       data: result,
       error: false,
     });
   } catch (error) {
     let statusCode = 400;
-    if (error.message.includes('Project not found')) {
+    if (error.message.includes('Project not found') || error.message.includes('Employee do not exist') || error.message.includes('Employee already exist in project')) {
       statusCode = 404;
     }
     return res.status(statusCode).json({
