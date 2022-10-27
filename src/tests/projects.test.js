@@ -5,10 +5,12 @@ import projectsSeed from '../seeds/projects';
 import employeeSeed from '../seeds/employees';
 import Employees from '../models/Employees';
 
-const correctIdToGet = '63585a24fc13ae511600006d';
-const correctIdToDelete = '63585a24fc13ae511600006f';
-const correctIdToEdit = '63585a24fc13ae5116000071';
-const correctEmployeeToAssign = '63585a24fc13ae5116000064';
+/*eslint-disable*/
+const correctIdToGet = projectsSeed[0]._id;
+const correctIdToDelete = projectsSeed[1]._id;
+const correctIdToEdit = projectsSeed[2]._id;
+const correctEmployeeToAssign = employeeSeed[0]._id;
+/* eslint-enable */
 const wrongId = 'asd';
 
 const mockedProject = {
@@ -38,6 +40,19 @@ describe('GET /projects', () => {
     expect(response.body.error).toBeFalsy();
     expect(response.body.data.length).toBeGreaterThan(0);
     expect(response.body.message).toEqual('Project found');
+    response.body.data.forEach((project, index) => {
+      expect(project).toMatchObject({
+        /* eslint-disable */
+        _id: projectsSeed[index]._id,
+        /* eslint-enable */
+        name: projectsSeed[index].name,
+        description: projectsSeed[index].description,
+        startDate: projectsSeed[index].startDate,
+        endDate: projectsSeed[index].endDate,
+        employees: projectsSeed[index].employees,
+        clientName: projectsSeed[index].clientName,
+      });
+    });
   });
   test('should return 404 if endpoint was not found', async () => {
     const response = await request(app).get('/projs').send();
@@ -52,6 +67,17 @@ describe('GET /projectById/:id', () => {
     expect(response.status).toBe(200);
     expect(response.body.error).toBeFalsy();
     expect(response.body.message).toEqual(`Project ${correctIdToGet} found.`);
+    expect(response.body.data).toMatchObject({
+      /* eslint-disable */
+      _id: projectsSeed[0]._id,
+      /* eslint-enable */
+      name: projectsSeed[0].name,
+      description: projectsSeed[0].description,
+      startDate: projectsSeed[0].startDate,
+      endDate: projectsSeed[0].endDate,
+      employees: projectsSeed[0].employees,
+      clientName: projectsSeed[0].clientName,
+    });
   });
   test('should return satus 400, so the request is wrong', async () => {
     const response = await request(app).get(`/projects/${wrongId}`).send();
@@ -73,6 +99,11 @@ describe('POST /projects', () => {
     expect(response.status).toBe(201);
     expect(response.body.error).toBeFalsy();
     expect(response.body.message).toEqual('Project created.');
+    expect(response.body.data).toMatchObject({
+      name: mockedProject.name,
+      description: mockedProject.description,
+      clientName: mockedProject.clientName,
+    });
   });
   test('should not create a project and return 400', async () => {
     const response = await request(app).post('/projects').send(wrongMockedProject);
@@ -109,6 +140,14 @@ describe('PUT /projects/:id', () => {
     expect(response.status).toBe(201);
     expect(response.body.error).toBeFalsy();
     expect(response.body.message).toEqual(`Project with Id ${correctIdToEdit} updated.`);
+    expect(response.body.data).toMatchObject({
+      /* eslint-diable */
+      _id: correctIdToEdit,
+      /* eslint-enable */
+      name: mockedProject.name,
+      description: mockedProject.description,
+      clientName: mockedProject.clientName,
+    });
   });
   test('should not edit a project and return status 400', async () => {
     const response = await request(app).put(`/projects/${wrongId}`).send(mockedProject);
@@ -133,7 +172,7 @@ describe('PUT /projects/:id', () => {
 describe('PUT /projects/:id/assignEmployee', () => {
   test('should assign an employee to a project and return status 201', async () => {
     const emp = {
-      employee: correctEmployeeToAssign,
+      employee: correctEmployeeToAssign.toString(),
       role: 'QA',
       rate: 30,
     };
@@ -141,6 +180,7 @@ describe('PUT /projects/:id/assignEmployee', () => {
     expect(response.status).toBe(201);
     expect(response.body.error).toBeFalsy();
     expect(response.body.message).toEqual('Employee was assigned');
+    expect(response.body.data.employees).toContainEqual(emp);
   });
   test('should not assign an employee, missing data', async () => {
     const wrongEmp = {
