@@ -8,7 +8,7 @@ const timeSheetsSchema = new Schema({
   task: { type: Schema.Types.ObjectId, required: true, ref: 'Tasks' },
   hours: { type: Number, required: true },
   project: { type: Schema.Types.ObjectId, required: true, ref: 'Project' },
-  employee: { type: Schema.Types.ObjectId, required: true, ref: 'Employees' },
+  employee: { type: Schema.Types.ObjectId, required: true, ref: 'Employee' },
 });
 
 export default mongoose.model('timeSheets', timeSheetsSchema);

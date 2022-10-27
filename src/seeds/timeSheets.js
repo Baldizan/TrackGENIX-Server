@@ -6,7 +6,7 @@ export default [{
   date: '2022-10-24',
   task: mongoose.Types.ObjectId('63572d9ddaa20935d72f7f1a'),
   hours: 24,
-  project: mongoose.Types.ObjectId('63580774bc5b0634809b67d5'),
+  project: mongoose.Types.ObjectId('63585a24fc13ae511600006d'),
   employee: mongoose.Types.ObjectId('63585a24fc13ae5116000064'),
 },
 {
@@ -15,7 +15,7 @@ export default [{
   date: '2022-10-24',
   task: mongoose.Types.ObjectId('63572d9ddaa20935d72f7f1a'),
   hours: 24,
-  project: mongoose.Types.ObjectId('6357ee1efc13ae37e7000aa6'),
+  project: mongoose.Types.ObjectId('63585a24fc13ae511600006f'),
   employee: mongoose.Types.ObjectId('63585a24fc13ae5116000066'),
 },
 {
@@ -24,7 +24,7 @@ export default [{
   date: '2022-10-24',
   task: mongoose.Types.ObjectId('63572efde5172c64cb0e1197'),
   hours: 24,
-  project: mongoose.Types.ObjectId('6357ee1efc13ae37e7000aa8'),
+  project: mongoose.Types.ObjectId('63585a24fc13ae5116000071'),
   employee: mongoose.Types.ObjectId('63585a24fc13ae5116000068'),
 },
 {
@@ -33,7 +33,7 @@ export default [{
   date: '2022-10-24',
   task: mongoose.Types.ObjectId('63572efde5172c64cb0e1197'),
   hours: 24,
-  project: mongoose.Types.ObjectId('6357ee1efc13ae37e7000aa7'),
+  project: mongoose.Types.ObjectId('63585a24fc13ae5116000073'),
   employee: mongoose.Types.ObjectId('63585a24fc13ae511600006a'),
 },
 ];
