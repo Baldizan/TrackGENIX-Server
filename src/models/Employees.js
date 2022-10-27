@@ -8,6 +8,7 @@ const employeeSchema = new Schema({
   phone: { type: Number, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
+  project: { type: String },
 });
 
 export default mongoose.model('Employees', employeeSchema);
