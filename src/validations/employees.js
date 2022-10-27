@@ -7,6 +7,7 @@ const validateCreation = (req, res, next) => {
     phone: Joi.number().min(10).required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(8).required(),
+    project: Joi.string().length(24),
   });
 
   const validation = employeesValidations.validate(req.body, { abortEarly: false });
@@ -28,6 +29,7 @@ const validateUpdate = (req, res, next) => {
     phone: Joi.number().min(10),
     email: Joi.string().email(),
     password: Joi.string().min(8),
+    project: Joi.string().length(24),
   });
 
   const validation = employeesValidations.validate(req.body, { abortEarly: false });

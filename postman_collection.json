@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ae8911b9-81e1-4583-9bee-1bfe7f0e39b2",
+		"_postman_id": "84dba99b-870b-4ec3-8188-87657fff403d",
 		"name": "capi-a-trackgenix-server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,7 +9,7 @@
 			"name": "Employee",
 			"item": [
 				{
-					"name": "Get All Employee",
+					"name": "Get all employees",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -29,7 +29,7 @@
 					"response": []
 				},
 				{
-					"name": "GetById",
+					"name": "Get employee by id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -47,7 +47,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": null
+									"value": "634edd152f6ba0dc9539a1b4"
 								}
 							]
 						}
@@ -55,10 +55,48 @@
 					"response": []
 				},
 				{
-					"name": "Create Employee",
+					"name": "Get  filter employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/employees?name=Victoria&lastName=Casas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Victoria"
+								},
+								{
+									"key": "lastName",
+									"value": "Casas"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new employee",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"test1\",\r\n    \"lastName\":\"test1\",\r\n    \"phone\": 1231231230,\r\n    \"email\":\"test@radium.com\",\r\n    \"password\":\"2022BaSP\",\r\n    \"project\": \"634c973322e3ae91f635cf8f\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/employees/",
 							"protocol": "http",
@@ -75,7 +113,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Employee",
+					"name": "Delete employee",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -93,7 +131,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": null
+									"value": "6359c7c65222ba6613fbe3af"
 								}
 							]
 						}
@@ -101,10 +139,19 @@
 					"response": []
 				},
 				{
-					"name": "Update Employee",
+					"name": "Edit employee",
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Maxi\",\r\n    \"project\":\"634c973322e3ae91f635cf8f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/employees/:id",
 							"protocol": "http",
@@ -119,7 +166,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": null
+									"value": "634edd152f6ba0dc9539a1b4"
 								}
 							]
 						}
@@ -392,7 +439,7 @@
 		{
 			"name": "Projects",
 			"item": [
-        {
+				{
 					"name": "Get all projects",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -422,7 +469,7 @@
 					},
 					"response": []
 				},
-        {
+				{
 					"name": "Get project by Id",
 					"request": {
 						"method": "GET",
@@ -441,7 +488,7 @@
 					},
 					"response": []
 				},
-        {
+				{
 					"name": "Create project",
 					"request": {
 						"method": "POST",

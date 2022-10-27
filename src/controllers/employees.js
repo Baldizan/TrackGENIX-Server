@@ -1,20 +1,21 @@
 import Employees from '../models/Employees';
+import Projects from '../models/Projects';
 
 const deleteEmployees = async (req, res) => {
   try {
     const { id } = req.params;
     const result = await Employees.findByIdAndDelete(id);
     if (!result) {
-      throw new Error(`Employee with id ${req.query.id} not found`);
+      throw new Error('Employee not found');
     }
-    return res.status(200).json({
+    return res.status(204).json({
       message: `Employee with id ${id} deleted`,
       data: result,
       error: false,
     });
   } catch (error) {
     let status = 400;
-    if (error.message.includes('Employee with id')) {
+    if (error.message.includes('Employee not found')) {
       status = 404;
     }
     return res.status(status).json({
@@ -54,22 +55,28 @@ const getAllEmployees = async (req, res) => {
 const updateEmployees = async (req, res) => {
   try {
     const { id } = req.params;
+    if (req.body.project) {
+      const project = await Projects.findById(req.body.project);
+      if (!project) {
+        throw new Error('Project not found');
+      }
+    }
     const result = await Employees.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true },
     );
     if (!result) {
-      throw new Error(`Employee ${req.query.id} not found`);
+      throw new Error('Employee not found');
     }
-    return res.status(200).json({
+    return res.status(201).json({
       message: `Employee with id ${id} edited`,
       date: result,
       error: false,
     });
   } catch (error) {
     let status = 400;
-    if (error.message.includes(`Employee ${req.query.id} not found`)) {
+    if (error.message.includes('Employee not found') || error.message.includes('Project not found')) {
       status = 404;
     }
     return res.status(status).json({
@@ -107,12 +114,19 @@ const getEmployeeById = async (req, res) => {
 
 const createEmployees = async (req, res) => {
   try {
+    if (req.body.project) {
+      const project = await Projects.findById(req.body.project);
+      if (!project) {
+        throw new Error('Project not found');
+      }
+    }
     const employee = new Employees({
       name: req.body.name,
       lastName: req.body.lastName,
       phone: req.body.phone,
       email: req.body.email,
       password: req.body.password,
+      project: req.body.project,
     });
 
     const result = await employee.save();
@@ -122,7 +136,11 @@ const createEmployees = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    let statusCode = 400;
+    if (error.message.includes('Project not found')) {
+      statusCode = 404;
+    }
+    return res.status(statusCode).json({
       message: error.toString(),
       data: undefined,
       error: true,
