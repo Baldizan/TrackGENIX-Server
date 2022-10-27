@@ -66,7 +66,7 @@ describe('GET /employees/:id', () => {
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
     expect(res.body.data).toBeUndefined();
-    expect(res.body.message).toEqual('CastError: Cast to ObjectId failed for value "Id" (type string) at path "_id" for model "Employees"');
+    expect(res.body.message).toEqual('CastError: Cast to ObjectId failed for value "Id" (type string) at path "_id" for model "Employee"');
   });
   test('Should return status code 404 if endpoint is wrong', async () => {
     const res = await request(app).get('/employee').send();
@@ -125,7 +125,7 @@ describe('PUT /employees/:id', () => {
     const res = await request(app).put(`/employees/${invalidId}`).send();
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
-    expect(res.body.message).toEqual('CastError: Cast to ObjectId failed for value "Id" (type string) at path "_id" for model "Employees"');
+    expect(res.body.message).toEqual('CastError: Cast to ObjectId failed for value "Id" (type string) at path "_id" for model "Employee"');
   });
   test('Should return status code 404 if endpoint is wrong', async () => {
     const res = await request(app).put('/employee').send();
@@ -152,7 +152,7 @@ describe('DELETE /employees/:id', () => {
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
     expect(res.body.data).toBeUndefined();
-    expect(res.body.message).toEqual('CastError: Cast to ObjectId failed for value "Id" (type string) at path "_id" for model "Employees"');
+    expect(res.body.message).toEqual('CastError: Cast to ObjectId failed for value "Id" (type string) at path "_id" for model "Employee"');
   });
   test('Should return status code 404 if endpoint is wrong', async () => {
     const res = await request(app).delete('/employee').send();

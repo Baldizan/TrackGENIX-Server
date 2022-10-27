@@ -1,8 +1,9 @@
+import Employees from '../models/Employees';
 import Projects from '../models/Projects';
 
 const getAllProjects = async (req, res) => {
   try {
-    const projects = await Projects.find(req.query);
+    const projects = await Projects.find(req.query).populate('employees.employee');
     if (Object.keys(req.query).length !== 0 && projects.length === 0) {
       throw new Error('Project not found');
     }
@@ -106,7 +107,7 @@ const updateProject = async (req, res) => {
       { _id: id },
       req.body,
       { new: true },
-    );
+    ).populate('employees.employee');
     if (!result) {
       throw new Error('Project not found');
     }
@@ -130,22 +131,36 @@ const updateProject = async (req, res) => {
 
 const assignEmployee = async (req, res) => {
   try {
+    const employeeExist = await Employees.findById(req.body.employee);
+
+    if (!employeeExist) {
+      throw new Error('Employee do not exist');
+    }
+
+    const employeeInProject = await Projects.findById(req.params.id);
+    const employeeExists = employeeInProject.employees
+      .find((emp) => emp.employee.toString() === req.body.employee);
+
+    if (employeeExists) {
+      throw new Error('Employee already exist in project');
+    }
     const result = await Projects.findByIdAndUpdate(
       { _id: req.params.id },
       { $push: { employees: req.body } },
       { new: true },
     );
+
     if (!result) {
       throw new Error('Project not found');
     }
     return res.status(201).json({
-      message: 'Employee was created',
+      message: 'Employee was assigned',
       data: result,
       error: false,
     });
   } catch (error) {
     let statusCode = 400;
-    if (error.message.includes('Project not found')) {
+    if (error.message.includes('Project not found') || error.message.includes('Employee do not exist') || error.message.includes('Employee already exist in project')) {
       statusCode = 404;
     }
     return res.status(statusCode).json({

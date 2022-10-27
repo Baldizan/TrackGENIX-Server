@@ -1,11 +1,18 @@
 import mongoose from 'mongoose';
 
-const projectSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const projectSchema = new Schema({
   employees: [
     {
-      id: mongoose.SchemaTypes.ObjectId,
       role: { type: String, require: true, enum: ['DEV', 'QA', 'TL', 'PM'] },
       rate: { type: Number, require: true },
+      _id: false,
+      employee: {
+        type: Schema.Types.ObjectId,
+        require: true,
+        ref: 'Employee',
+      },
     },
   ],
   name: { type: String, require: true },
