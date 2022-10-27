@@ -4,10 +4,10 @@ const validateCreation = (req, res, next) => {
   const timeSheetsValidations = Joi.object().keys({
     description: Joi.string().min(5).max(100).required(),
     date: Joi.date().required(),
-    task: Joi.required(),
+    task: Joi.string().required(),
     hours: Joi.number().required(),
-    project: Joi.required(),
-    employee: Joi.required(),
+    project: Joi.string().required(),
+    employee: Joi.string().required(),
   });
 
   const validation = timeSheetsValidations.validate(req.body, { abortEarly: false });
