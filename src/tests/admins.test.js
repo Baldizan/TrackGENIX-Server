@@ -25,8 +25,10 @@ const emptyMocked = {
   name: 'J',
 };
 
-const deleteId = '635693feaf6c44edd6a63f94';
-const validId = '6356aa7c571bd6a8b0486a3b';
+// eslint-disable-next-line no-underscore-dangle
+const deleteId = adminsSeeds[0]._id;
+// eslint-disable-next-line no-underscore-dangle
+const validId = adminsSeeds[1]._id;
 const notFoundId = '6356b89974af15f3e427ea43';
 const incorrectId = 'x';
 
@@ -52,6 +54,9 @@ describe('GET /admins/:id', () => {
     expect(res.body.error).toBeFalsy();
     expect(res.body.data).toBeDefined();
     expect(res.body.message).toBe('Admin found');
+    expect(res.body.data).toHaveProperty('name', 'Uriah');
+    expect(res.body.data).not.toHaveProperty('lastName', 'Dee');
+    expect(res.body.data).toHaveProperty('email', 'uriah456@gmail.com');
   });
   test('Should return status code 400 if the Admin Id is incorrect', async () => {
     const res = await request(app).get(`/admins/${incorrectId}`).send();
@@ -72,7 +77,7 @@ describe('GET /admins/:id', () => {
   });
 });
 
-describe('DELETE /admins', () => {
+describe('DELETE /admins/:id', () => {
   test('Should return status code 204 and delete an Admin', async () => {
     const res = await request(app).delete(`/admins/${deleteId}`).send();
     expect(res.status).toBe(204);
@@ -127,11 +132,14 @@ describe('POST /admins', () => {
   });
 });
 
-describe('PUT /admins', () => {
+describe('PUT /admins/:id', () => {
   test('Should return status code 204 and update an Admin', async () => {
     const res = await request(app).put(`/admins/${validId}`).send(validMocked);
     expect(res.status).toBe(201);
     expect(res.body.error).toBeFalsy();
+    expect(res.body.data).toBeDefined();
+    expect(res.body.data).not.toBeNull();
+    expect(res.body.message).toBe(`Admin with id ${validId} edited successfully`);
   });
   test('Should return status code 400 if the Admin Id is incorrect', async () => {
     const res = await request(app).put(`/admins/${incorrectId}`).send();
