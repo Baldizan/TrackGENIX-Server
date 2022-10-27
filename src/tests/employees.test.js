@@ -37,6 +37,7 @@ describe('GET /employees', () => {
     expect(res.status).toBe(200);
     expect(res.body.error).toBeFalsy();
     expect(res.body.data.length).toBeGreaterThan(0);
+    expect(res.body.message).toEqual('Employee found');
   });
   test('Should return status code 404 if endpoint is wrong', async () => {
     const res = await request(app).get('/employee').send();
@@ -51,18 +52,21 @@ describe('GET /employees/:id', () => {
     expect(res.status).toBe(200);
     expect(res.body.error).toBeFalsy();
     expect(res.body.data).toBeDefined();
+    expect(res.body.message).toEqual('Employee found');
   });
   test('Should return status code 404 if employee id is not found', async () => {
     const res = await request(app).get(`/employees/${notFoundId}`).send();
     expect(res.status).toBe(404);
     expect(res.body.error).toBeTruthy();
     expect(res.body.data).toBeUndefined();
+    expect(res.body.message).toEqual('Error: Employee not found');
   });
   test('Should return status code 400 if employee id is not valid', async () => {
     const res = await request(app).get(`/employees/${invalidId}`).send();
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
     expect(res.body.data).toBeUndefined();
+    expect(res.body.message).toEqual('CastError: Cast to ObjectId failed for value "Id" (type string) at path "_id" for model "Employees"');
   });
   test('Should return status code 404 if endpoint is wrong', async () => {
     const res = await request(app).get('/employee').send();
@@ -77,21 +81,25 @@ describe('POST /employees', () => {
     expect(res.status).toBe(201);
     expect(res.body.error).toBeFalsy();
     expect(res.body.data).toMatchObject(validBody);
+    expect(res.body.message).toEqual('Employee created');
   });
   test('Should return status code 400 if data is wrong', async () => {
     const res = await request(app).post('/employees').send(invalidBody);
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
+    expect(res.body.message).toEqual('"name" length must be at least 3 characters long. "lastName" length must be at least 3 characters long. "phone" must be greater than or equal to 10. "email" must be a valid email. "password" length must be at least 8 characters long');
   });
   test('Should return status code 400 if data is incomplete', async () => {
     const res = await request(app).post('/employees').send(incompleteBody);
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
+    expect(res.body.message).toEqual('"name" is required. "lastName" is required. "phone" is required. "email" is required. "password" length must be at least 8 characters long');
   });
   test('Should return status code 400 if has no data', async () => {
     const res = await request(app).post('/employees').send();
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
+    expect(res.body.message).toEqual('"name" is required. "lastName" is required. "phone" is required. "email" is required. "password" is required');
   });
   test('Should return status code 404 if endpoint is wrong', async () => {
     const res = await request(app).post('/employee').send();
@@ -100,21 +108,24 @@ describe('POST /employees', () => {
   });
 });
 
-describe('PUT /employees', () => {
+describe('PUT /employees/:id', () => {
   test('Should return status code 201 and update the employee', async () => {
     const res = await request(app).put(`/employees/${foundId}`).send(validBody);
     expect(res.status).toBe(201);
     expect(res.body.error).toBeFalsy();
+    expect(res.body.message).toEqual(`Employee with id ${foundId} edited`);
   });
   test('Should return status code 404 if employee id is not found', async () => {
     const res = await request(app).put(`/employees/${notFoundId}`).send();
     expect(res.status).toBe(404);
     expect(res.body.error).toBeTruthy();
+    expect(res.body.message).toEqual('Error: Employee not found');
   });
   test('Should return status code 400 if employee id is not valid', async () => {
     const res = await request(app).put(`/employees/${invalidId}`).send();
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
+    expect(res.body.message).toEqual('CastError: Cast to ObjectId failed for value "Id" (type string) at path "_id" for model "Employees"');
   });
   test('Should return status code 404 if endpoint is wrong', async () => {
     const res = await request(app).put('/employee').send();
@@ -123,7 +134,7 @@ describe('PUT /employees', () => {
   });
 });
 
-describe('DELETE /employees', () => {
+describe('DELETE /employees/:id', () => {
   test('Should return status code 204 and delete the employee', async () => {
     const res = await request(app).delete(`/employees/${foundId}`).send();
     expect(res.status).toBe(204);
@@ -134,12 +145,14 @@ describe('DELETE /employees', () => {
     expect(res.status).toBe(404);
     expect(res.body.error).toBeTruthy();
     expect(res.body.data).toBeUndefined();
+    expect(res.body.message).toEqual('Error: Employee not found');
   });
   test('Should return status code 400 if employee id is not valid', async () => {
     const res = await request(app).delete(`/employees/${invalidId}`).send();
     expect(res.status).toBe(400);
     expect(res.body.error).toBeTruthy();
     expect(res.body.data).toBeUndefined();
+    expect(res.body.message).toEqual('CastError: Cast to ObjectId failed for value "Id" (type string) at path "_id" for model "Employees"');
   });
   test('Should return status code 404 if endpoint is wrong', async () => {
     const res = await request(app).delete('/employee').send();
