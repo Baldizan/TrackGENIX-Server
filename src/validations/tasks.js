@@ -18,7 +18,7 @@ const validateCreation = (req, res, next) => {
 };
 const validateEdit = (req, res, next) => {
   const tasksEditValidation = Joi.object({
-    description: Joi.string().min(3).max(50),
+    description: Joi.string().min(3).max(50).required(),
   });
 
   const validation = tasksEditValidation.validate(req.body);
