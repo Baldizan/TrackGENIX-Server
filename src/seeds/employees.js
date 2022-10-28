@@ -9,6 +9,7 @@ export default [
     email: 'tshevill0@imageshack.us',
     password: 'IyMQ23T',
     project: mongoose.Types.ObjectId('63585a24fc13ae5116000065'),
+    status: true,
   },
   {
     _id: mongoose.Types.ObjectId('63585a24fc13ae5116000066'),
@@ -18,6 +19,7 @@ export default [
     email: 'djasper1@istockphoto.com',
     password: 'qIuBaBR5',
     project: mongoose.Types.ObjectId('63585a24fc13ae5116000067'),
+    status: true,
   },
   {
     _id: mongoose.Types.ObjectId('63585a24fc13ae5116000068'),
@@ -27,6 +29,7 @@ export default [
     email: 'jcleaveland2@google.co.uk',
     password: '3FnfgUAspmRz',
     project: mongoose.Types.ObjectId('63585a24fc13ae5116000069'),
+    status: true,
   },
   {
     _id: mongoose.Types.ObjectId('63585a24fc13ae511600006a'),
@@ -36,6 +39,7 @@ export default [
     email: 'tranahan3@wordpress.com',
     password: '3J1XZqli1',
     project: mongoose.Types.ObjectId('63585a24fc13ae511600006b'),
+    status: true,
   },
   {
     _id: mongoose.Types.ObjectId('63585a24fc13ae511600006c'),
@@ -45,6 +49,7 @@ export default [
     email: 'hoxburgh4@infoseek.co.jp',
     password: '7rRnazBPaOmh',
     project: mongoose.Types.ObjectId('63585a24fc13ae511600006d'),
+    status: true,
   },
   {
     _id: mongoose.Types.ObjectId('63585a24fc13ae511600006e'),
@@ -54,6 +59,7 @@ export default [
     email: 'ghuxham5@edublogs.org',
     password: 'VQVhTqS44s',
     project: mongoose.Types.ObjectId('63585a24fc13ae511600006f'),
+    status: false,
   },
   {
     _id: mongoose.Types.ObjectId('63585a24fc13ae5116000070'),
@@ -63,6 +69,7 @@ export default [
     email: 'wmaffetti6@skype.com',
     password: 'HJSrg1yMV1',
     project: mongoose.Types.ObjectId('63585a24fc13ae5116000071'),
+    status: true,
   },
   {
     _id: mongoose.Types.ObjectId('63585a24fc13ae5116000072'),
@@ -72,6 +79,7 @@ export default [
     email: 'ndemeyer7@ft.com',
     password: '4deguw5',
     project: mongoose.Types.ObjectId('63585a24fc13ae5116000073'),
+    status: false,
   },
   {
     _id: mongoose.Types.ObjectId('63585a24fc13ae5116000074'),
@@ -81,6 +89,7 @@ export default [
     email: 'sroxbee8@wiley.com',
     password: 'OECKWNVlE',
     project: mongoose.Types.ObjectId('63585a24fc13ae5116000075'),
+    status: true,
   },
   {
     _id: mongoose.Types.ObjectId('63585a24fc13ae5116000076'),
@@ -90,5 +99,6 @@ export default [
     email: 'krulton9@google.com.au',
     password: '9es0GJg',
     project: mongoose.Types.ObjectId('63585a24fc13ae5116000077'),
+    status: true,
   },
 ];

@@ -12,6 +12,7 @@ export default [{
     employee: mongoose.Types.ObjectId('63585a24fc13ae511600006c'),
   }],
   clientName: 'Rave',
+  status: true,
 }, {
   _id: mongoose.Types.ObjectId('63585a24fc13ae511600006f'),
   name: 'Zara',
@@ -24,6 +25,7 @@ export default [{
     employee: mongoose.Types.ObjectId('63585a24fc13ae511600006e'),
   }],
   clientName: 'Maxi',
+  status: false,
 }, {
   _id: mongoose.Types.ObjectId('63585a24fc13ae5116000071'),
   name: 'Zara',
@@ -36,6 +38,7 @@ export default [{
     employee: mongoose.Types.ObjectId('63585a24fc13ae5116000070'),
   }],
   clientName: 'Rave',
+  status: true,
 }, {
   _id: mongoose.Types.ObjectId('63585a24fc13ae5116000073'),
   name: 'Zara',
@@ -48,6 +51,7 @@ export default [{
     employee: mongoose.Types.ObjectId('63585a24fc13ae5116000072'),
   }],
   clientName: 'Capi',
+  status: true,
 }, {
   _id: mongoose.Types.ObjectId('63585a24fc13ae5116000075'),
   name: 'Zara',
@@ -60,4 +64,5 @@ export default [{
     employee: mongoose.Types.ObjectId('63585a24fc13ae5116000074'),
   }],
   clientName: 'Rave',
+  status: false,
 }];

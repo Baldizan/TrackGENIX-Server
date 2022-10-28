@@ -4,7 +4,7 @@ const validateCreation = (req, res, next) => {
   const employeeValidation = Joi.object({
     role: Joi.string().valid('DEV', 'QA', 'TL', 'PM').required(),
     rate: Joi.number().min(1).max(1000).required(),
-    employee: Joi.string().required(),
+    employee: Joi.string(),
   });
 
   const projectsValidations = Joi.object({
@@ -13,6 +13,7 @@ const validateCreation = (req, res, next) => {
     startDate: Joi.date(),
     endDate: Joi.date(),
     clientName: Joi.string().min(3).max(20).required(),
+    status: Joi.boolean().required(),
     employees: Joi.array().items(employeeValidation),
   });
 
@@ -40,6 +41,7 @@ const validateUpdate = (req, res, next) => {
     startDate: Joi.date(),
     endDate: Joi.date(),
     clientName: Joi.string().min(3).max(20),
+    status: Joi.boolean(),
     employees: Joi.array().items(employeeValidation),
   });
 
