@@ -13,7 +13,7 @@ const validateCreation = (req, res, next) => {
     startDate: Joi.date(),
     endDate: Joi.date(),
     clientName: Joi.string().min(3).max(20).required(),
-    active: Joi.boolean().required(),
+    active: Joi.boolean(),
     employees: Joi.array().items(employeeValidation),
   });
 

@@ -60,7 +60,7 @@ const createProject = async (req, res) => {
       endDate: req.body.endDate,
       clientName: req.body.clientName,
       employees: req.body.employees,
-      status: req.body.status,
+      active: false,
     });
     const result = await post.save();
     return res.status(201).json({

@@ -8,7 +8,7 @@ const projectSchema = new Schema({
   endDate: { type: Date, require: true },
   description: { type: String, require: true },
   clientName: { type: String, require: true },
-  active: { type: Boolean, require: true },
+  active: { type: Boolean },
   employees:
   [
     {

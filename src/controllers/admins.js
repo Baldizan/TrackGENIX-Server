@@ -48,6 +48,7 @@ const createAdmin = async (req, res) => {
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
+      active: false,
     });
 
     const result = await admin.save();
