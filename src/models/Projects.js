@@ -4,15 +4,15 @@ const { Schema } = mongoose;
 
 const projectSchema = new Schema({
   name: { type: String, require: true },
-  description: { type: String, require: true },
   startDate: { type: Date, require: true },
   endDate: { type: Date, require: true },
+  description: { type: String, require: true },
   clientName: { type: String, require: true },
-  status: { type: Boolean, require: true },
+  active: { type: Boolean, require: true },
   employees:
   [
     {
-      employee: {
+      id: {
         type: Schema.Types.ObjectId,
         ref: 'Employee',
       },

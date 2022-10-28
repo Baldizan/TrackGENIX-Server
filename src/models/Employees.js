@@ -9,7 +9,7 @@ const employeeSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   project: { type: String },
-  status: { type: Boolean, require: false },
+  active: { type: Boolean, require: false },
 });
 
 export default mongoose.model('Employee', employeeSchema);
