@@ -28,7 +28,7 @@ const deleteEmployees = async (req, res) => {
 
 const getAllEmployees = async (req, res) => {
   try {
-    const employees = await Employees.find(req.query);
+    const employees = await Employees.find(req.query).populate('employees.id');
     if (Object.keys(req.query).length !== 0 && employees.length === 0) {
       throw new Error('Employees not found');
     }
@@ -90,7 +90,7 @@ const updateEmployees = async (req, res) => {
 const getEmployeeById = async (req, res) => {
   try {
     const { id } = req.params;
-    const employees = await Employees.findById(id);
+    const employees = await Employees.findById(id).populate('employees.id');
     if (!employees) {
       throw new Error('Employee not found');
     }
@@ -127,6 +127,7 @@ const createEmployees = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       project: req.body.project,
+      active: false,
     });
 
     const result = await employee.save();

@@ -8,7 +8,8 @@ const employeeSchema = new Schema({
   phone: { type: Number, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  project: { type: String },
+  project: { type: Schema.Types.ObjectId, ref: 'Projects' },
+  active: { type: Boolean },
 });
 
 export default mongoose.model('Employee', employeeSchema);

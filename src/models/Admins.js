@@ -6,6 +6,7 @@ const adminSchema = new Schema({
   lastName: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
+  active: { type: Boolean },
 });
 
 export default mongoose.model('admin', adminSchema);

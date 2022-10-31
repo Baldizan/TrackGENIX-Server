@@ -6,6 +6,7 @@ const validateCreation = (req, res, next) => {
     lastName: Joi.string().min(3).max(50).required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(8).max(50).required(),
+    active: Joi.boolean(),
   });
 
   const validation = adminValidation.validate(req.body, { abortEarly: false });
@@ -26,6 +27,7 @@ const validateUpdate = (req, res, next) => {
     lastName: Joi.string().min(3).max(50),
     email: Joi.string().email(),
     password: Joi.string().min(8).max(50),
+    active: Joi.boolean(),
   });
 
   const validation = adminValidation.validate(req.body);

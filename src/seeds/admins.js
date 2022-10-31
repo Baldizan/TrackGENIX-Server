@@ -6,6 +6,7 @@ export default [{
   lastName: 'Doe',
   email: 'john.doe@gmail.com',
   password: 'password123',
+  status: true,
 },
 {
   _id: mongoose.Types.ObjectId('6356aa7c571bd6a8b0486a3b'),
@@ -13,6 +14,7 @@ export default [{
   lastName: 'Melloney',
   email: 'uriah456@gmail.com',
   password: 'mallo987',
+  status: false,
 },
 {
   _id: mongoose.Types.ObjectId('63569b8be01b1c0fa2dc525d'),
@@ -20,6 +22,7 @@ export default [{
   lastName: 'Trott',
   email: 'trottkalvin@hotmail.com',
   password: '6bx12345a',
+  status: false,
 },
 {
   _id: mongoose.Types.ObjectId('63569b932f3bb917a41998e0'),
@@ -27,6 +30,7 @@ export default [{
   lastName: 'Tyres',
   email: 'fayeeetyresss@gmail.com',
   password: 'contpassAA456',
+  status: true,
 },
 {
   _id: mongoose.Types.ObjectId('63569b9fe234bb1892e7ba1f'),
@@ -34,6 +38,7 @@ export default [{
   lastName: 'Dee',
   email: 'lulidee@hotmail.com',
   password: 'luQWER123456',
+  status: true,
 },
 {
   _id: mongoose.Types.ObjectId('63584b5f84aad527bbf8286d'),
@@ -41,5 +46,6 @@ export default [{
   lastName: 'Raome',
   email: 'raomejuli@hotmail.com',
   password: 'ashf123456',
+  status: true,
 },
 ];
