@@ -28,7 +28,7 @@ const deleteEmployees = async (req, res) => {
 
 const getAllEmployees = async (req, res) => {
   try {
-    const employees = await Employees.find(req.query).populate('employees.id');
+    const employees = await Employees.find(req.query);
     if (Object.keys(req.query).length !== 0 && employees.length === 0) {
       throw new Error('Employees not found');
     }
@@ -69,9 +69,9 @@ const updateEmployees = async (req, res) => {
     if (!result) {
       throw new Error('Employee not found');
     }
-    return res.status(201).json({
+    return res.status(200).json({
       message: `Employee with id ${id} edited`,
-      date: result,
+      data: result,
       error: false,
     });
   } catch (error) {
