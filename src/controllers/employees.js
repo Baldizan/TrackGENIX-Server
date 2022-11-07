@@ -69,9 +69,9 @@ const updateEmployees = async (req, res) => {
     if (!result) {
       throw new Error('Employee not found');
     }
-    return res.status(201).json({
+    return res.status(200).json({
       message: `Employee with id ${id} edited`,
-      date: result,
+      data: result,
       error: false,
     });
   } catch (error) {
