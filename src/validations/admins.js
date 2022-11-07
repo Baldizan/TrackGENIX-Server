@@ -2,8 +2,16 @@ import Joi from 'joi';
 
 const validateCreation = (req, res, next) => {
   const adminValidation = Joi.object({
-    name: Joi.string().min(3).max(50).required(),
-    lastName: Joi.string().min(3).max(50).required(),
+    name: Joi.string()
+      .min(3)
+      .max(50)
+      .pattern(/^([^0-9]*)$/i, 'only letters')
+      .required(),
+    lastName: Joi.string()
+      .min(3)
+      .max(50)
+      .pattern(/^([^0-9]*)$/i, 'only letters')
+      .required(),
     email: Joi.string().email().required(),
     password: Joi.string()
       .pattern(
@@ -28,8 +36,14 @@ const validateCreation = (req, res, next) => {
 
 const validateUpdate = (req, res, next) => {
   const adminValidation = Joi.object({
-    name: Joi.string().min(3).max(50),
-    lastName: Joi.string().min(3).max(50),
+    name: Joi.string()
+      .min(3)
+      .max(50)
+      .pattern(/^([^0-9]*)$/i, 'only letters'),
+    lastName: Joi.string()
+      .min(3)
+      .max(50)
+      .pattern(/^([^0-9]*)$/i, 'only letters'),
     email: Joi.string().email(),
     password: Joi.string().pattern(
       /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
