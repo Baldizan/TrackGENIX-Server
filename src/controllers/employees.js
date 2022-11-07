@@ -28,7 +28,7 @@ const deleteEmployees = async (req, res) => {
 
 const getAllEmployees = async (req, res) => {
   try {
-    const employees = await Employees.find(req.query);
+    const employees = await Employees.find(req.query).populate('project');
     if (Object.keys(req.query).length !== 0 && employees.length === 0) {
       throw new Error('Employees not found');
     }
