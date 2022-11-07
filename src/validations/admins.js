@@ -5,7 +5,12 @@ const validateCreation = (req, res, next) => {
     name: Joi.string().min(3).max(50).required(),
     lastName: Joi.string().min(3).max(50).required(),
     email: Joi.string().email().required(),
-    password: Joi.string().min(8).max(50).required(),
+    password: Joi.string()
+      .pattern(
+        /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
+        'Letters, numbers and minimum 8 characters',
+      )
+      .required(),
     active: Joi.boolean(),
   });
 
@@ -26,7 +31,10 @@ const validateUpdate = (req, res, next) => {
     name: Joi.string().min(3).max(50),
     lastName: Joi.string().min(3).max(50),
     email: Joi.string().email(),
-    password: Joi.string().min(8).max(50),
+    password: Joi.string().pattern(
+      /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
+      'Letters, numbers and minimum 8 characters',
+    ),
     active: Joi.boolean(),
   });
 
@@ -42,7 +50,4 @@ const validateUpdate = (req, res, next) => {
   return next();
 };
 
-export {
-  validateCreation,
-  validateUpdate,
-};
+export { validateCreation, validateUpdate };
