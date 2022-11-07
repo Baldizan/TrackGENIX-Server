@@ -13,7 +13,12 @@ const validateCreation = (req, res, next) => {
       .pattern(/^([^0-9]*)$/i, 'only letters')
       .required(),
     email: Joi.string().email().required(),
-    password: Joi.string().min(8).max(50).required(),
+    password: Joi.string()
+      .pattern(
+        /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
+        'Letters, numbers and minimum 8 characters',
+      )
+      .required(),
     active: Joi.boolean(),
   });
 
@@ -40,7 +45,10 @@ const validateUpdate = (req, res, next) => {
       .max(50)
       .pattern(/^([^0-9]*)$/i, 'only letters'),
     email: Joi.string().email(),
-    password: Joi.string().min(8).max(50),
+    password: Joi.string().pattern(
+      /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
+      'Letters, numbers and minimum 8 characters',
+    ),
     active: Joi.boolean(),
   });
 

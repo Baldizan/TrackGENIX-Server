@@ -13,7 +13,13 @@ const validateCreation = (req, res, next) => {
       .pattern(/^([^0-9]*)$/i, 'only letters')
       .required(),
     email: Joi.string().email().required(),
-    password: Joi.string().alphanum().min(8).required(),
+    password: Joi.string()
+      .alphanum()
+      .pattern(
+        /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
+        'Letters, numbers and minimum 8 characters',
+      )
+      .required(),
   });
   const validation = superAdminValidation.validate(req.body, {
     abortEarly: false,
@@ -33,7 +39,12 @@ const validateEdit = (req, res, next) => {
     name: Joi.string().min(3).max(50).pattern(/^([^0-9]*)$/i, 'only letters'),
     lastName: Joi.string().min(3).max(50).pattern(/^([^0-9]*)$/i, 'only letters'),
     email: Joi.string().email(),
-    password: Joi.string().alphanum().min(8),
+    password: Joi.string()
+      .alphanum()
+      .pattern(
+        /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
+        'Letters, numbers and minimum 8 characters',
+      ),
   });
   const validation = superAdminValidation.validate(req.body, {
     abortEarly: false,
