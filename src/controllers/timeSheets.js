@@ -85,21 +85,17 @@ const deleteTimeSheet = async (req, res) => {
     const { id } = req.params;
     const result = await TimeSheets.findByIdAndDelete(id);
     if (!result) {
-      throw new Error(`Timesheet with id ${id} not found`);
+      throw new Error('Timesheet not found');
     }
-    return res.status(204).json({
-      message: `Timesheet with id ${id} deleted`,
+    return res.status(200).json({
+      message: `Timesheet with id ${id} successfully deleted`,
       data: result,
       error: false,
     });
   } catch (error) {
-    let status = 400;
-    if (error.message.includes('Timesheet with id')) {
-      status = 404;
-    }
-    return res.status(status).json({
+    const statusCode = error.message.includes('Timesheet not found') ? 404 : 400;
+    return res.status(statusCode).json({
       message: error.toString(),
-      data: undefined,
       error: true,
     });
   }
