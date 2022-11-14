@@ -79,12 +79,13 @@ const createProject = async (req, res) => {
 
 const deleteProject = async (req, res) => {
   try {
-    const result = await Projects.findByIdAndDelete(req.params.id);
+    const { id } = req.params;
+    const result = await Projects.findByIdAndDelete(id);
     if (!result) {
       throw new Error('Project not found');
     }
-    return res.status(204).json({
-      message: `Project with Id ${result.id} deleted.`,
+    return res.status(200).json({
+      message: `Project with id ${id} successfully deleted!`,
       data: result,
       error: false,
     });

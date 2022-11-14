@@ -67,21 +67,24 @@ const createAdmin = async (req, res) => {
 
 const deleteAdmin = async (req, res) => {
   try {
-    const admin = await Admins.findByIdAndDelete(req.params.id);
+    const { id } = req.params;
+    const admin = await Admins.findByIdAndDelete(id);
     if (!admin) {
       throw new Error('Admin not found');
     }
-    return res.status(204).json({
-      message: `Admin with id ${admin.id} deleted successfully`,
-      data: admin,
-      error: false,
-    });
+    return res.status(200)
+      .json({
+        message: `Admin with id ${id} successfully deleted!`,
+        data: admin,
+        error: false,
+      });
   } catch (error) {
     const statusCode = error.message.includes('Admin not found') ? 404 : 400;
-    return res.status(statusCode).json({
-      message: error.toString(),
-      error: true,
-    });
+    return res.status(statusCode)
+      .json({
+        message: error.toString(),
+        error: true,
+      });
   }
 };
 

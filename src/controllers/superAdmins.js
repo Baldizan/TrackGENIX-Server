@@ -77,23 +77,19 @@ const createSuperAdmin = async (req, res) => {
 };
 
 const deleteSuperAdmin = async (req, res) => {
-  const idSuperAdmin = req.params.id;
-
   try {
-    const result = await SuperAdmins.findByIdAndDelete(idSuperAdmin);
-    if (result === null) {
-      throw new Error("Super admin doesn't exist");
+    const { id } = req.params;
+    const result = await SuperAdmins.findByIdAndDelete(id);
+    if (!result) {
+      throw new Error('Super admin not found');
     }
-    return res.status(204).json({
-      message: 'super admin deleted',
+    return res.status(200).json({
+      message: `Super admin with id ${id} successfully deleted`,
       data: result,
       error: false,
     });
   } catch (error) {
-    let statusCode = 400;
-    if (error.message.includes("Super admin doesn't exist")) {
-      statusCode = 404;
-    }
+    const statusCode = error.message.includes('Super admin not found') ? 404 : 400;
     return res.status(statusCode).json({
       message: error.toString(),
       data: undefined,

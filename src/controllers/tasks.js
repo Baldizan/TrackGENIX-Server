@@ -105,28 +105,23 @@ const editTask = async (req, res) => {
 const deleteTask = async (req, res) => {
   try {
     const { id } = req.params;
-    const tasks = await Tasks.findByIdAndDelete(id);
-
-    if (!tasks) {
-      throw new Error('No task found');
+    const result = await Tasks.findByIdAndDelete(id);
+    if (!result) {
+      throw new Error('Task not found');
     }
-
-    return res.status(204).json({
-      message: `Task with id ${tasks.id} deleted`,
-      data: tasks,
-      error: false,
-    });
+    return res.status(200)
+      .json({
+        message: `Task with id ${id} successfully deleted!`,
+        data: result,
+        error: false,
+      });
   } catch (error) {
-    let statusCode = 400;
-    if (error.message.includes('No task found')) {
-      statusCode = 404;
-    }
-
-    return res.status(statusCode).json({
-      message: error.toString(),
-      data: undefined,
-      error: true,
-    });
+    const statusCode = error.message.includes('Task not found') ? 404 : 400;
+    return res.status(statusCode)
+      .json({
+        message: error.toString(),
+        error: true,
+      });
   }
 };
 

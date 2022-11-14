@@ -4,25 +4,23 @@ import Projects from '../models/Projects';
 const deleteEmployees = async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await Employees.findByIdAndDelete(id);
-    if (!result) {
+    const employee = await Employees.findByIdAndDelete(id);
+    if (!employee) {
       throw new Error('Employee not found');
     }
-    return res.status(204).json({
-      message: `Employee with id ${id} deleted`,
-      data: result,
-      error: false,
-    });
+    return res.status(200)
+      .json({
+        message: `Employee with id ${id} successfully deleted!`,
+        data: employee,
+        error: false,
+      });
   } catch (error) {
-    let status = 400;
-    if (error.message.includes('Employee not found')) {
-      status = 404;
-    }
-    return res.status(status).json({
-      message: error.toString(),
-      data: undefined,
-      error: true,
-    });
+    const statusCode = error.message.includes('Employee not found') ? 404 : 400;
+    return res.status(statusCode)
+      .json({
+        message: error.toString(),
+        error: true,
+      });
   }
 };
 
