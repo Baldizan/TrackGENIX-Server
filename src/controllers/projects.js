@@ -113,7 +113,7 @@ const updateProject = async (req, res) => {
     if (!result) {
       throw new Error('Project not found');
     }
-    return res.status(201).json({
+    return res.status(200).json({
       message: `Project with Id ${id} updated.`,
       data: result,
       error: false,

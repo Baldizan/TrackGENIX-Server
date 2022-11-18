@@ -98,7 +98,7 @@ const editAdmin = async (req, res) => {
     if (!admin) {
       throw new Error('Admin not found');
     }
-    return res.status(201).json({
+    return res.status(200).json({
       message: `Admin with id ${admin.id} edited successfully`,
       data: admin,
       error: false,
