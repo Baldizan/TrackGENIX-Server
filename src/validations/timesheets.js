@@ -24,12 +24,12 @@ const validateCreation = (req, res, next) => {
 
 const validateEdition = (req, res, next) => {
   const timeSheetsValidations = Joi.object({
-    description: Joi.string().min(5).max(100).required(),
-    date: Joi.date().required(),
-    task: Joi.string().required(),
-    hours: Joi.number().required(),
-    project: Joi.string().required(),
-    employee: Joi.string().required(),
+    description: Joi.string().min(5).max(100),
+    date: Joi.date(),
+    task: Joi.string(),
+    hours: Joi.number(),
+    project: Joi.string(),
+    employee: Joi.string(),
   });
 
   const validation = timeSheetsValidations.validate(req.body, { abortEarly: false });
