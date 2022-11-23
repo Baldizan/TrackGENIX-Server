@@ -12,7 +12,7 @@ const projectSchema = new Schema({
   employees:
   [
     {
-      id: {
+      employee: {
         type: Schema.Types.ObjectId,
         ref: 'Employee',
       },
