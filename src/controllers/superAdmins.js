@@ -3,7 +3,9 @@ import SuperAdmins from '../models/SuperAdmins';
 const getAllSuperAdmins = async (req, res) => {
   try {
     const result = await SuperAdmins.find(req.query);
-    const message = result.length ? 'Super admins found' : 'There are no super admins';
+    const message = result.length
+      ? 'Super admins found'
+      : 'There are no super admins';
 
     if (Object.keys(req.query).length !== 0 && result.length === 0) {
       throw new Error('Super admin not found');
@@ -63,7 +65,7 @@ const createSuperAdmin = async (req, res) => {
 
     const result = await superAdmin.save();
     return res.status(201).json({
-      message: 'Super admin created succesfully',
+      message: 'Super admin created successfully',
       data: result,
       error: false,
     });
@@ -89,7 +91,9 @@ const deleteSuperAdmin = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    const statusCode = error.message.includes('Super admin not found') ? 404 : 400;
+    const statusCode = error.message.includes('Super admin not found')
+      ? 404
+      : 400;
     return res.status(statusCode).json({
       message: error.toString(),
       data: undefined,
@@ -100,7 +104,11 @@ const deleteSuperAdmin = async (req, res) => {
 
 const updateSuperAdmin = async (req, res) => {
   try {
-    const result = await SuperAdmins.findByIdAndUpdate(req.params.id, req.body);
+    const result = await SuperAdmins.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true },
+    );
     if (result === null) {
       throw new Error("Super admin doesn't exist");
     }
