@@ -1,4 +1,5 @@
 import Admins from '../models/Admins';
+import firebase from '../helpers/firebase';
 
 const getAllAdmins = async (req, res) => {
   try {
@@ -43,18 +44,26 @@ const getAdminById = async (req, res) => {
 
 const createAdmin = async (req, res) => {
   try {
-    const admin = new Admins({
+    const newFirebaseUser = await firebase.auth().createUser({
+      email: req.body.email,
+      password: req.body.password,
+    });
+    await firebase
+      .auth()
+      .setCustomUserClaims(newFirebaseUser.uid, { role: 'ADMIN' });
+    const admin = await Admins({
       name: req.body.name,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password,
-      active: false,
-    });
+      firebaseUid: newFirebaseUser.uid,
+    }).save();
+    if (!admin) {
+      firebase.auth().newFirebaseUser.uid.delete();
+    }
 
-    const result = await admin.save();
     return res.status(201).json({
-      message: 'Admin created successfully',
-      data: result,
+      message: 'Admin successfully created',
+      data: admin,
       error: false,
     });
   } catch (error) {
@@ -72,28 +81,39 @@ const deleteAdmin = async (req, res) => {
     if (!admin) {
       throw new Error('Admin not found');
     }
-    return res.status(200)
-      .json({
-        message: `Admin with id ${id} successfully deleted!`,
-        data: admin,
-        error: false,
-      });
+    return res.status(200).json({
+      message: `Admin with id ${id} successfully deleted!`,
+      data: admin,
+      error: false,
+    });
   } catch (error) {
     const statusCode = error.message.includes('Admin not found') ? 404 : 400;
-    return res.status(statusCode)
-      .json({
-        message: error.toString(),
-        error: true,
-      });
+    return res.status(statusCode).json({
+      message: error.toString(),
+      error: true,
+    });
   }
 };
 
 const editAdmin = async (req, res) => {
   try {
+    const adminUid = await Admins.findById(req.params.id);
+    await firebase.auth().updateUser(adminUid.firebaseUid, {
+      email: req.body.email,
+      password: req.body.password,
+    });
+
     const admin = await Admins.findByIdAndUpdate(
       req.params.id,
-      req.body,
-      { new: true },
+      {
+        name: req.body.name,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        active: req.body.active,
+      },
+      {
+        new: true,
+      },
     );
     if (!admin) {
       throw new Error('Admin not found');
@@ -113,9 +133,5 @@ const editAdmin = async (req, res) => {
 };
 
 export {
-  getAllAdmins,
-  getAdminById,
-  createAdmin,
-  deleteAdmin,
-  editAdmin,
+  getAllAdmins, getAdminById, createAdmin, deleteAdmin, editAdmin,
 };
