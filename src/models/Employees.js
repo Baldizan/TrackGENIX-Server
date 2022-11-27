@@ -8,7 +8,12 @@ const employeeSchema = new Schema({
   phone: { type: Number, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
+  projects: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Project',
+    },
+  ],
   active: { type: Boolean },
 });
 

@@ -53,8 +53,8 @@ const getAllEmployees = async (req, res) => {
 const updateEmployees = async (req, res) => {
   try {
     const { id } = req.params;
-    if (req.body.project) {
-      const project = await Projects.findById(req.body.project);
+    if (req.body.projects) {
+      const project = await Projects.findById(req.body.projects);
       if (!project) {
         throw new Error('Project not found');
       }
@@ -112,8 +112,8 @@ const getEmployeeById = async (req, res) => {
 
 const createEmployees = async (req, res) => {
   try {
-    if (req.body.project) {
-      const project = await Projects.findById(req.body.project);
+    if (req.body.projects) {
+      const project = await Projects.findById(req.body.projects);
       if (!project) {
         throw new Error('Project not found');
       }
@@ -124,10 +124,10 @@ const createEmployees = async (req, res) => {
       phone: req.body.phone,
       email: req.body.email,
       password: req.body.password,
-      projects: req.body.project,
+      projects: req.body.projects,
       active: false,
     });
-
+    employee.populate('projects');
     const result = await employee.save();
     return res.status(201).json({
       message: 'Employee created',

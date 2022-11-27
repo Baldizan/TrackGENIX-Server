@@ -2,7 +2,8 @@ import Projects from '../models/Projects';
 
 const getAllProjects = async (req, res) => {
   try {
-    const projects = await Projects.find(req.query).populate('employees.employee');
+    const projects = await Projects.find(req.query).populate('employees.employee', ['_id', 'name',
+      'lastName', 'email']);
     if (Object.keys(req.query).length !== 0 && projects.length === 0) {
       throw new Error('Project not found');
     }
@@ -28,7 +29,8 @@ const getAllProjects = async (req, res) => {
 const getProjectById = async (req, res) => {
   try {
     const { id } = req.params;
-    const project = await Projects.findById(id).populate('employees.employee');
+    const project = await Projects.findById(id).populate('employees.employee', ['_id', 'name',
+      'lastName', 'email']);
     if (!project) {
       throw new Error('Project not found');
     }
@@ -61,7 +63,8 @@ const createProject = async (req, res) => {
       employees: req.body.employees,
       active: false,
     });
-    post.populate('employees.id');
+    post.populate('employees.employee', ['_id', 'name',
+      'lastName', 'email']);
     const result = await post.save();
     return res.status(201).json({
       message: 'Project created.',

@@ -9,8 +9,7 @@ const projectSchema = new Schema({
   description: { type: String, require: true },
   clientName: { type: String, require: true },
   active: { type: Boolean },
-  employees:
-  [
+  employees: [
     {
       employee: {
         type: Schema.Types.ObjectId,
