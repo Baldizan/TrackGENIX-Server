@@ -70,7 +70,6 @@ const createSuperAdmin = async (req, res) => {
       name: req.body.name,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password,
       firebaseUid: newFirebaseUser.uid,
     }).save();
     return res.status(201).json({
