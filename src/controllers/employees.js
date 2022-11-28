@@ -1,5 +1,6 @@
 import Employees from '../models/Employees';
 import Projects from '../models/Projects';
+import firebase from '../helpers/firebase';
 
 const deleteEmployees = async (req, res) => {
   try {
@@ -8,19 +9,17 @@ const deleteEmployees = async (req, res) => {
     if (!employee) {
       throw new Error('Employee not found');
     }
-    return res.status(200)
-      .json({
-        message: `Employee with id ${id} successfully deleted!`,
-        data: employee,
-        error: false,
-      });
+    return res.status(200).json({
+      message: `Employee with id ${id} successfully deleted!`,
+      data: employee,
+      error: false,
+    });
   } catch (error) {
     const statusCode = error.message.includes('Employee not found') ? 404 : 400;
-    return res.status(statusCode)
-      .json({
-        message: error.toString(),
-        error: true,
-      });
+    return res.status(statusCode).json({
+      message: error.toString(),
+      error: true,
+    });
   }
 };
 
@@ -31,7 +30,9 @@ const getAllEmployees = async (req, res) => {
       throw new Error('Employees not found');
     }
 
-    const message = employees.length ? 'Employee found' : 'There are no employees';
+    const message = employees.length
+      ? 'Employee found'
+      : 'There are no employees';
     return res.status(200).json({
       message,
       data: employees,
@@ -59,22 +60,29 @@ const updateEmployees = async (req, res) => {
         throw new Error('Project not found');
       }
     }
-    const result = await Employees.findByIdAndUpdate(
+    const employeeUid = await Employees.findById(req.params.id);
+    await firebase.auth().updateUser(employeeUid.firebaseUid, {
+      email: req.body.email,
+      password: req.body.password,
+    });
+    const employee = await Employees.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true },
+      {
+        new: true,
+      },
     );
-    if (!result) {
+    if (!employee) {
       throw new Error('Employee not found');
     }
     return res.status(200).json({
       message: `Employee with id ${id} edited`,
-      data: result,
+      data: employee,
       error: false,
     });
   } catch (error) {
     let status = 400;
-    if (error.message.includes('Employee not found') || error.message.includes('Project not found')) {
+    if (error.message.includes('Employee not found')) {
       status = 404;
     }
     return res.status(status).json({
@@ -111,6 +119,8 @@ const getEmployeeById = async (req, res) => {
 };
 
 const createEmployees = async (req, res) => {
+  let newFirebaseUser;
+  let employee;
   try {
     if (req.body.project) {
       const project = await Projects.findById(req.body.project);
@@ -118,20 +128,26 @@ const createEmployees = async (req, res) => {
         throw new Error('Project not found');
       }
     }
-    const employee = new Employees({
+    newFirebaseUser = await firebase.auth().createUser({
+      email: req.body.email,
+      password: req.body.password,
+    });
+    await firebase
+      .auth()
+      .setCustomUserClaims(newFirebaseUser.uid, { role: 'EMPLOYEE' });
+    employee = await Employees({
       name: req.body.name,
       lastName: req.body.lastName,
       phone: req.body.phone,
       email: req.body.email,
-      password: req.body.password,
       project: req.body.project,
       active: false,
-    });
+      firebaseUid: newFirebaseUser.uid,
+    }).save();
 
-    const result = await employee.save();
     return res.status(201).json({
-      message: 'Employee created',
-      data: result,
+      message: 'Employee successfully created',
+      data: employee,
       error: false,
     });
   } catch (error) {

@@ -1,4 +1,5 @@
 import SuperAdmins from '../models/SuperAdmins';
+import firebase from '../helpers/firebase';
 
 const getAllSuperAdmins = async (req, res) => {
   try {
@@ -55,21 +56,31 @@ const getSuperAdminById = async (req, res) => {
 };
 
 const createSuperAdmin = async (req, res) => {
+  let newFirebaseUser;
+  let superAdmin;
   try {
-    const superAdmin = new SuperAdmins({
-      name: req.body.name,
-      lastName: req.body.lastName,
+    newFirebaseUser = await firebase.auth().createUser({
       email: req.body.email,
       password: req.body.password,
     });
-
-    const result = await superAdmin.save();
+    await firebase
+      .auth()
+      .setCustomUserClaims(newFirebaseUser.uid, { role: 'SUPER_ADMIN' });
+    superAdmin = await SuperAdmins({
+      name: req.body.name,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      firebaseUid: newFirebaseUser.uid,
+    }).save();
     return res.status(201).json({
       message: 'Super admin created successfully',
-      data: result,
+      data: superAdmin,
       error: false,
     });
   } catch (error) {
+    if (newFirebaseUser && !superAdmin) {
+      firebase.auth().delete(newFirebaseUser.uid);
+    }
     return res.status(400).json({
       message: error.toString(),
       error: true,
@@ -104,6 +115,11 @@ const deleteSuperAdmin = async (req, res) => {
 
 const updateSuperAdmin = async (req, res) => {
   try {
+    const superAdminUid = await SuperAdmins.findById(req.params.id);
+    await firebase.auth().updateUser(superAdminUid.firebaseUid, {
+      email: req.body.email,
+      password: req.body.password,
+    });
     const result = await SuperAdmins.findByIdAndUpdate(
       req.params.id,
       req.body,
