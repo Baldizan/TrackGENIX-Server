@@ -4,13 +4,14 @@ import firebase from '../helpers/firebase';
 
 const deleteEmployees = async (req, res) => {
   try {
-    const { id } = req.params;
-    const employee = await Employees.findByIdAndDelete(id);
+    const employeeUid = await Employees.findById(req.params.id);
+		await firebase.auth().deleteUser(employeeUid.firebaseUid);
+    const employee = await Employees.findByIdAndDelete(req.params.id);
     if (!employee) {
       throw new Error('Employee not found');
     }
     return res.status(200).json({
-      message: `Employee with id ${id} successfully deleted!`,
+      message: `Employee with id ${req.params.id} successfully deleted!`,
       data: employee,
       error: false,
     });
@@ -53,7 +54,6 @@ const getAllEmployees = async (req, res) => {
 
 const updateEmployees = async (req, res) => {
   try {
-    const { id } = req.params;
     if (req.body.project) {
       const project = await Projects.findById(req.body.project);
       if (!project) {
@@ -76,7 +76,7 @@ const updateEmployees = async (req, res) => {
       throw new Error('Employee not found');
     }
     return res.status(200).json({
-      message: `Employee with id ${id} edited`,
+      message: `Employee with id ${req.params.id} edited`,
       data: employee,
       error: false,
     });
@@ -95,8 +95,7 @@ const updateEmployees = async (req, res) => {
 
 const getEmployeeById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const employees = await Employees.findById(id).populate('project');
+    const employees = await Employees.findById(req.params.id).populate('project');
     if (!employees) {
       throw new Error('Employee not found');
     }

@@ -31,14 +31,13 @@ const getAllSuperAdmins = async (req, res) => {
 };
 
 const getSuperAdminById = async (req, res) => {
-  const idSuperAdmin = req.params.id;
   try {
-    const superAdmin = await SuperAdmins.findById(idSuperAdmin);
+    const superAdmin = await SuperAdmins.findById(req.params.id);
     if (superAdmin === null) {
       throw new Error('Super admin not found');
     }
     return res.status(200).json({
-      message: `Super admin with id: ${idSuperAdmin} found`,
+      message: `Super admin with id: ${req.params.id} found`,
       data: superAdmin,
       error: false,
     });
@@ -91,13 +90,14 @@ const createSuperAdmin = async (req, res) => {
 
 const deleteSuperAdmin = async (req, res) => {
   try {
-    const { id } = req.params;
-    const result = await SuperAdmins.findByIdAndDelete(id);
+    const superAdminUid = await SuperAdmins.findById(req.params.id);
+		await firebase.auth().deleteUser(superAdminUid.firebaseUid);
+    const result = await SuperAdmins.findByIdAndDelete(req.params.id);
     if (!result) {
       throw new Error('Super admin not found');
     }
     return res.status(200).json({
-      message: `Super admin with id ${id} successfully deleted`,
+      message: `Super admin with id ${req.params.id} successfully deleted`,
       data: result,
       error: false,
     });
@@ -129,7 +129,7 @@ const updateSuperAdmin = async (req, res) => {
       throw new Error("Super admin doesn't exist");
     }
     return res.status(200).json({
-      message: 'Super admin updated',
+      message: `Super admin with id ${req.params.id} edited`,
       data: result,
       error: false,
     });
