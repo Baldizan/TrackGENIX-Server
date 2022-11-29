@@ -77,7 +77,7 @@ const createAdmin = async (req, res) => {
 const deleteAdmin = async (req, res) => {
   try {
     const adminUid = await Admins.findById(req.params.id);
-		await firebase.auth().deleteUser(adminUid.firebaseUid);
+    await firebase.auth().deleteUser(adminUid.firebaseUid);
     const admin = await Admins.findByIdAndDelete(req.params.id);
     if (!admin) {
       throw new Error('Admin not found');

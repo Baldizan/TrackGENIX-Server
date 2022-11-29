@@ -5,7 +5,7 @@ import firebase from '../helpers/firebase';
 const deleteEmployees = async (req, res) => {
   try {
     const employeeUid = await Employees.findById(req.params.id);
-		await firebase.auth().deleteUser(employeeUid.firebaseUid);
+    await firebase.auth().deleteUser(employeeUid.firebaseUid);
     const employee = await Employees.findByIdAndDelete(req.params.id);
     if (!employee) {
       throw new Error('Employee not found');

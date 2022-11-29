@@ -91,7 +91,7 @@ const createSuperAdmin = async (req, res) => {
 const deleteSuperAdmin = async (req, res) => {
   try {
     const superAdminUid = await SuperAdmins.findById(req.params.id);
-		await firebase.auth().deleteUser(superAdminUid.firebaseUid);
+    await firebase.auth().deleteUser(superAdminUid.firebaseUid);
     const result = await SuperAdmins.findByIdAndDelete(req.params.id);
     if (!result) {
       throw new Error('Super admin not found');
