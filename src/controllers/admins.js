@@ -76,13 +76,14 @@ const createAdmin = async (req, res) => {
 
 const deleteAdmin = async (req, res) => {
   try {
-    const { id } = req.params;
-    const admin = await Admins.findByIdAndDelete(id);
+    const adminUid = await Admins.findById(req.params.id);
+    await firebase.auth().deleteUser(adminUid.firebaseUid);
+    const admin = await Admins.findByIdAndDelete(req.params.id);
     if (!admin) {
       throw new Error('Admin not found');
     }
     return res.status(200).json({
-      message: `Admin with id ${id} successfully deleted!`,
+      message: `Admin with id ${req.params.id} successfully deleted!`,
       data: admin,
       error: false,
     });
