@@ -14,10 +14,13 @@ const validateCreation = (req, res, next) => {
     endDate: Joi.date().greater(Joi.ref('startDate')),
     clientName: Joi.string().min(3).max(20).required(),
     active: Joi.boolean(),
+    projectManager: Joi.string().required(),
     employees: Joi.array().items(employeeValidation),
   });
 
-  const validation = projectsValidations.validate(req.body, { abortEarly: false });
+  const validation = projectsValidations.validate(req.body, {
+    abortEarly: false,
+  });
   if (validation.error) {
     return res.status(400).json({
       message: validation.error.message,
@@ -39,13 +42,16 @@ const validateUpdate = (req, res, next) => {
     name: Joi.string().min(3).max(20),
     description: Joi.string().min(5).max(50),
     startDate: Joi.date(),
+    projectManager: Joi.string().required(),
     endDate: Joi.date().greater(Joi.ref('startDate')),
     clientName: Joi.string().min(3).max(20),
     active: Joi.boolean(),
     employees: Joi.array().items(employeeValidation),
   });
 
-  const validation = projectsValidations.validate(req.body, { abortEarly: false });
+  const validation = projectsValidations.validate(req.body, {
+    abortEarly: false,
+  });
   if (validation.error) {
     return res.status(400).json({
       message: validation.error.message,
@@ -63,7 +69,9 @@ const validateEmployee = (req, res, next) => {
     employee: Joi.string().required(),
   });
 
-  const validation = employeeValidation.validate(req.body, { abortEarly: false });
+  const validation = employeeValidation.validate(req.body, {
+    abortEarly: false,
+  });
   if (validation.error) {
     return res.status(400).json({
       message: validation.error.message,
@@ -74,8 +82,4 @@ const validateEmployee = (req, res, next) => {
   return next();
 };
 
-export {
-  validateCreation,
-  validateUpdate,
-  validateEmployee,
-};
+export { validateCreation, validateUpdate, validateEmployee };
