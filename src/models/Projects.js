@@ -9,8 +9,8 @@ const projectSchema = new Schema({
   description: { type: String, require: true },
   clientName: { type: String, require: true },
   active: { type: Boolean },
-  employees:
-  [
+  projectManager: { type: Schema.Types.ObjectId, ref: 'Employee' },
+  employees: [
     {
       id: {
         type: Schema.Types.ObjectId,
