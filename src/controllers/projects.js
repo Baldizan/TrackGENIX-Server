@@ -2,7 +2,9 @@ import Projects from '../models/Projects';
 
 const getAllProjects = async (req, res) => {
   try {
-    const projects = await Projects.find(req.query).populate('employees.id');
+    const projects = await Projects.find(req.query)
+      .populate('employees.id')
+      .populate('projectManager');
     if (Object.keys(req.query).length !== 0 && projects.length === 0) {
       throw new Error('Project not found');
     }
@@ -28,7 +30,9 @@ const getAllProjects = async (req, res) => {
 const getProjectById = async (req, res) => {
   try {
     const { id } = req.params;
-    const project = await Projects.findById(id).populate('employees.id');
+    const project = await Projects.findById(id)
+      .populate('employees.id')
+      .populate('projectManager');
     if (!project) {
       throw new Error('Project not found');
     }
@@ -58,6 +62,7 @@ const createProject = async (req, res) => {
       startDate: req.body.startDate,
       endDate: req.body.endDate,
       clientName: req.body.clientName,
+      projectManager: req.body.projectManager,
       employees: req.body.employees,
       active: false,
     });
@@ -105,11 +110,9 @@ const deleteProject = async (req, res) => {
 const updateProject = async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await Projects.findByIdAndUpdate(
-      { _id: id },
-      req.body,
-      { new: true },
-    );
+    const result = await Projects.findByIdAndUpdate({ _id: id }, req.body, {
+      new: true,
+    });
     if (!result) {
       throw new Error('Project not found');
     }
