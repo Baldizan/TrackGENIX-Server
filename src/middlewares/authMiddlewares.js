@@ -4,16 +4,26 @@ const checkAuth = (roles) => async (req, res, next) => {
   try {
     const { token } = req.headers;
     if (!token) {
-      return res.status(400).json({ message: 'No token provided.' });
+      return res.status(401).json({ message: 'No token provided.' });
     }
     const user = await firebase.auth().verifyIdToken(token);
-    if (!roles.includes(user.role)) {
-      throw new Error('Invalid role.');
+    const URL = {
+      SUPERADMIN: '/super-admins/',
+      ADMIN: '/admins/',
+      EMPLOYEE: '/employees/',
+    };
+    const isSelfSearch = Boolean(
+      req.route.methods.get,
+      req.originalUrl === URL[user.role],
+      req.query.email === user.email,
+    );
+    if (!roles.includes(user.role) && !isSelfSearch) {
+      return res.status(403).json({ message: 'Invalid role.' });
     }
     req.firebaseUid = user.uid;
     return next();
   } catch (error) {
-    return res.status(401).json({ message: error.toString() });
+    return res.status(500).json({ message: error.toString() });
   }
 };
 
