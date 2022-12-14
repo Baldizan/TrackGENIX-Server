@@ -30,7 +30,6 @@ const getAllEmployees = async (req, res) => {
     if (Object.keys(req.query).length !== 0 && employees.length === 0) {
       throw new Error('Employees not found');
     }
-
     const message = employees.length
       ? 'Employee found'
       : 'There are no employees';
@@ -95,7 +94,9 @@ const updateEmployees = async (req, res) => {
 
 const getEmployeeById = async (req, res) => {
   try {
-    const employees = await Employees.findById(req.params.id).populate('project');
+    const employees = await Employees.findById(req.params.id).populate(
+      'project',
+    );
     if (!employees) {
       throw new Error('Employee not found');
     }
