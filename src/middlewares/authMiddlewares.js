@@ -13,7 +13,7 @@ const checkAuth = (roles) => async (req, res, next) => {
       EMPLOYEE: '/employees/',
     };
     const isSelfSearch = Boolean(
-      req.route.methods.get,
+      req.route.methods.get || req.route.methods.put,
       req.originalUrl === URL[user.role],
       req.query.email === user.email,
     );
