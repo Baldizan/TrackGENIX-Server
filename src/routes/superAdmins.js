@@ -1,6 +1,10 @@
 import express from 'express';
 import {
-  deleteSuperAdmin, updateSuperAdmin, createSuperAdmin, getAllSuperAdmins, getSuperAdminById,
+  deleteSuperAdmin,
+  updateSuperAdmin,
+  createSuperAdmin,
+  getAllSuperAdmins,
+  getSuperAdminById,
 } from '../controllers/superAdmins';
 import checkAuth from '../middlewares/authMiddlewares';
 import { validateEdit, validateCreation } from '../validations/superAdmins';

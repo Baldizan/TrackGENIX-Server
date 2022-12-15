@@ -14,12 +14,9 @@ const validateCreation = (req, res, next) => {
       .required(),
     email: Joi.string().email().required(),
     password: Joi.string()
-      .pattern(
-        /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
-        'Letters, numbers and minimum 8 characters',
-      )
+      .pattern(/^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/, 'Letters, numbers and minimum 8 characters')
       .required(),
-    active: Joi.boolean(),
+    active: Joi.boolean().required(),
   });
 
   const validation = adminValidation.validate(req.body, { abortEarly: false });
@@ -45,10 +42,7 @@ const validateUpdate = (req, res, next) => {
       .max(50)
       .pattern(/^([^0-9]*)$/i, 'only letters'),
     email: Joi.string().email(),
-    password: Joi.string().pattern(
-      /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
-      'Letters, numbers and minimum 8 characters',
-    ),
+    password: Joi.string().pattern(/^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/, 'Letters, numbers and minimum 8 characters'),
     active: Joi.boolean(),
   });
 
