@@ -1,6 +1,10 @@
 import express from 'express';
 import {
-  getAllAdmins, getAdminById, createAdmin, deleteAdmin, editAdmin,
+  getAllAdmins,
+  getAdminById,
+  createAdmin,
+  deleteAdmin,
+  editAdmin,
 } from '../controllers/admins';
 import checkAuth from '../middlewares/authMiddlewares';
 import { validateCreation, validateUpdate } from '../validations/admins';

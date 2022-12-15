@@ -14,9 +14,11 @@ const validateCreation = (req, res, next) => {
       .required(),
     phone: Joi.number().min(10).required(),
     email: Joi.string().email().required(),
-    password: Joi.string().pattern(/^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/, 'Letters, numbers and minimum 8 characters').required(),
+    password: Joi.string()
+      .pattern(/^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/, 'Letters, numbers and minimum 8 characters')
+      .required(),
     project: Joi.string().length(24),
-    active: Joi.boolean(),
+    active: Joi.boolean().required(),
   });
 
   const validation = employeesValidations.validate(req.body, {

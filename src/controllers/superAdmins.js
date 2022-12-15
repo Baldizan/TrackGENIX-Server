@@ -64,11 +64,12 @@ const createSuperAdmin = async (req, res) => {
     });
     await firebase
       .auth()
-      .setCustomUserClaims(newFirebaseUser.uid, { role: 'SUPER_ADMIN' });
+      .setCustomUserClaims(newFirebaseUser.uid, { role: 'SUPERADMIN' });
     superAdmin = await SuperAdmins({
       name: req.body.name,
       lastName: req.body.lastName,
       email: req.body.email,
+      active: req.body.active,
       firebaseUid: newFirebaseUser.uid,
     }).save();
     return res.status(201).json({

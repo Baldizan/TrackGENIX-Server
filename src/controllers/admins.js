@@ -55,6 +55,7 @@ const createAdmin = async (req, res) => {
       name: req.body.name,
       lastName: req.body.lastName,
       email: req.body.email,
+      active: req.body.active,
       firebaseUid: newFirebaseUser.uid,
     }).save();
     if (!admin) {
