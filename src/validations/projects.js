@@ -3,7 +3,7 @@ import Joi from 'joi';
 const validateCreation = (req, res, next) => {
   const employeeValidation = Joi.object({
     id: Joi.string().required(),
-    role: Joi.string().valid('DEV', 'QA', 'TL', 'PM').required(),
+    role: Joi.string().valid('DEV', 'QA', 'TL').required(),
     rate: Joi.number().min(1).max(1000).required(),
   });
 
@@ -33,7 +33,7 @@ const validateCreation = (req, res, next) => {
 
 const validateUpdate = (req, res, next) => {
   const employeeValidation = Joi.object({
-    role: Joi.string().valid('DEV', 'QA', 'TL', 'PM'),
+    role: Joi.string().valid('DEV', 'QA', 'TL'),
     rate: Joi.number(),
     id: Joi.string().required(),
   });
@@ -42,7 +42,7 @@ const validateUpdate = (req, res, next) => {
     name: Joi.string().min(3).max(20),
     description: Joi.string().min(5).max(50),
     startDate: Joi.date(),
-    projectManager: Joi.string().required(),
+    projectManager: Joi.string(),
     endDate: Joi.date().greater(Joi.ref('startDate')),
     clientName: Joi.string().min(3).max(20),
     active: Joi.boolean(),
@@ -64,7 +64,7 @@ const validateUpdate = (req, res, next) => {
 
 const validateEmployee = (req, res, next) => {
   const employeeValidation = Joi.object({
-    role: Joi.string().valid('DEV', 'QA', 'TL', 'PM').required(),
+    role: Joi.string().valid('DEV', 'QA', 'TL').required(),
     rate: Joi.number().required(),
     employee: Joi.string().required(),
   });
