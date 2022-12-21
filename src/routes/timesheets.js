@@ -9,8 +9,8 @@ const router = express.Router();
 
 router.get('/', checkAuth(['ADMIN', 'EMPLOYEE']), getAllTimeSheets);
 router.get('/:id', checkAuth(['ADMIN', 'EMPLOYEE']), getTimeSheetsbyId);
-router.post('/', checkAuth(['EMPLOYEE']), validateCreation, createTimeSheets);
-router.delete('/:id', checkAuth(['EMPLOYEE']), deleteTimeSheet);
-router.put('/:id', checkAuth(['EMPLOYEE']), validateEdition, editTimeSheet);
+router.post('/', checkAuth(['ADMIN']), validateCreation, createTimeSheets);
+router.delete('/:id', checkAuth(['ADMIN']), deleteTimeSheet);
+router.put('/:id', checkAuth(['ADMIN', 'EMPLOYEE']), validateEdition, editTimeSheet);
 
 export default router;
