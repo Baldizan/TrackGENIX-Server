@@ -9,7 +9,14 @@ const employeeSchema = new Schema(
     phone: { type: Number, required: true },
     email: { type: String, required: true },
     firebaseUid: { type: String, required: true },
-    project: { type: Schema.Types.ObjectId, ref: 'Project' },
+    project: [
+      {
+        id: {
+          type: Schema.Types.ObjectId,
+          ref: 'Project',
+        },
+      },
+    ],
     active: { type: Boolean, required: true },
   },
   {
